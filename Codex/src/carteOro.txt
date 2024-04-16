@@ -1,0 +1,11 @@
+1-rosso-boccetta-fungo,fungo,foglia,null,null-true,null-true,boccetta-true,null-false-true,null-true,null-true,null-true,null-fungo,null,null
+5-blu-null-lupo,lupo,lupo,lupo,lupo-false-true,null-true,null-false-true,null-true,null-true,null-true,null-lupo,null,null
+1-blu-pergamena-lupo,lupo,foglia,null,null-false-true,null-true,pergamena-true,null-true,null-true,null-true,null-true,null-lupo,null,null
+3-viola-null-farfalla,farfalla,farfalla,null,null-true,null-true,pergamena-false-false-true,null-true,null-true,null-true,null-farfalla,null,null
+5-verde-null-foglia,foglia,foglia,foglia,foglia-true,null-true,null-false-false-true,null-true,null-true,null-true,null-foglia,null,null
+3-verde-null-foglia,foglia,foglia,null,null-false-true,boccetta-true,null-false-true,null-true,null-true,null-true,null-foglia,null,null
+1-verde-piuma-foglia,foglia,farfalla,null,null-true,piuma-true,null-false-true,null-true,null-true,null-true,null-true,null-foglia,null,null
+2-viola-angoloSovrapposto-farfalla,farfalla,farfalla,lupo,null-true,null-true,null-true,null-false-true,null-true,null-true,null-true,null-farfalla,null,null
+1-viola-boccetta-farfalla,farfalla,fungo,null,null-false-true,null-true,boccetta-true,null-true,null-true,null-true,null-true,null-farfalla,null,null
+5-rosso-null-fungo,fungo,fungo,fungo,fungo-true,null-false-false-true,null-true,null-true,null-true,null-true,null-fungo,null,null
+3-rosso-null-fungo,fungo,fungo,null,null-true,piuma-true,null-false-false-true,null-true,null-true,null-true,null-fungo,null,null
