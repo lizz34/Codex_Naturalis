@@ -1,3 +1,4 @@
+package Carte;
 
 public enum Colore {
 	rosso,
