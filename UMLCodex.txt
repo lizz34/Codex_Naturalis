@@ -1,0 +1,33 @@
+Giocatore -> Obiettivo 1:1
+Giocatore -> Carta 1:3 
+	     oppure CartaOro 1:3 e CartaRisorsa 1:3
+Giocatore -> CartaStarter 1:1 (?-integrarla direttamente in giocatore)
+
+
+Main -> Obiettivo 1:2
+Main -> CartaOro 1:40
+Main -> CartaRisorsa 1:40
+Main -> Giocatore 1:4 (n giocatori 2..4)
+
+
+Carta -> Angolo 1:8
+Carta -> Disegno (enum)
+Sottoclassi:
+CartaOro -> Disegno (enum)
+CartaOro -> ControlloDisegno
+CartaRisorsa -> 
+CartaStarter -> (?)
+
+Obiettivo ->
+per gli obiettivi
+uno switch che odentifica le carte obiettivo in maniera univoca
+è possibile accomunare le carte disegno
+e anche forse le carte forma diagonale
+per le 4 altre carte un codice diverso per ognuna e un toString per far sapere all'utente cosa fare
+0-7: obiettivi con disegni --> controlli sui disegni delle carte
+8-11: obiettivi forme diagonali --> controlli su corretta forma e un colore
+12-15: obiettivi forme particolari --> controlli su corretta forme e due colori
+
+
+
+
