@@ -13,6 +13,6 @@ public class CartaOro extends Carta{
 			this.disegnoRichieste[i] = disegnoRichieste[i];
 		}
 		
-		this.criterioPunti = criterioPunti
+		this.criterioPunti = criterioPunti;
 	}
 }
