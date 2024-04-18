@@ -5,6 +5,7 @@ public class CartaRisorsa extends Carta{
 	
 	public CartaRisorsa(Angolo ang[], Colore col, Disegno dis[], int punti) {
 		super (ang, col, dis);
+		
 		this.punti=punti;
 		
 	}

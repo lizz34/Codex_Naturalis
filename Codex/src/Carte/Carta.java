@@ -2,10 +2,10 @@ package Carte;
 
 public abstract class Carta {
 	
-	private Angolo angoli[];
-	protected Colore colore;
+	private final Angolo angoli[];
+	protected final Colore colore;
 	boolean fronte; //true=carta giocata con fronte visibile, false=carta giocata con il retro
-	private Disegno disegni[];
+	private final Disegno disegni[];
 	
 	
 	public Carta(Angolo ang[], Colore col, Disegno dis[]) {
@@ -23,5 +23,27 @@ public abstract class Carta {
 		
 		
 	}
+
+	public Angolo[] getAngoli() {
+		return this.angoli;
+	}
+	
+	public Colore getColore() {
+		return this.colore;
+	}
+
+	public boolean getFronte() {
+		return fronte;
+	}
+
+	public void setFronte(boolean fronte) {
+		this.fronte = fronte;
+	}
+
+	public Disegno[] getDisegni() {
+		return disegni;
+	}
+	
+	
 
 }

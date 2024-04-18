@@ -1,9 +1,9 @@
 package Carte;
 
 public class Angolo {
-	private boolean fronte;
+	private final boolean fronte;
 	private boolean occupato;
-	private Disegno disegno;
+	private final Disegno disegno;
 	
 	public Angolo(boolean fronte, boolean occupato, Disegno disegno) {
 		this.fronte = fronte;
@@ -13,10 +13,6 @@ public class Angolo {
 
 	public boolean getFronte() {
 		return fronte;
-	}
-
-	public void setFronte(boolean fronte) {
-		this.fronte = fronte;
 	}
 
 	public boolean getOccupato() {
@@ -30,10 +26,5 @@ public class Angolo {
 	public Disegno getDisegno() {
 		return disegno;
 	}
-
-	public void setDisegno(Disegno disegno) {
-		this.disegno = disegno;
-	}
 	
-	//prova connessione git
 }
