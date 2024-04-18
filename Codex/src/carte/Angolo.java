@@ -11,7 +11,7 @@ public class Angolo {
 		this.disegno = disegno;
 	}
 
-	public boolean isFronte() {
+	public boolean getFronte() {
 		return fronte;
 	}
 
@@ -19,7 +19,7 @@ public class Angolo {
 		this.fronte = fronte;
 	}
 
-	public boolean isOccupato() {
+	public boolean getOccupato() {
 		return occupato;
 	}
 
