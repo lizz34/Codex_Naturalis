@@ -1,0 +1,6 @@
+true,fungo-true,foglia-true,lupo-true,farfalla-true,null-true,foglia-true,null-true,farfalla-farfalla,null,null
+true,farfalla-true,fungo-true,lupo-true,foglia-true,null-true,null-false-false-lupo,farfalla,foglia
+true,farfalla-true,lupo-true,foglia-true,fungo-true,null-true,null-true,null-true,null-foglia,fungo,null
+true,foglia-true,lupo-true,farfalla-true,fungo-true,lupo-true,null-true,fungo-true,null-fungo,null,null
+true,foglia-true,farfalla-true,fungo-true,lupo-true,null-true,null-true,null-true,null-lupo,farfalla,null
+true,fungo-true,lupo-true,farfalla-true,foglia-true,null-true,null-false-false-foglia,lupo,fungo

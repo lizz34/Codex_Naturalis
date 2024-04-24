@@ -9,9 +9,8 @@ public class Giocatore {
 	final private CarteObiettivo cartaObiettivo;
 	final private Carta cartaStarter;
 	//variabili della matrice
-	Carta campoDaGioco [][];
-	final int nRigheTabellone=50;
-	final int ncolonneTabellone=50;
+	CampoDaGioco campoPersonale;
+	
 	
 	public Giocatore(int punteggio, Carta carte[], CarteObiettivo obiettivo, Carta cartaStarter) {
 		//al momento dell'avvio della partita al giocatore vengono assegnate tramite il main 
@@ -26,13 +25,8 @@ public class Giocatore {
 			this.carte[i] = carte[i];
 		}
 		
-		//generazione della matrice di gioco
-		campoDaGioco = new Carta [nRigheTabellone][ncolonneTabellone];
-		for(int i=0; i<nRigheTabellone; i++) {
-			for(int j=0; j<ncolonneTabellone; j++) {
-				campoDaGioco[i][j] = null;
-			}
-		}
+		campoPersonale = new CampoDaGioco(this.cartaStarter);
+		
 	}
 	public static String estraiCartaObiettivoCasuale(String[] obiettivi) {
         Random rand = new Random();
@@ -103,10 +97,5 @@ public class Giocatore {
 	public Carta getCartaStarter() {
 		return cartaStarter;
 	}
-	
-	
-	
-	
-		//campoDaGioco[(int(nRigheTabellone/2))-1][(int(ncolonneTabellone/2))-1]= //carta starter
 	
 }
