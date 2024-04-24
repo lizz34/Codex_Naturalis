@@ -1,6 +1,7 @@
 package Carte;
+import Main.*;
 
-public abstract class Carta {
+public class Carta {
 	
 	private final Angolo angoli[];
 	protected final Colore colore;

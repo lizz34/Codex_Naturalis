@@ -1,7 +1,6 @@
 import java.util.Random;
 
-import Carte.Carta;
-import Carte.CarteObiettivo;
+import Carte.*;
 
 public class Giocatore {
 	private int punteggio;
