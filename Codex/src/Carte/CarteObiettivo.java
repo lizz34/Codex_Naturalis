@@ -3,10 +3,10 @@ package Carte;
 import java.util.Random;
 
 public class CarteObiettivo {
-
-    public static void main(String[] args) {
+	public static void main(String[] args) {
+    
         // Array contenente le carte obiettivo
-        String[] obiettivi = {"Due punti per ogni due piume",
+       String[] obiettivi = {"Due punti per ogni due piume",
                 "Due punti per ogni due boccette",
                 "Due punti per ogni due pergamene",
                 "Tre punti se si hanno una piuma, una boccetta e una pergamena",
@@ -19,13 +19,13 @@ public class CarteObiettivo {
                 "Tre punti se si ha la seguente disposizione: due carte verticali verdi dove l'angolo in basso a sinistra combacia con l'angolo in alto a destra di una carta viola",
                 "Tre punti se si ha la seguente disposizione: due carte verticali rosse dove l'angolo in basso a destra combacia con l'angolo in alto a sinistra di una carta verde",
                 "Due punti se si ha la seguente disposizione: se si hanno tre carte di colore viola disposte diagonalmente, dove la carta sinistra sarà quella più alta e quella a destra la più bassa",
-                "Due punti se si ha la seguente disposizione: sì si hanno tre carte di colore blu, dove la carta sinistra sarà la più bassa e quella destra la più alta",
+                "Due punti se si ha la seguente disposizione: se si hanno tre carte di colore blu, dove la carta sinistra sarà la più bassa e quella destra la più alta",
                 "Due punti se si ha la seguente disposizione: se si hanno tre carte di colore verde disposte diagonalmente, dove la carta sinistra sarà quella più alta e quella a destra la più bassa",
-                "Due punti se si ha la seguente disposizione: sì si hanno tre carte di colore rosso, dove la carta sinistra sarà la più bassa e quella destra la più alta"
+                "Due punti se si ha la seguente disposizione: se si hanno tre carte di colore rosso, dove la carta sinistra sarà la più bassa e quella destra la più alta"
             };
+      
+       {
 
-
-        
         Random rand = new Random();
 
                 int primo = rand.nextInt(15);
@@ -139,7 +139,12 @@ public class CarteObiettivo {
         case 15:
             System.out.println("2. " + obiettivi[15]);
             break;
-            
+        
         }
+        
+            
     }
-}
+
+
+
+}}
