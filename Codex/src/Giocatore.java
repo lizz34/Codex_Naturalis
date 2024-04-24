@@ -38,7 +38,7 @@ public class Giocatore {
         Random rand = new Random();
         int indice = rand.nextInt(obiettivi.length);
         return obiettivi[indice];
-    }
+    } //non riuscendo a richaimare l'array già essitente l'ho ritrascritto 
 
     public static void main(String[] args) {
         // Array contenente le carte obiettivo
