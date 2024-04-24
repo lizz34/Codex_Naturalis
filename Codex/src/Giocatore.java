@@ -1,18 +1,35 @@
 import Carte.Carta;
+import Carte.CarteObiettivo;
 
 public class Giocatore {
 	private int punteggio;
 	private Carta carte[];
-	//TODO: collegamento a classe obiettivo quando verrà creata la classe
-	//private Obiettivo cartaObiettivo;
+	final private CarteObiettivo cartaObiettivo;
+	final private Carta cartaStarter;
+	//variabili della matrice
+	Carta campoDaGioco [][];
+	final int nRigheTabellone=50;
+	final int ncolonneTabellone=50;
 	
-	public Giocatore(int punteggio, Carta carte[] /*Obiettivo obiettivo*/) {
-		//le 3 carte che il giocatore ha sul banco di partenza gli vengono assegnate in maniera random dal mazzo nel main
-		//al momento dell'avvio della partita
+	public Giocatore(int punteggio, Carta carte[], CarteObiettivo obiettivo, Carta cartaStarter) {
+		//al momento dell'avvio della partita al giocatore vengono assegnate tramite il main 
+		//la carta obiettivo (che non cambierà mai)
+		//le 3 carte di partenza da usare
+		//la carta starter
 		this.punteggio = punteggio;
+		this.cartaObiettivo = obiettivo;
+		this.cartaStarter = cartaStarter;
 		
 		for(int i = 0; i < 3; i++) {
 			this.carte[i] = carte[i];
+		}
+		
+		//generazione della matrice di gioco
+		campoDaGioco = new Carta [nRigheTabellone][ncolonneTabellone];
+		for(int i=0; i<nRigheTabellone; i++) {
+			for(int j=0; j<ncolonneTabellone; j++) {
+				campoDaGioco[i][j] = null;
+			}
 		}
 	}
 	
@@ -46,21 +63,17 @@ public class Giocatore {
 		this.carte = carte;
 	}
 	
-	
-	
-	
-	//matrice
-	Carta campoDaGioco [][];
-	int final nRigheTabellone=50;
-	int final ncolonneTabellone=50;
-	
-	public giocatore() {
-		campoDaGioco = new Carta [nRigheTabellone][ncolonneTabellone];
-		for(int i=0; i<nRigheTabellone; i++) {
-			for(int j=0; j<ncolonneTabellone; j++) {
-				campoDaGioco[i][j] = null;
-			}
-		}
-		//campoDaGioco[(int(nRigheTabellone/2))-1][(int(ncolonneTabellone/2))-1]= //carta starter
+	public CarteObiettivo getCartaObiettivo() {
+		return cartaObiettivo;
 	}
+
+	public Carta getCartaStarter() {
+		return cartaStarter;
+	}
+	
+	
+	
+	
+		//campoDaGioco[(int(nRigheTabellone/2))-1][(int(ncolonneTabellone/2))-1]= //carta starter
+	
 }
