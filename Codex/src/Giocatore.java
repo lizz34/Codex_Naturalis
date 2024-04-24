@@ -45,4 +45,22 @@ public class Giocatore {
 	public void setCarte(Carta[] carte) {
 		this.carte = carte;
 	}
+	
+	
+	
+	
+	//matrice
+	Carta campoDaGioco [][];
+	int final nRigheTabellone=50;
+	int final ncolonneTabellone=50;
+	
+	public giocatore() {
+		campoDaGioco = new Carta [nRigheTabellone][ncolonneTabellone];
+		for(int i=0; i<nRigheTabellone; i++) {
+			for(int j=0; j<ncolonneTabellone; j++) {
+				campoDaGioco[i][j] = null;
+			}
+		}
+		//campoDaGioco[(int(nRigheTabellone/2))-1][(int(ncolonneTabellone/2))-1]= //carta starter
+	}
 }
