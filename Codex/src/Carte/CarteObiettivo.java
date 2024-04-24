@@ -33,7 +33,7 @@ public class CarteObiettivo {
         
         do {
             primo = rand.nextInt(15);
-        } while ( secondo == primo); // Assicuro che non escano due cose carte obiettivo uguali 
+        } while ( secondo == primo); // Assicuro che non escano due carte obiettivo uguali 
 
                 System.out.println("Carte obiettivo:");
         switch (primo) {
