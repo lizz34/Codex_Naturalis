@@ -19,9 +19,7 @@ public class CampoDaGioco {
 	}
 	
 	public boolean posizionaCarta(Carta carta, int coordX, int coordY, Angolo angolo) {
-		if(campoPersonale[coordX][coordY]!=null) {
-			
-			
+		if(campoPersonale[coordX][coordY]!=null) {			
 			return true;
 		}
 		else

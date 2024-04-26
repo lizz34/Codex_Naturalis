@@ -1,10 +1,12 @@
 import java.util.Random;
-
+import java.util.Scanner;
+import java.util.Vector;
 import Carte.*;
 
 public class Giocatore {
 	private int punteggio;
-	private Carta carte[];
+	//private Carta carte[];
+	Vector<Carta> carte = new Vector<>();
 	final private CarteObiettivo cartaObiettivo;
 	final private Carta cartaStarter;
 	//variabili della matrice
@@ -21,7 +23,7 @@ public class Giocatore {
 		this.cartaStarter = cartaStarter;
 		
 		for(int i = 0; i < 3; i++) {
-			this.carte[i] = carte[i];
+			this.carte.add(carte[i]);
 		}
 		
 		campoPersonale = new CampoDaGioco(this.cartaStarter);
@@ -50,7 +52,7 @@ public class Giocatore {
                 "Due punti se si ha la seguente disposizione: se si hanno tre carte di colore viola disposte diagonalmente, dove la carta sinistra sarà quella più alta e quella a destra la più bassa",
                 "Due punti se si ha la seguente disposizione: sì si hanno tre carte di colore blu, dove la carta sinistra sarà la più bassa e quella destra la più alta",
                 "Due punti se si ha la seguente disposizione: se si hanno tre carte di colore verde disposte diagonalmente, dove la carta sinistra sarà quella più alta e quella a destra la più bassa",
-                "Due punti se si ha la seguente disposizione: sì si hanno tre carte di colore rosso, dove la carta sinistra sarà la più bassa e quella destra la più alta"
+                "Due punti se si ha la seguente disposizione: se si hanno tre carte di colore rosso, dove la carta sinistra sarà la più bassa e quella destra la più alta"
             };
 
         // Estrai una carta obiettivo casuale
@@ -62,15 +64,50 @@ public class Giocatore {
 	//funzione che permettere di scegliere la prossima carta da giocare dalle 3 che possiede il giocatore
 	public Carta scegliCarta() {
 		Carta cartaScelta = null;
+		int scelta = 0;
+		Scanner sc =  new Scanner();
 		
-		//TODO : visualizzazione delle carte
-		//scelta della carta e rimozione della carta dal vettore
-		//scelta di una nuova carta dalle 4 che ci sono disponibili sul tavolo di gioco
+		//cicli per chiedere all'utente di scegliere la prossima carta che vuole giocare
+		do {
+			for(int i = 0; i < 3; i++) {
+				System.out.println(i++ + ": " + carte[i].toString() + " \n");
+			}
+			
+			System.out.println();
+			System.out.println("Inserisci il numero della carta che vuoi posizionare sul tuo tavolo di gioco: ");
+			
+			try {
+				scelta = sc.nextInt();
+			}
+			catch(InputMismatchException e) {
+				System.out.println("Input non valido. Inserisci un numero da 1 a 3.");
+				sc.nextLine();
+			}
+			
+			if(scelta < 1 || scelta > 3) {
+				System.out.println("Inserisci un numero da tra 1 e 3 per scegliere la tua carta.");
+			}
+			else {
+				cartaScelta = carte[scelta];
+			}
+		}
+		while(cartaScelta== null);
 		
-		//TODO: chiamata alla funzione del main che permette di prendere una delle 4 carte presenti sul tavolo di gioco
+		//stampa la matrice per permettere al giocatore di scegliere dove posizionare la carta
+		campoPersonale.stampaCampoDaGioco();
 		
+		//TODO: codice per posizionare la carta nella matrice
+		
+		//rimozione della carta scelta dal vettore di carte del giocatore
+		carte.remove(scelta);
+		
+		//TODO: chiamata alla funzione del main che permette di:
+		//vedere le 4 carte presenti sul tavolo di gioco
+		//sceglierne una ed aggiungerla al proprio tavolo
+		sc.close();
 		return cartaScelta;
 	}
+	
 
 	//getter e setter
 	public int getPunteggio() {

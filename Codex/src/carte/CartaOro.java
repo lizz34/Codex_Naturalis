@@ -18,6 +18,16 @@ public class CartaOro extends Carta{
 		
 		this.criterioPunti = criterioPunti;
 	}
+	
+	public String toString() {
+		String carta = "Colore: " + this.colore + "\n" + 
+				(angoli[0] != null)? angoli[0].disegno "-": "---" +
+				this.punti + "-" + this.criterioPunti + "  " +
+				(angoli[1] != null)? angoli[1].disegno "-": "--- \n" +
+				(angoli[4] != null)? angoli[4].disegno "-": "---" +
+				this.disegnoRichieste + "  " +
+				(angoli[3] != null)? angoli[3].disegno "-": "---";
+	}
 
 	public int getPunti() {
 		return punti;
