@@ -45,6 +45,19 @@ public class Carta {
 		return disegni;
 	}
 	
+	public String toString() {
+		System.out.println("(fronte | occupato | disegno)");
+		for(int i=0; i<this.angoli.length; i++) {
+			if(angoli[i]==null)
+				System.out.print((i+1) + "- " + "non esiste" + "\n");
+			else
+				System.out.print((i+1) + "- " + angoli[i].toString() + "\n");
+		}
+		return colore + "\n" + disegni[0] + " " + disegni[1] + " " + disegni[2] + "\n";
+	}
 	
+	public Angolo getSpecifiAngolo(int nAngolo) {
+		return angoli[nAngolo];
+	}
 
 }

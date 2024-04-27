@@ -1,23 +1,23 @@
+package Giocatori;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Vector;
 import Carte.CartaObiettivo;
-
 import Carte.*;
 
 public class Giocatore {
-			  
+		
         CartaObiettivo cartaObiettivo = new CartaObiettivo();
         String[] dueObiettivi = cartaObiettivo.ottieniDueObiettiviCasuali();
-
+        
         // Estrai casualmente uno dei due obiettivi
         int indiceCasuale = (int) (Math.random() * 2); /
         String obiettivoCasuale = dueObiettivi[indiceCasuale];
-
+        
         // Stampa l'obiettivo estratto per la prova
         //System.out.println("Obiettivo estratto per la prova: " + obiettivoCasuale);
-    }
-
+        
+        
 		
 	
 	private int punteggio;
@@ -29,17 +29,17 @@ public class Giocatore {
 	CampoDaGioco campoPersonale;
 	
 	
-	public Giocatore(int punteggio, Carta carte[], CarteObiettivo obiettivo, Carta cartaStarter) {
+	public Giocatore(Carta carte[], /*CarteObiettivo obiettivo,*/ Carta cartaStarter) {
 		//al momento dell'avvio della partita al giocatore vengono assegnate tramite il main 
 		//la carta obiettivo (che non cambierà mai)
 		//le 3 carte di partenza da usare
 		//la carta starter
-		this.punteggio = punteggio;
-		this.cartaObiettivo = obiettivo;
+		this.punteggio = 0;
+		//this.cartaObiettivo = obiettivo;
 		this.cartaStarter = cartaStarter;
 		
 		for(int i = 0; i < 3; i++) {
-			this.carte.add(carte[i]);
+			this.carte.add(manoIniziale[i]);
 		}
 		
 		campoPersonale = new CampoDaGioco(this.cartaStarter);

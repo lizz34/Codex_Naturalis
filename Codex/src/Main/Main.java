@@ -1,5 +1,7 @@
 package Main;
 import Carte.*;
+import Giocatori.*;
+
 import java.io.File;
 import java.io.FileNotFoundException; 
 import java.util.Scanner;
@@ -7,7 +9,7 @@ import java.util.Scanner;
 public class Main {
 
 	public static void main(String[] args) {
-		//LETTURA DA FILE PER LA CREAZIONE DEL MAZZO DELLE CARTE STARTER 
+		//LETTURA DA FILE PER LA CREAZIONE DEL MAZZO DELLE CARTE STARTER - FINITO
 		Carta mazzoCarteStarter[] = new Carta [6];
 		int contaCarteStarter=0;
 			
@@ -30,15 +32,16 @@ public class Main {
 				
 				for(int j=0; j<divisorio.length-1; j++) { //scorro la riga, ora divisa in 9 elementi (8angoli, 1per disegni dietro)
 					String[] infoAngolo = divisorio[j].split(","); //divido ogni elemento in due sottoelementi
-					if(divisorio[1].equals("true")) { //se true devo creare l'angolo (ricordiamo Angolo(boolean fronte, Disegno disegno) )
-						Disegno disegno;
-						boolean fronte; 
+					if(infoAngolo[0].equals("true")) { //se true devo creare l'angolo (ricordiamo Angolo(boolean fronte, Disegno disegno) )
+						Disegno disegno = null;
+						boolean fronte;
+						
 						if(j<divisorio.length/2) //la metà del vettore segna la divisione tra angoli fronte 0-3 e angoli retro 4-7
 							fronte=true;
 						else
 							fronte=false;
 						
-						switch(infoAngolo[2]) { //assegno angolo
+						switch(infoAngolo[1]) { //assegno angolo
 						case "foglia":
 							disegno = Disegno.foglia;
 							break;
@@ -51,9 +54,12 @@ public class Main {
 						case "fungo":
 							disegno = Disegno.fungo;
 							break;
-						default:
-							System.out.println("Errore lettura disegno");
+						case "null":
 							disegno=null;
+							break;
+						default: //se si toglie il case: null --> va tolto anche il default
+							System.out.println("Errore lettura disegno (1)");
+							disegno = null;
 							break;
 						}
 						
@@ -63,7 +69,34 @@ public class Main {
 						angoli[j] = null;
 					
 				}
-				mazzoCarteStarter[contaCarteStarter] = new Carta(angoli, Colore.giallo, dis); //da aggiungere i tre disegni nel retro
+				
+				String[] infoDisegni = divisorio[divisorio.length-1].split(","); //divido i tre disegni nell'ultimo segmento
+				for(int j=0; j<dis.length; j++) {
+					switch(infoDisegni[j]) {
+					case "lupo": 
+						dis[j]=Disegno.lupo;
+						break;
+					case "farfalla":
+						dis[j]=Disegno.farfalla;
+						break;
+					case "fungo":
+						dis[j]=Disegno.fungo;
+						break;
+					case "foglia":
+						dis[j]=Disegno.foglia;
+						break;
+					case "null":
+						dis[j]=null;
+						break;
+					default:
+						System.out.println("Errore lettura disegno (2)");
+						dis[j]=null;
+						break;
+					}
+				}
+				
+				
+				mazzoCarteStarter[contaCarteStarter] = new Carta(angoli, Colore.giallo, dis); //colore giallo per le starter (?)
 				
 				contaCarteStarter++;
 			}
@@ -72,12 +105,20 @@ public class Main {
 			System.out.println("An error occurred.");
 			e.printStackTrace();
 		}
-
+		/*
 		for(int i=0; i<6; i++) {
-			System.out.println(mazzoCarteStarter);
+			System.out.println(mazzoCarteStarter[i].toString());
 		}
-		//---------
-
+		//-------*/
+		
+		
+		
+		//prove matrice del giocatore
+		CampoDaGioco campo1 = new CampoDaGioco(mazzoCarteStarter[0]);
+		campo1.stampaCampoDaGioco();
+		
+		
+		
 	}
 
 

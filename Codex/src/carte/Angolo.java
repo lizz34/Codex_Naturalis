@@ -27,4 +27,8 @@ public class Angolo {
 		return disegno;
 	}
 	
+	public String toString() {
+		return fronte + " " + occupato + " " + disegno;
+	}
+	
 }
