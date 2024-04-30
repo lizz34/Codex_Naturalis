@@ -30,11 +30,11 @@
 1-viola-true,null-true,null-true,farfalla-false-true,null-true,null-true,null-true,null-farfalla,null,null
 0-viola-false-true,null-true,farfalla-true,farfalla-true,null-true,null-true,null-true,null-farfalla,null,null
 1-viola-true,farfalla-false-true,null-true,null-true,null-true,null-true,null-true,null-farfalla,null,null
-1-blu-true,null-false-true,lupo-true,false-true,null-true,null-true,null-true,null-lupo,null,null
+1-blu-true,null-false-true,lupo-true,null-true,null-true,null-true,null-true,null-lupo,null,null
 1-viola-false-true,farfalla-true,null-true,null-true,null-true,null-true,null-true,null-farfalla,null,null
 0-verde-false-true,foglia-true,foglia-true,null-true,null-true,null-true,null-true,null-foglia,null,null
 0-rosso-true,null-false-true,fungo-true,fungo-true,null-true,null-true,null-true,null-fungo,null,null
-1-verde-false-true,foglie-true,null-true,null-true,null-true,null-true,null-true,null-foglia,null,null
+1-verde-false-true,foglia-true,null-true,null-true,null-true,null-true,null-true,null-foglia,null,null
 0-verde-true,null-false-true,foglia-true,foglia-true,null-true,null-true,null-true,null-foglia,null,null
 0-rosso-true,fungo-true,null-false-true,fungo-true,null-true,null-true,null-true,null-fungo,null,null
 0-blu-true,lupo-false-true,null-true,lupo-true,null-true,null-true,null-true,null-lupo,null,null

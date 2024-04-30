@@ -9,11 +9,11 @@ import Carte.*;
 
 public class TavoloDaGioco {
 	
-	public Carta mazzoCarteStarter[];
+	public ArrayList<Carta> mazzoCarteStarter;
 	
-	public Carta mazzoCarteRisorsa[];
+	public ArrayList<CartaRisorsa> mazzoCarteRisorsa;
 	
-	public Carta mazzoCarteOro[];
+	public ArrayList<CartaOro> mazzoCarteOro;
 
 	private int contaCarte;
 	
@@ -24,7 +24,8 @@ public class TavoloDaGioco {
 	public TavoloDaGioco() {
 		
 		//Creazione mazzo carte Starter
-		mazzoCarteStarter = new Carta [6];
+		
+		mazzoCarteStarter = new ArrayList<Carta>();
 		contaCarte=0;
 			
 		try {
@@ -110,7 +111,7 @@ public class TavoloDaGioco {
 				}
 				
 				
-				mazzoCarteStarter[contaCarte] = new Carta(angoli, Colore.giallo, dis); //colore giallo per le starter (?)
+				mazzoCarteStarter.add(new Carta(angoli, Colore.giallo, dis)); //colore giallo per le starter (?)
 				
 				contaCarte++;
 			}
@@ -123,7 +124,7 @@ public class TavoloDaGioco {
 		
 		//Creazione mazzo carte Risorsa
 		
-		mazzoCarteRisorsa = new CartaRisorsa [40];
+		mazzoCarteRisorsa = new ArrayList<CartaRisorsa>();
 		contaCarte=0;
 			
 		try {
@@ -199,7 +200,6 @@ public class TavoloDaGioco {
 							break;
 						case "null":
 							disegno=null;
-							System.out.println("sono dentro");
 							break;
 						default: //se si toglie il case: null --> va tolto anche il default
 							System.out.println("Errore lettura disegno 1 - risorsa");
@@ -241,7 +241,7 @@ public class TavoloDaGioco {
 				}
 				
 				
-				mazzoCarteRisorsa[contaCarte] = new CartaRisorsa(angoli, col, dis, (Integer.parseInt(divisorio[0]))); //colore giallo per le starter (?)
+				mazzoCarteRisorsa.add(new CartaRisorsa(angoli, col, dis, (Integer.parseInt(divisorio[0])))); //colore giallo per le starter (?)
 				
 				contaCarte++;
 			}
@@ -256,7 +256,7 @@ public class TavoloDaGioco {
 		
 		//Creazione mazzo carte Oro
 		
-		mazzoCarteOro = new CartaOro [40];
+		mazzoCarteOro = new ArrayList<CartaOro>();
 		contaCarte=0;
 			
 		try {
@@ -324,9 +324,6 @@ public class TavoloDaGioco {
 				
 				String[] infoRichieste = divisorio[3].split(",");
 				for(int j=0; j<5; j++) {
-					System.out.println(infoRichieste[j] +"    ");
-				}
-				for(int j=0; j<5; j++) {
 					switch(infoRichieste[j]) {
 					case "foglia":
 						disRichieste[j] = Disegno.foglia;
@@ -349,9 +346,9 @@ public class TavoloDaGioco {
 						break;
 					}
 				}
-				
+
 				int contaAngoli=0;
-				for(int j=4; j<11; j++) { //scorro la riga, ora divisa in 9 elementi (8angoli, 1per disegni dietro)
+				for(int j=4; j<divisorio.length-1; j++) { //scorro la riga, ora divisa in 9 elementi (8angoli, 1per disegni dietro)
 					String[] infoAngolo = divisorio[j].split(","); //divido ogni elemento in due sottoelementi
 					if(infoAngolo[0].equals("true")) { //se true devo creare l'angolo (ricordiamo Angolo(boolean fronte, Disegno disegno) )
 						Disegno disegno = null;
@@ -398,7 +395,7 @@ public class TavoloDaGioco {
 					}
 					else
 						angoli[contaAngoli] = null;
-					System.out.println(" valore !!! " + contaAngoli);
+					
 					contaAngoli++;
 				}
 				
@@ -427,8 +424,7 @@ public class TavoloDaGioco {
 					}
 				}
 				
-				
-				mazzoCarteOro[contaCarte] = new CartaOro(angoli, col, dis, (Integer.parseInt(divisorio[0])), disRichieste, criterioPunti); 
+				mazzoCarteOro.add(new CartaOro(angoli, col, dis, (Integer.parseInt(divisorio[0])), disRichieste, criterioPunti)); 
 				
 				contaCarte++;
 			}
@@ -449,14 +445,14 @@ public class TavoloDaGioco {
 		boolean inserito;
 		
 		randomNum = random.nextInt(40);
-		carteRisorsaBanco.add((CartaRisorsa) mazzoCarteRisorsa[randomNum]);
+		carteRisorsaBanco.add((CartaRisorsa) mazzoCarteRisorsa.get(randomNum));
 		//.delete(randomNum)
 		
 		do {
 			randomNum = random.nextInt(40);
 			
-			if (!carteRisorsaBanco.contains((CartaRisorsa) mazzoCarteRisorsa[randomNum])) {
-		        carteRisorsaBanco.add((CartaRisorsa) mazzoCarteRisorsa[randomNum]);
+			if (!carteRisorsaBanco.contains((CartaRisorsa) mazzoCarteRisorsa.get(randomNum))) {
+		        carteRisorsaBanco.add((CartaRisorsa) mazzoCarteRisorsa.get(randomNum));
 		        System.out.println("Elemento aggiunto con successo");
 		        inserito=true;
 		    } 
@@ -469,14 +465,14 @@ public class TavoloDaGioco {
 		
 		
 		randomNum = random.nextInt(40);
-		carteOroBanco.add((CartaOro) mazzoCarteOro[randomNum]);
+		carteOroBanco.add((CartaOro) mazzoCarteOro.get(randomNum));
 		//.delete(randomNum)
 		
 		do {
 			randomNum = random.nextInt(40);
 			
-			if (!carteOroBanco.contains((CartaOro) mazzoCarteOro[randomNum])) {
-				carteOroBanco.add((CartaOro) mazzoCarteOro[randomNum]);
+			if (!carteOroBanco.contains((CartaOro) mazzoCarteOro.get(randomNum))) {
+				carteOroBanco.add((CartaOro) mazzoCarteOro.get(randomNum));
 		        System.out.println("Elemento aggiunto con successo");
 		        inserito=true;
 		    } 
@@ -497,8 +493,8 @@ public class TavoloDaGioco {
 		do {
 			randomNum = random.nextInt(40);
 			
-			if (!carteRisorsaBanco.contains((CartaRisorsa) mazzoCarteRisorsa[randomNum])) {
-		        carteRisorsaBanco.add((CartaRisorsa) mazzoCarteRisorsa[randomNum]);
+			if (!carteRisorsaBanco.contains((CartaRisorsa) mazzoCarteRisorsa.get(randomNum))) {
+		        carteRisorsaBanco.add((CartaRisorsa) mazzoCarteRisorsa.get(randomNum));
 		        System.out.println("Elemento aggiunto con successo");
 		        inserito=true;
 		    } 
@@ -520,11 +516,11 @@ public class TavoloDaGioco {
 		do {
 			randomNum = random.nextInt(40);
 			
-			if (!carteOroBanco.contains((CartaOro) mazzoCarteOro[randomNum])) {
-				carteOroBanco.add((CartaOro) mazzoCarteOro[randomNum]);
+			if (!carteOroBanco.contains((CartaOro) mazzoCarteOro.get(randomNum))) {
+				carteOroBanco.add((CartaOro) mazzoCarteOro.get(randomNum));
 		        System.out.println("Elemento aggiunto con successo");
 		        inserito=true;
-		    } 
+		    }
 		    else {
 		        System.out.println("Elemento già presente, non aggiunto");
 		        inserito=false;
@@ -533,6 +529,7 @@ public class TavoloDaGioco {
 		
 		return true;
 	}
+	
 	
 	
 	

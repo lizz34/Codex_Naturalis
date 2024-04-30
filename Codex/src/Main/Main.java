@@ -13,9 +13,9 @@ public class Main {
 		
 		/*
 		for(int i=0; i<6; i++) {
-			System.out.println(t1.mazzoCarteOro[i].toString());
-		}
-		*/
+			System.out.println(t1.mazzoCarteOro.get(i).toString());
+		}*/
+		
 		
 		/*prove matrice del giocatore
 		CampoDaGioco campo1 = new CampoDaGioco(mazzoCarteStarter[0]);

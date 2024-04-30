@@ -21,7 +21,7 @@
 3-verde-null-foglia,foglia,foglia,null,null-true,pergamena-true,null-false-false-true,null-true,null-true,null-true,null-foglia,null,null
 3-blu-null-lupo,lupo,lupo,null,null-true,null-false-false-true,pergamena-true,null-true,null-true,null-true,null-lupo,null,null
 2-viola-angoloSovrapposto-farfalla,farfalla,farfalla,fungo,null-true,null-false-true,null-true,null-true,null-true,null-true,null-true,null-farfalla,null,null
-3-blu-null-lupo,lupo,lupo,null,null-false-true,null-true,piuma-false-false-true,null-true,null-true,null-true,null-lupo,null,null
+3-blu-null-lupo,lupo,lupo,null,null-false-true,null-true,piuma-false-true,null-true,null-true,null-true,null-lupo,null,null
 3-rosso-null-fungo,fungo,fungo,null,null-false-true,pergamena-true,null-false-true,null-true,null-true,null-true,null-fungo,null,null
 1-viola-piuma-farfalla,farfalla,foglia,null,null-true,null-true,piuma-true,null-false-true,null-true,null-true,null-true,null-farfalla,null,null
 2-rosso-angoloSovrapposto-fungo,fungo,fungo,foglia,null-true,null-true,null-false-true,null-true,null-true,null-true,null-true,null-fungo,null,null
@@ -31,7 +31,7 @@
 2-blu-angoloSovrapposto-lupo,lupo,lupo,farfalla,null-true,null-true,null-true,null-false-true,null-true,null-true,null-true,null-lupo,null,null
 1-blu-boccetta-lupo,lupo,farfalla,null,null-true,boccetta-true,null-false-true,null-true,null-true,null-true,null-true,null-lupo,null,null
 2-viola-angoloSovrapposto-farfalla,farfalla,farfalla,foglia,null-true,null-true,null-false-true,null-true,null-true,null-true,null-true,null-farfalla,null,null
-5-viola-null-farfalla,farfalla,farfalla,farfalla,farfalla-true,null-true,null-false-false--true,null-true,null-true,null-true,null,farfalla,null,null
+5-viola-null-farfalla,farfalla,farfalla,farfalla,farfalla-true,null-true,null-false-false-true,null-true,null-true,null-true,null-farfalla,null,null
 2-verde-angoloSovrapposto-foglia,foglia,foglia,fungo,null-true,null-false-true,null-true,null-true,null-true,null-true,null-true,null-foglia,null,null
 2-rosso-angoloSovrapposto-fungo,fungo,fungo,lupo,null-true,null-true,null-true,null-false-true,null-true,null-true,null-true,null-lupo,null,null
 2-verde-angoloSovrapposto-foglia,foglia,foglia,lupo,null-true,null-true,null-false-true,null-true,null-true,null-true,null-true,null-foglia,null,null
