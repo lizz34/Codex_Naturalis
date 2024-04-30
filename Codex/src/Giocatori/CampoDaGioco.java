@@ -19,6 +19,16 @@ public class CampoDaGioco {
 		campoPersonale[(nRigheTabella/2)-1][(nColonneTabella/2)-1]=cartaStarter;
 	}
 	
+	//la carta starter é nella posizione 24x24
+	
+	/***
+	 * funzione per posizionare la carta sulla matrice
+	 * @param carta che vuoi posizionare
+	 * @param nRiga num di riga su cui é posizionata la carta che vuoi sovrappore (da 0 a 49)
+	 * @param nColonna  num di colonna su cui é posizionata la carta che vuoi sovrapporre (da 0 a 49)
+	 * @param nAngolo su cui vuoi posizionare la carta (da 0 a 7 in senso orario fronte e retro)
+	 * @return false se la carta non puo' essere posizionata, true se viene posizionata
+	 */
 	public boolean posizionaCarta(Carta carta, int nRiga, int nColonna, int nAngolo) { //nAngolo è il numero dell'angolo (0-7) a cui attaccare la carta
 		if(campoPersonale[nRiga][nColonna]!=null && (nAngolo>=0 && nAngolo<8)) { //controllo base
 			if(campoPersonale[nRiga][nColonna].getSpecifiAngolo(nAngolo).getOccupato() == false) { //controllo se l'angolo considerato è libero

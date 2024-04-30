@@ -6,36 +6,28 @@ import Carte.CartaObiettivo;
 import Carte.*;
 
 public class Giocatore {
-		
-        CartaObiettivo cartaObiettivo = new CartaObiettivo();
-        String[] dueObiettivi = cartaObiettivo.ottieniDueObiettiviCasuali();
-        
-        // Estrai casualmente uno dei due obiettivi
-        int indiceCasuale = (int) (Math.random() * 2); /
-        String obiettivoCasuale = dueObiettivi[indiceCasuale];
-        
-        // Stampa l'obiettivo estratto per la prova
-        //System.out.println("Obiettivo estratto per la prova: " + obiettivoCasuale);
-        
-        
-		
-	
+		   
 	private int punteggio;
-	//private Carta carte[];
-	Vector<Carta> carte = new Vector<>();
+	private Vector<Carta> carte = new Vector<>();
 	final private CarteObiettivo cartaObiettivo;
 	final private Carta cartaStarter;
 	//variabili della matrice
-	CampoDaGioco campoPersonale;
+	private CampoDaGioco campoPersonale;
 	
-	
-	public Giocatore(Carta carte[], /*CarteObiettivo obiettivo,*/ Carta cartaStarter) {
+	/***
+	 * costruttore della classe giocatore
+	 * @param carte le 3 carte che il giocatore ha all'inizio della partita
+	 * @param obiettivo la carta obiettivo che gli viene assegnata all'inizio della partita
+	 * @param cartaStarter la carta starter con cui inizia a giocare
+	 */
+	public Giocatore(Carta carte[], CartaObiettivo obiettivo, Carta cartaStarter) {
+		//TODO
 		//al momento dell'avvio della partita al giocatore vengono assegnate tramite il main 
 		//la carta obiettivo (che non cambierà mai)
 		//le 3 carte di partenza da usare
 		//la carta starter
 		this.punteggio = 0;
-		//this.cartaObiettivo = obiettivo;
+		this.cartaObiettivo = obiettivo;
 		this.cartaStarter = cartaStarter;
 		
 		for(int i = 0; i < 3; i++) {
@@ -45,9 +37,11 @@ public class Giocatore {
 		campoPersonale = new CampoDaGioco(this.cartaStarter);
 	}
 	
-	
-	//funzione che permettere di scegliere la prossima carta da giocare dalle 3 che possiede il giocatore
-	public Carta scegliCarta() {
+	/***
+	 * permette al giocatore di scegliere la carta da giocare tra le 3 nel suo mazzo
+	 * @return false se il posizionamento non e' avvenuto, true se e' avvenuto
+	 */
+	public boolean scegliCarta() {
 		Carta cartaScelta = null;
 		int scelta = 0;
 		Scanner sc =  new Scanner();
@@ -81,16 +75,57 @@ public class Giocatore {
 		//stampa la matrice per permettere al giocatore di scegliere dove posizionare la carta
 		campoPersonale.stampaCampoDaGioco();
 		
-		//TODO: codice per posizionare la carta nella matrice
+		//riga su cui l'utente vuole posizionare la carta
+		int nRiga = 0;
+		System.out.println("inserisci il numero della riga della carta su cui vuoi posizionare la nuova carta: ");
+		try {
+			nRiga = sc.nextInt();
+		}
+		catch(InputMismatchException e) {
+			System.out.println("Input non valido. Inserisci un numero intero da 0 a 49.");
+			nRiga = sc.nextLine();
+		}
 		
-		//rimozione della carta scelta dal vettore di carte del giocatore
-		carte.remove(scelta);
+		//colonna su cui l'utente vuole posizionare la carta
+		int nColonna = 0;
+		System.out.println("inserisci il numero della colonna della carta su cui vuoi posizionare la nuova carta: ");
+		try {
+			nColonna = sc.nextInt();
+		}
+		catch(InputMismatchException e) {
+			System.out.println("Input non valido. Inserisci un numero intero da 0 a 49.");
+			nColonna = sc.nextLine();
+		}
+		
+		//angolo su cui l'utente vuole posizionare la carta
+		int nAngolo = 0;
+		System.out.println("inserisci il numero dell'angolo della carta su cui vuoi posizionare la nuova carta: ");
+		try {
+			nAngolo = sc.nextInt();
+		}
+		catch(InputMismatchException e) {
+			System.out.println("Input non valido. Inserisci un numero intero da 0 a 7.");
+			nAngolo = sc.nextLine();
+		}
+				
+		
+		//funzione della campo da gioco per posizionare la carta nella matrice
+		if(campoPersonale.posizionaCarta(cartaScelta, nRiga, nColonna, nAngolo) == false) {
+			System.out.println("errore!! non puoi posizionare questa carta");
+			return false;
+			
+		}
+		else {
+			//la carta e' stata posizionata correttamente
+			//rimozione della carta scelta dal vettore di carte del giocatore
+			carte.remove(scelta);
+			return true;
+		}
 		
 		//TODO: chiamata alla funzione del main che permette di:
 		//vedere le 4 carte presenti sul tavolo di gioco
 		//sceglierne una ed aggiungerla al proprio tavolo
 		sc.close();
-		return cartaScelta;
 	}
 	
 
