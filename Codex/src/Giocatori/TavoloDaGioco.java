@@ -1,62 +1,69 @@
 package Giocatori;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
+import java.util.Vector;
 
 import Carte.*;
 
 public class TavoloDaGioco {
-	
+
 	public ArrayList<Carta> mazzoCarteStarter;
-	
+
 	public ArrayList<CartaRisorsa> mazzoCarteRisorsa;
-	
+
 	public ArrayList<CartaOro> mazzoCarteOro;
 
+	public MazzoCarteObiettivo mazzoCartaObiettivo;
+
 	private int contaCarte;
-	
+
 	private ArrayList<CartaRisorsa> carteRisorsaBanco;
 	private ArrayList<CartaOro> carteOroBanco;
-	
-	
+
 	public TavoloDaGioco() {
-		
-		//Creazione mazzo carte Starter
-		
+
+		// Creazione mazzo carte Starter
+
 		mazzoCarteStarter = new ArrayList<Carta>();
-		contaCarte=0;
-			
+		contaCarte = 0;
+
 		try {
-			File carteStarter = new File("C:\\Users\\Raul\\Desktop\\progettoUni\\Codex\\src\\carteStarter.txt"); //apro file carteStarter
+			File carteStarter = new File("src\\carteStarter.txt"); // apro file carteStarter
 			Scanner scanner = new Scanner(carteStarter);
-			
-			contaCarte=0;
-			
+
+			contaCarte = 0;
+
 			while (scanner.hasNextLine()) {
-				String data = scanner.nextLine(); //salvo riga per riga in data
-				//System.out.println(data.length());
-				
-				String divisorio[] = data.split("-"); //divido l'intera riga per "-"
-				//System.out.println(divisorio.length);
-				
-				//ora devo assegnare e allocare la carta (ricordiamo Carta(Angolo ang[], Colore col, Disegno dis[]) )
+				String data = scanner.nextLine(); // salvo riga per riga in data
+				// System.out.println(data.length());
+
+				String divisorio[] = data.split("-"); // divido l'intera riga per "-"
+				// System.out.println(divisorio.length);
+
+				// ora devo assegnare e allocare la carta (ricordiamo Carta(Angolo ang[], Colore
+				// col, Disegno dis[]) )
 				Angolo angoli[] = new Angolo[8];
 				Disegno dis[] = new Disegno[3];
-				
-				for(int j=0; j<divisorio.length-1; j++) { //scorro la riga, ora divisa in 9 elementi (8angoli, 1per disegni dietro)
-					String[] infoAngolo = divisorio[j].split(","); //divido ogni elemento in due sottoelementi
-					if(infoAngolo[0].equals("true")) { //se true devo creare l'angolo (ricordiamo Angolo(boolean fronte, Disegno disegno) )
+
+				for (int j = 0; j < divisorio.length - 1; j++) { // scorro la riga, ora divisa in 9 elementi (8angoli,
+																	// 1per disegni dietro)
+					String[] infoAngolo = divisorio[j].split(","); // divido ogni elemento in due sottoelementi
+					if (infoAngolo[0].equals("true")) { // se true devo creare l'angolo (ricordiamo Angolo(boolean
+														// fronte, Disegno disegno) )
 						Disegno disegno = null;
 						boolean fronte;
-						
-						if(j<divisorio.length/2) //la metà del vettore segna la divisione tra angoli fronte 0-3 e angoli retro 4-7
-							fronte=true;
+
+						if (j < divisorio.length / 2) // la metà del vettore segna la divisione tra angoli fronte 0-3 e
+														// angoli retro 4-7
+							fronte = true;
 						else
-							fronte=false;
-						
-						switch(infoAngolo[1]) { //assegno angolo
+							fronte = false;
+
+						switch (infoAngolo[1]) { // assegno angolo
 						case "foglia":
 							disegno = Disegno.foglia;
 							break;
@@ -70,49 +77,48 @@ public class TavoloDaGioco {
 							disegno = Disegno.fungo;
 							break;
 						case "null":
-							disegno=null;
+							disegno = null;
 							break;
-						default: //se si toglie il case: null --> va tolto anche il default
+						default: // se si toglie il case: null --> va tolto anche il default
 							System.out.println("Errore lettura disegno 1 - Starter");
 							disegno = null;
 							break;
 						}
-						
+
 						angoli[j] = new Angolo(fronte, disegno);
-					}
-					else
+					} else
 						angoli[j] = null;
-					
+
 				}
-				
-				String[] infoDisegni = divisorio[divisorio.length-1].split(","); //divido i tre disegni nell'ultimo segmento
-				for(int j=0; j<dis.length; j++) {
-					switch(infoDisegni[j]) {
-					case "lupo": 
-						dis[j]=Disegno.lupo;
+
+				String[] infoDisegni = divisorio[divisorio.length - 1].split(","); // divido i tre disegni nell'ultimo
+																					// segmento
+				for (int j = 0; j < dis.length; j++) {
+					switch (infoDisegni[j]) {
+					case "lupo":
+						dis[j] = Disegno.lupo;
 						break;
 					case "farfalla":
-						dis[j]=Disegno.farfalla;
+						dis[j] = Disegno.farfalla;
 						break;
 					case "fungo":
-						dis[j]=Disegno.fungo;
+						dis[j] = Disegno.fungo;
 						break;
 					case "foglia":
-						dis[j]=Disegno.foglia;
+						dis[j] = Disegno.foglia;
 						break;
 					case "null":
-						dis[j]=null;
+						dis[j] = null;
 						break;
 					default:
 						System.out.println("Errore lettura disegno 2 - starter");
-						dis[j]=null;
+						dis[j] = null;
 						break;
 					}
 				}
-				
-				
-				mazzoCarteStarter.add(new Carta(angoli, Colore.giallo, dis)); //colore giallo per le starter (?)
-				
+
+				mazzoCarteStarter.add(new Carta(angoli, Colore.giallo, dis)); // colore giallo per le starter (?)
+
 				contaCarte++;
 			}
 			scanner.close();
@@ -120,63 +126,67 @@ public class TavoloDaGioco {
 			System.out.println("An error occurred.");
 			e.printStackTrace();
 		}
-		
-		
-		//Creazione mazzo carte Risorsa
-		
+
+		// Creazione mazzo carte Risorsa
+
 		mazzoCarteRisorsa = new ArrayList<CartaRisorsa>();
-		contaCarte=0;
-			
+		contaCarte = 0;
+
 		try {
-			File carteRisorsa = new File("C:\\Users\\Raul\\Desktop\\progettoUni\\Codex\\src\\carteRisorse.txt"); //apro file carteStarter
+			File carteRisorsa = new File("src\\carteRisorse.txt"); // apro file carteStarter
 			Scanner scanner = new Scanner(carteRisorsa);
-			
-			contaCarte=0;
-			
+
+			contaCarte = 0;
+
 			while (scanner.hasNextLine()) {
-				String data = scanner.nextLine(); //salvo riga per riga in data
-				//System.out.println(data.length());
-				
-				String divisorio[] = data.split("-"); //divido l'intera riga per "-"
-				//System.out.println(divisorio.length);
-				
-				//ora devo assegnare e allocare la carta (ricordiamo Carta(Angolo ang[], Colore col, Disegno dis[]) )
+				String data = scanner.nextLine(); // salvo riga per riga in data
+				// System.out.println(data.length());
+
+				String divisorio[] = data.split("-"); // divido l'intera riga per "-"
+				// System.out.println(divisorio.length);
+
+				// ora devo assegnare e allocare la carta (ricordiamo Carta(Angolo ang[], Colore
+				// col, Disegno dis[]) )
 				Colore col;
 				Angolo angoli[] = new Angolo[8];
 				Disegno dis[] = new Disegno[3];
-				
-				switch(divisorio[1]) {
+
+				switch (divisorio[1]) {
 				case "rosso":
-					col=Colore.rosso;
+					col = Colore.rosso;
 					break;
 				case "blu":
-					col=Colore.blu;
+					col = Colore.blu;
 					break;
 				case "verde":
-					col=Colore.verde;
+					col = Colore.verde;
 					break;
 				case "viola":
-					col=Colore.viola;
+					col = Colore.viola;
 					break;
-				default: 
+				default:
 					System.out.println("Errore lettura colore");
-					col=Colore.giallo; //giallo se errore (impossibile perchè risorsa hanno i 4 colori elencati sopra)
+					col = Colore.giallo; // giallo se errore (impossibile perchè risorsa hanno i 4 colori elencati
+											// sopra)
 					break;
 				}
-				
-				int contaAngoli=0;
-				for(int j=2; j<divisorio.length-1; j++) { //scorro la riga, ora divisa in 9 elementi (8angoli, 1per disegni dietro)
-					String[] infoAngolo = divisorio[j].split(","); //divido ogni elemento in due sottoelementi
-					if(infoAngolo[0].equals("true")) { //se true devo creare l'angolo (ricordiamo Angolo(boolean fronte, Disegno disegno) )
+
+				int contaAngoli = 0;
+				for (int j = 2; j < divisorio.length - 1; j++) { // scorro la riga, ora divisa in 9 elementi (8angoli,
+																	// 1per disegni dietro)
+					String[] infoAngolo = divisorio[j].split(","); // divido ogni elemento in due sottoelementi
+					if (infoAngolo[0].equals("true")) { // se true devo creare l'angolo (ricordiamo Angolo(boolean
+														// fronte, Disegno disegno) )
 						Disegno disegno = null;
 						boolean fronte;
-						
-						if(j<divisorio.length/2) //la metà del vettore segna la divisione tra angoli fronte 0-3 e angoli retro 4-7
-							fronte=true;
+
+						if (j < divisorio.length / 2) // la metà del vettore segna la divisione tra angoli fronte 0-3 e
+														// angoli retro 4-7
+							fronte = true;
 						else
-							fronte=false;
-						
-						switch((String)infoAngolo[1]) { //assegno angolo
+							fronte = false;
+
+						switch ((String) infoAngolo[1]) { // assegno angolo
 						case "foglia":
 							disegno = Disegno.foglia;
 							break;
@@ -199,50 +209,54 @@ public class TavoloDaGioco {
 							disegno = Disegno.boccetta;
 							break;
 						case "null":
-							disegno=null;
+							disegno = null;
 							break;
-						default: //se si toglie il case: null --> va tolto anche il default
+						default: // se si toglie il case: null --> va tolto anche il default
 							System.out.println("Errore lettura disegno 1 - risorsa");
 							disegno = null;
 							break;
 						}
-						
+
 						angoli[contaAngoli] = new Angolo(fronte, disegno);
-					}
-					else
+					} else
 						angoli[contaAngoli] = null;
-					
+
 					contaAngoli++;
 				}
-				
-				String[] infoDisegni = divisorio[divisorio.length-1].split(","); //divido i tre disegni nell'ultimo segmento
-				for(int j=0; j<dis.length; j++) {
-					switch(infoDisegni[j]) {
-					case "lupo": 
-						dis[j]=Disegno.lupo;
+
+				String[] infoDisegni = divisorio[divisorio.length - 1].split(","); // divido i tre disegni nell'ultimo
+																					// segmento
+				for (int j = 0; j < dis.length; j++) {
+					switch (infoDisegni[j]) {
+					case "lupo":
+						dis[j] = Disegno.lupo;
 						break;
 					case "farfalla":
-						dis[j]=Disegno.farfalla;
+						dis[j] = Disegno.farfalla;
 						break;
 					case "fungo":
-						dis[j]=Disegno.fungo;
+						dis[j] = Disegno.fungo;
 						break;
 					case "foglia":
-						dis[j]=Disegno.foglia;
+						dis[j] = Disegno.foglia;
 						break;
 					case "null":
-						dis[j]=null;
+						dis[j] = null;
 						break;
 					default:
 						System.out.println("Errore lettura disegno 2 - risorsa");
-						dis[j]=null;
+						dis[j] = null;
 						break;
 					}
 				}
-				
-				
-				mazzoCarteRisorsa.add(new CartaRisorsa(angoli, col, dis, (Integer.parseInt(divisorio[0])))); //colore giallo per le starter (?)
-				
+
+				mazzoCarteRisorsa.add(new CartaRisorsa(angoli, col, dis, (Integer.parseInt(divisorio[0])))); // colore
+																												// giallo
+																												// per
+																												// le
+																												// starter
+																												// (?)
+
 				contaCarte++;
 			}
 			scanner.close();
@@ -250,55 +264,54 @@ public class TavoloDaGioco {
 			System.out.println("An error occurred.");
 			e.printStackTrace();
 		}
-		
-		
-		
-		
-		//Creazione mazzo carte Oro
-		
+
+		// Creazione mazzo carte Oro
+
 		mazzoCarteOro = new ArrayList<CartaOro>();
-		contaCarte=0;
-			
+		contaCarte = 0;
+
 		try {
-			File carteOro = new File("C:\\Users\\Raul\\Desktop\\progettoUni\\Codex\\src\\carteOro.txt"); //apro file carteStarter
+			File carteOro = new File("src\\carteOro.txt"); // apro file carteStarter
 			Scanner scanner = new Scanner(carteOro);
-			
-			contaCarte=0;
-			
+
+			contaCarte = 0;
+
 			while (scanner.hasNextLine()) {
-				String data = scanner.nextLine(); //salvo riga per riga in data
-				//System.out.println(data.length());
-				
-				String divisorio[] = data.split("-"); //divido l'intera riga per "-"
-				//System.out.println(divisorio.length);
-				
-				//ora devo assegnare e allocare la carta (ricordiamo Carta(Angolo ang[], Colore col, Disegno dis[]) )
+				String data = scanner.nextLine(); // salvo riga per riga in data
+				// System.out.println(data.length());
+
+				String divisorio[] = data.split("-"); // divido l'intera riga per "-"
+				// System.out.println(divisorio.length);
+
+				// ora devo assegnare e allocare la carta (ricordiamo Carta(Angolo ang[], Colore
+				// col, Disegno dis[]) )
 				Colore col;
 				Disegno criterioPunti;
 				Disegno disRichieste[] = new Disegno[5];
 				Angolo angoli[] = new Angolo[8];
 				Disegno dis[] = new Disegno[3];
-				
-				switch(divisorio[1]) {
+
+				switch (divisorio[1]) {
 				case "rosso":
-					col=Colore.rosso;
+					col = Colore.rosso;
 					break;
 				case "blu":
-					col=Colore.blu;
+					col = Colore.blu;
 					break;
 				case "verde":
-					col=Colore.verde;
+					col = Colore.verde;
 					break;
 				case "viola":
-					col=Colore.viola;
+					col = Colore.viola;
 					break;
-				default: 
+				default:
 					System.out.println("Errore lettura colore");
-					col=Colore.giallo; //giallo se errore (impossibile perchè risorsa hanno i 4 colori elencati sopra)
+					col = Colore.giallo; // giallo se errore (impossibile perchè risorsa hanno i 4 colori elencati
+											// sopra)
 					break;
 				}
-				
-				switch(divisorio[2]) {
+
+				switch (divisorio[2]) {
 				case "boccetta":
 					criterioPunti = Disegno.boccetta;
 					break;
@@ -319,12 +332,10 @@ public class TavoloDaGioco {
 					criterioPunti = null;
 					break;
 				}
-				
-				
-				
+
 				String[] infoRichieste = divisorio[3].split(",");
-				for(int j=0; j<5; j++) {
-					switch(infoRichieste[j]) {
+				for (int j = 0; j < 5; j++) {
+					switch (infoRichieste[j]) {
 					case "foglia":
 						disRichieste[j] = Disegno.foglia;
 						break;
@@ -338,7 +349,7 @@ public class TavoloDaGioco {
 						disRichieste[j] = Disegno.fungo;
 						break;
 					case "null":
-						disRichieste[j]=null;
+						disRichieste[j] = null;
 						break;
 					default:
 						System.out.println("Errore lettura richieste per posizionare carta");
@@ -347,19 +358,22 @@ public class TavoloDaGioco {
 					}
 				}
 
-				int contaAngoli=0;
-				for(int j=4; j<divisorio.length-1; j++) { //scorro la riga, ora divisa in 9 elementi (8angoli, 1per disegni dietro)
-					String[] infoAngolo = divisorio[j].split(","); //divido ogni elemento in due sottoelementi
-					if(infoAngolo[0].equals("true")) { //se true devo creare l'angolo (ricordiamo Angolo(boolean fronte, Disegno disegno) )
+				int contaAngoli = 0;
+				for (int j = 4; j < divisorio.length - 1; j++) { // scorro la riga, ora divisa in 9 elementi (8angoli,
+																	// 1per disegni dietro)
+					String[] infoAngolo = divisorio[j].split(","); // divido ogni elemento in due sottoelementi
+					if (infoAngolo[0].equals("true")) { // se true devo creare l'angolo (ricordiamo Angolo(boolean
+														// fronte, Disegno disegno) )
 						Disegno disegno = null;
 						boolean fronte;
-						
-						if(j<divisorio.length/2) //la metà del vettore segna la divisione tra angoli fronte 0-3 e angoli retro 4-7
-							fronte=true;
+
+						if (j < divisorio.length / 2) // la metà del vettore segna la divisione tra angoli fronte 0-3 e
+														// angoli retro 4-7
+							fronte = true;
 						else
-							fronte=false;   //FIXME !!!!
-						
-						switch(infoAngolo[1]) { //assegno angolo
+							fronte = false; // FIXME !!!!
+
+						switch (infoAngolo[1]) { // assegno angolo
 						case "foglia":
 							disegno = Disegno.foglia;
 							break;
@@ -382,50 +396,51 @@ public class TavoloDaGioco {
 							disegno = Disegno.boccetta;
 							break;
 						case "null":
-							disegno=null;
+							disegno = null;
 							break;
-						default: //se si toglie il case: null --> va tolto anche il default
+						default: // se si toglie il case: null --> va tolto anche il default
 							System.out.println("Errore lettura disegno 1 - oro");
 							disegno = null;
 							break;
 						}
-						
+
 						angoli[contaAngoli] = new Angolo(fronte, disegno);
-						
-					}
-					else
+
+					} else
 						angoli[contaAngoli] = null;
-					
+
 					contaAngoli++;
 				}
-				
-				String[] infoDisegni = divisorio[divisorio.length-1].split(","); //divido i tre disegni nell'ultimo segmento
-				for(int j=0; j<dis.length; j++) {
-					switch(infoDisegni[j]) {
-					case "lupo": 
-						dis[j]=Disegno.lupo;
+
+				String[] infoDisegni = divisorio[divisorio.length - 1].split(","); // divido i tre disegni nell'ultimo
+																					// segmento
+				for (int j = 0; j < dis.length; j++) {
+					switch (infoDisegni[j]) {
+					case "lupo":
+						dis[j] = Disegno.lupo;
 						break;
 					case "farfalla":
-						dis[j]=Disegno.farfalla;
+						dis[j] = Disegno.farfalla;
 						break;
 					case "fungo":
-						dis[j]=Disegno.fungo;
+						dis[j] = Disegno.fungo;
 						break;
 					case "foglia":
-						dis[j]=Disegno.foglia;
+						dis[j] = Disegno.foglia;
 						break;
 					case "null":
-						dis[j]=null;
+						dis[j] = null;
 						break;
 					default:
 						System.out.println("Errore lettura disegno 2 - oro");
-						dis[j]=null;
+						dis[j] = null;
 						break;
 					}
 				}
-				
-				mazzoCarteOro.add(new CartaOro(angoli, col, dis, (Integer.parseInt(divisorio[0])), disRichieste, criterioPunti)); 
-				
+
+				mazzoCarteOro.add(
+						new CartaOro(angoli, col, dis, (Integer.parseInt(divisorio[0])), disRichieste, criterioPunti));
+
 				contaCarte++;
 			}
 			scanner.close();
@@ -433,104 +448,130 @@ public class TavoloDaGioco {
 			System.out.println("An error occurred.");
 			e.printStackTrace();
 		}
-		
-		
-		
-		
+
 		carteRisorsaBanco = new ArrayList<CartaRisorsa>();
 		carteOroBanco = new ArrayList<CartaOro>();
-		
+
 		Random random = new Random();
 		int randomNum;
 		boolean inserito;
-		
+
 		randomNum = random.nextInt(40);
 		carteRisorsaBanco.add((CartaRisorsa) mazzoCarteRisorsa.get(randomNum));
-		//.delete(randomNum)
-		
+		// .delete(randomNum)
+
 		do {
 			randomNum = random.nextInt(40);
-			
+
 			if (!carteRisorsaBanco.contains((CartaRisorsa) mazzoCarteRisorsa.get(randomNum))) {
-		        carteRisorsaBanco.add((CartaRisorsa) mazzoCarteRisorsa.get(randomNum));
-		        System.out.println("Elemento aggiunto con successo");
-		        inserito=true;
-		    } 
-		    else {
-		        System.out.println("Elemento già presente, non aggiunto");
-		        inserito=false;
-		    }
-		}while(inserito==false);
-		
-		
-		
+				carteRisorsaBanco.add((CartaRisorsa) mazzoCarteRisorsa.get(randomNum));
+				System.out.println("Elemento aggiunto con successo");
+				inserito = true;
+			} else {
+				System.out.println("Elemento già presente, non aggiunto");
+				inserito = false;
+			}
+		} while (inserito == false);
+
 		randomNum = random.nextInt(40);
 		carteOroBanco.add((CartaOro) mazzoCarteOro.get(randomNum));
-		//.delete(randomNum)
-		
+		// .delete(randomNum)
+
 		do {
 			randomNum = random.nextInt(40);
-			
+
 			if (!carteOroBanco.contains((CartaOro) mazzoCarteOro.get(randomNum))) {
 				carteOroBanco.add((CartaOro) mazzoCarteOro.get(randomNum));
-		        System.out.println("Elemento aggiunto con successo");
-		        inserito=true;
-		    } 
-		    else {
-		        System.out.println("Elemento già presente, non aggiunto");
-		        inserito=false;
-		    }
-		}while(inserito==false);
-       
+				System.out.println("Elemento aggiunto con successo");
+				inserito = true;
+			} else {
+				System.out.println("Elemento già presente, non aggiunto");
+				inserito = false;
+			}
+		} while (inserito == false);
+
+		caricaCarteObiettivo();
 	}
-	
+
 	public boolean giraCartaRisorsa() {
 		Random random = new Random();
 		int randomNum;
 		boolean inserito;
-		//if mazzoCarteRisorsa è vuoto ritorno false 
-		
+		// if mazzoCarteRisorsa è vuoto ritorno false
+
 		do {
 			randomNum = random.nextInt(40);
-			
+
 			if (!carteRisorsaBanco.contains((CartaRisorsa) mazzoCarteRisorsa.get(randomNum))) {
-		        carteRisorsaBanco.add((CartaRisorsa) mazzoCarteRisorsa.get(randomNum));
-		        System.out.println("Elemento aggiunto con successo");
-		        inserito=true;
-		    } 
-		    else {
-		        System.out.println("Elemento già presente, non aggiunto");
-		        inserito=false;
-		    }
-		}while(inserito==false);
-		
+				carteRisorsaBanco.add((CartaRisorsa) mazzoCarteRisorsa.get(randomNum));
+				System.out.println("Elemento aggiunto con successo");
+				inserito = true;
+			} else {
+				System.out.println("Elemento già presente, non aggiunto");
+				inserito = false;
+			}
+		} while (inserito == false);
+
 		return true;
 	}
-	
+
 	public boolean giraCartaOro() {
 		Random random = new Random();
 		int randomNum;
 		boolean inserito;
-		//if mazzoCarteOro è vuoto ritorno false 
-		
+		// if mazzoCarteOro è vuoto ritorno false
+
 		do {
 			randomNum = random.nextInt(40);
-			
+
 			if (!carteOroBanco.contains((CartaOro) mazzoCarteOro.get(randomNum))) {
 				carteOroBanco.add((CartaOro) mazzoCarteOro.get(randomNum));
-		        System.out.println("Elemento aggiunto con successo");
-		        inserito=true;
-		    }
-		    else {
-		        System.out.println("Elemento già presente, non aggiunto");
-		        inserito=false;
-		    }
-		}while(inserito==false);
-		
+				System.out.println("Elemento aggiunto con successo");
+				inserito = true;
+			} else {
+				System.out.println("Elemento già presente, non aggiunto");
+				inserito = false;
+			}
+		} while (inserito == false);
+
 		return true;
 	}
-	
-	
-	
-	
+
+	private void caricaCarteObiettivo() {
+		try {
+			this.mazzoCartaObiettivo = new MazzoCarteObiettivo();
+			File carteobiettivo = new File("src\\carteObiettivo.txt"); // apro file carteObiettivo
+			Scanner scanner = new Scanner(carteobiettivo);
+
+			while (scanner.hasNextLine()) {
+				String data = scanner.nextLine();
+				CartaObiettivo co = new CartaObiettivo(data);
+				this.mazzoCartaObiettivo.add(co);
+
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public CartaObiettivo pescaCartaObiettivo() {
+		return this.mazzoCartaObiettivo.pescaCarta();
+	}
+
+	public Carta pescaCartaStarter() {
+		int random = (int) (Math.random() * mazzoCarteStarter.size());
+		return this.mazzoCarteStarter.remove(0);
+	}
+
+	public Vector<Carta> pescaCarteIniziali() {
+		Vector<Carta> carte = new Vector<Carta>();
+		int random = (int) (Math.random() * mazzoCarteOro.size());
+		carte.add(mazzoCarteOro.remove(random));
+		random = (int) (Math.random() * mazzoCarteRisorsa.size());
+		carte.add(mazzoCarteRisorsa.remove(random));
+		random = (int) (Math.random() * mazzoCarteRisorsa.size());
+		carte.add(mazzoCarteRisorsa.remove(random));
+		return carte;
+	}
+
 }
