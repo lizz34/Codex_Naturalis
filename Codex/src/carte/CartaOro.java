@@ -1,7 +1,7 @@
 package Carte;
 
 public class CartaOro extends Carta{
-	private int punti;
+	private final int punti;
 	private final Disegno disegnoRichieste[];
 	private final Disegno criterioPunti;
 	
@@ -24,10 +24,6 @@ public class CartaOro extends Carta{
 		return punti;
 	}
 
-	public void setPunti(int punti) {
-		this.punti = punti;
-	}
-
 	public Disegno[] getDisegnoRichieste() {
 		return disegnoRichieste;
 	}
@@ -35,5 +31,14 @@ public class CartaOro extends Carta{
 	public Disegno getCriterioPunti() {
 		return criterioPunti;
 	}
-
+	
+	public String toString(){
+		super.toString();
+		System.out.println("Criterio del punteggio: " + criterioPunti);
+		System.out.print("Richieste per posizionare la carta: ");
+		for(int i = 0; i < 5; i++) {
+			System.out.print(disegnoRichieste[i]+" ");
+		}
+		return "\nPunti: " + punti;
+	}
 }

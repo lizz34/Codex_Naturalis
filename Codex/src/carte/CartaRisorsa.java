@@ -1,7 +1,7 @@
 package Carte;
 
 public class CartaRisorsa extends Carta{
-	private int punti;
+	private final int punti;
 	
 	public CartaRisorsa(Angolo ang[], Colore col, Disegno dis[], int punti) {
 		super (ang, col, dis);
@@ -14,8 +14,9 @@ public class CartaRisorsa extends Carta{
 		return punti;
 	}
 
-	public void setPunti(int punti) {
-		this.punti = punti;
+	public String toString() {
+		System.out.println(super.toString());
+		return "punti: " + punti;
 	}
 }
 

@@ -26,7 +26,7 @@ public class TavoloDaGioco {
 
 	public TavoloDaGioco() {
 
-		// Creazione mazzo carte Starter
+		//Creazione mazzo carteStarter
 
 		mazzoCarteStarter = new ArrayList<Carta>();
 		contaCarte = 0;
@@ -49,7 +49,7 @@ public class TavoloDaGioco {
 				Angolo angoli[] = new Angolo[8];
 				Disegno dis[] = new Disegno[3];
 
-				for (int j = 0; j < divisorio.length - 1; j++) { // scorro la riga, ora divisa in 9 elementi (8angoli,
+				for (int j=0; j<(divisorio.length-1); j++) { // scorro la riga, ora divisa in 9 elementi (8angoli,
 																	// 1per disegni dietro)
 					String[] infoAngolo = divisorio[j].split(","); // divido ogni elemento in due sottoelementi
 					if (infoAngolo[0].equals("true")) { // se true devo creare l'angolo (ricordiamo Angolo(boolean
@@ -57,13 +57,12 @@ public class TavoloDaGioco {
 						Disegno disegno = null;
 						boolean fronte;
 
-						if (j < divisorio.length / 2) // la metà del vettore segna la divisione tra angoli fronte 0-3 e
-														// angoli retro 4-7
+						if (j<(divisorio.length/2)) // la metà del vettore segna la divisione tra angoli fronte 0-3 e angoli retro 4-7
 							fronte = true;
 						else
 							fronte = false;
 
-						switch (infoAngolo[1]) { // assegno angolo
+						switch(infoAngolo[1]) { // assegno angolo
 						case "foglia":
 							disegno = Disegno.foglia;
 							break;
@@ -84,17 +83,16 @@ public class TavoloDaGioco {
 							disegno = null;
 							break;
 						}
-
 						angoli[j] = new Angolo(fronte, disegno);
-					} else
+						
+					} 
+					else
 						angoli[j] = null;
-
 				}
 
-				String[] infoDisegni = divisorio[divisorio.length - 1].split(","); // divido i tre disegni nell'ultimo
-																					// segmento
-				for (int j = 0; j < dis.length; j++) {
-					switch (infoDisegni[j]) {
+				String[] infoDisegni = divisorio[divisorio.length-1].split(","); // divido i tre disegni nell'ultimo segmento
+				for (int j=0; j<(dis.length); j++) {
+					switch(infoDisegni[j]) {
 					case "lupo":
 						dis[j] = Disegno.lupo;
 						break;
@@ -127,7 +125,7 @@ public class TavoloDaGioco {
 			e.printStackTrace();
 		}
 
-		// Creazione mazzo carte Risorsa
+		//Creazione mazzo carte Risorsa
 
 		mazzoCarteRisorsa = new ArrayList<CartaRisorsa>();
 		contaCarte = 0;
@@ -166,8 +164,7 @@ public class TavoloDaGioco {
 					break;
 				default:
 					System.out.println("Errore lettura colore");
-					col = Colore.giallo; // giallo se errore (impossibile perchè risorsa hanno i 4 colori elencati
-											// sopra)
+					col = Colore.giallo; // giallo se errore (impossibile perchè risorsa hanno i 4 colori elencati sopra)
 					break;
 				}
 
@@ -456,15 +453,16 @@ public class TavoloDaGioco {
 		int randomNum;
 		boolean inserito;
 
-		randomNum = random.nextInt(40);
+		randomNum = random.nextInt(mazzoCarteRisorsa.size());
 		carteRisorsaBanco.add((CartaRisorsa) mazzoCarteRisorsa.get(randomNum));
-		// .delete(randomNum)
-
+		mazzoCarteRisorsa.remove(randomNum);
+		
 		do {
-			randomNum = random.nextInt(40);
+			randomNum = random.nextInt(mazzoCarteRisorsa.size());
 
 			if (!carteRisorsaBanco.contains((CartaRisorsa) mazzoCarteRisorsa.get(randomNum))) {
 				carteRisorsaBanco.add((CartaRisorsa) mazzoCarteRisorsa.get(randomNum));
+				mazzoCarteRisorsa.remove(randomNum);
 				System.out.println("Elemento aggiunto con successo");
 				inserito = true;
 			} else {
@@ -473,15 +471,16 @@ public class TavoloDaGioco {
 			}
 		} while (inserito == false);
 
-		randomNum = random.nextInt(40);
+		randomNum = random.nextInt(mazzoCarteOro.size());
 		carteOroBanco.add((CartaOro) mazzoCarteOro.get(randomNum));
-		// .delete(randomNum)
+		mazzoCarteOro.remove(randomNum);
 
 		do {
-			randomNum = random.nextInt(40);
+			randomNum = random.nextInt(mazzoCarteOro.size());
 
 			if (!carteOroBanco.contains((CartaOro) mazzoCarteOro.get(randomNum))) {
 				carteOroBanco.add((CartaOro) mazzoCarteOro.get(randomNum));
+				mazzoCarteOro.remove(randomNum);
 				System.out.println("Elemento aggiunto con successo");
 				inserito = true;
 			} else {
@@ -497,10 +496,9 @@ public class TavoloDaGioco {
 		Random random = new Random();
 		int randomNum;
 		boolean inserito;
-		// if mazzoCarteRisorsa è vuoto ritorno false
-
+		
 		do {
-			randomNum = random.nextInt(40);
+			randomNum = random.nextInt(mazzoCarteRisorsa.size());
 
 			if (!carteRisorsaBanco.contains((CartaRisorsa) mazzoCarteRisorsa.get(randomNum))) {
 				carteRisorsaBanco.add((CartaRisorsa) mazzoCarteRisorsa.get(randomNum));
@@ -519,10 +517,9 @@ public class TavoloDaGioco {
 		Random random = new Random();
 		int randomNum;
 		boolean inserito;
-		// if mazzoCarteOro è vuoto ritorno false
 
 		do {
-			randomNum = random.nextInt(40);
+			randomNum = random.nextInt(mazzoCarteOro.size());
 
 			if (!carteOroBanco.contains((CartaOro) mazzoCarteOro.get(randomNum))) {
 				carteOroBanco.add((CartaOro) mazzoCarteOro.get(randomNum));
@@ -536,7 +533,16 @@ public class TavoloDaGioco {
 
 		return true;
 	}
+	
+	public boolean condEndGame1() {
+		if(mazzoCarteRisorsa.size()==0 && mazzoCarteOro.size()==0 && carteRisorsaBanco.size()==0 && carteOroBanco.size()==0)
+			return true;
 
+		return false;
+	}
+	
+	
+	//----------------
 	private void caricaCarteObiettivo() {
 		try {
 			this.mazzoCartaObiettivo = new MazzoCarteObiettivo();
