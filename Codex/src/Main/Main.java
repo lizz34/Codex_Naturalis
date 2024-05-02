@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 public class Main {
 
-	//private static Giocatore[] giocatori;
+	private static Giocatore[] giocatori;
 
 	public static void main(String[] args) {
 		TavoloDaGioco tavolo = new TavoloDaGioco();
@@ -75,5 +75,5 @@ public class Main {
 
 		return false;
 	}
-	*/
+	
 }
