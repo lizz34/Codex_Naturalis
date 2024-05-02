@@ -41,7 +41,7 @@ public class Main {
 			System.out.println(giocatori[i].toString());
 		}
 		
-		while(tavolo.condEndGame1()==false) {
+		while(tavolo.condEndGame1()==false) { //+altra condizione dei 20 punti
 			
 		}
 		
@@ -50,11 +50,9 @@ public class Main {
 		
 		/*
 		tavolo.mazzoCarteOro.get(0).setFronte(false);
-		//System.out.println(tavolo.mazzoCarteOro.get(39).toString());
 		for(int i=0; i<tavolo.mazzoCarteOro.size(); i++) {
 			System.out.println(tavolo.mazzoCarteOro.get(i).toString());
 		}
-		
 		System.out.println(tavolo.condEndGame1());
 		*/
 		/*
@@ -65,7 +63,7 @@ public class Main {
 		}
 		 */
 	}
-
+	
 	/***
 	 * funzione per sapere quando la partita conclude
 	 * @return true se la partita è finita, false se la partita va avanti

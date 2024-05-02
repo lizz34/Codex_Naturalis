@@ -10,22 +10,21 @@ import Carte.*;
 public class TavoloDaGioco {
 
 	public ArrayList<Carta> mazzoCarteStarter;
-
 	public ArrayList<CartaRisorsa> mazzoCarteRisorsa;
-
 	public ArrayList<CartaOro> mazzoCarteOro;
-	
 	private ArrayList<CartaObiettivo> mazzoCarteObiettivo;
-
 	private int contaCarte = 0;
-
 	private ArrayList<CartaRisorsa> carteRisorsaBanco;
 	private ArrayList<CartaOro> carteOroBanco;
 
+	/***
+	 * Costruttore della classe TavoloDaGioco
+	 * Istanzia tutte le carte nei vari mazzi di gioco
+	 * Gira le prime due carte risorsa e le prime due carte oro sul tavolo da gioco
+	 */
 	public TavoloDaGioco() {
 
 		//Creazione mazzo carteStarter
-
 		mazzoCarteStarter = new ArrayList<Carta>();
 		contaCarte = 0;
 
@@ -458,6 +457,7 @@ public class TavoloDaGioco {
 			mazzoCarteObiettivo.add(new CartaObiettivo("Due punti se si ha la seguente disposizione: se si hanno tre carte di colore verde disposte diagonalmente, dove la carta sinistra sarà quella più alta e quella a destra la più bassa"));
 			mazzoCarteObiettivo.add(new CartaObiettivo("Due punti se si ha la seguente disposizione: se si hanno tre carte di colore rosso, dove la carta sinistra sarà la più bassa e quella destra la più alta"));
 
+			
 		//aggiunta delle carte di partenza che ci sono sul tavolo di gioco
 		carteRisorsaBanco = new ArrayList<CartaRisorsa>();
 		carteOroBanco = new ArrayList<CartaOro>();
@@ -506,12 +506,12 @@ public class TavoloDaGioco {
 	/***
 	 * estrae una carta risorsa dal mazzo e la posiziona sul tavolo da gioco
 	 * dopo che quella che c'era prima viene pescata da un giocatore
-	 * @return true se la carta viene pescata, false se il mazzo è vuoto
+	 * @return true se la carta viene estratta, false se il mazzo è vuoto
 	 */
 	public boolean giraCartaRisorsa() {
 		Random random = new Random();
 		int randomNum;
-		boolean inserito;
+		boolean estratta;
 		
 		do {
 			randomNum = random.nextInt(mazzoCarteRisorsa.size());
@@ -519,12 +519,12 @@ public class TavoloDaGioco {
 			if (!carteRisorsaBanco.contains((CartaRisorsa) mazzoCarteRisorsa.get(randomNum))) {
 				carteRisorsaBanco.add((CartaRisorsa) mazzoCarteRisorsa.get(randomNum));
 				//System.out.println("Elemento aggiunto con successo");
-				inserito = true;
+				estratta = true;
 			} else {
 				System.out.println("Errore - elemento già presente, non aggiunto");
-				inserito = false;
+				estratta = false;
 			}
-		} while (inserito == false);
+		} while (estratta == false);
 
 		return true;
 	}
@@ -532,12 +532,12 @@ public class TavoloDaGioco {
 	/***
 	 * estrae una carta oro dal mazzo e la posiziona sul tavolo da gioco
 	 * dopo che quella che c'era prima viene pescata da un giocatore
-	 * @return true se la carta viene pescata, false se il mazzo è vuoto
+	 * @return true se la carta viene estratta, false se il mazzo è vuoto
 	 */
 	public boolean giraCartaOro() {
 		Random random = new Random();
 		int randomNum;
-		boolean inserito;
+		boolean estratta;
 
 		do {
 			randomNum = random.nextInt(mazzoCarteOro.size());
@@ -545,12 +545,12 @@ public class TavoloDaGioco {
 			if (!carteOroBanco.contains((CartaOro) mazzoCarteOro.get(randomNum))) {
 				carteOroBanco.add((CartaOro) mazzoCarteOro.get(randomNum));
 				System.out.println("Elemento aggiunto con successo");
-				inserito = true;
+				estratta = true;
 			} else {
 				System.out.println("Elemento già presente, non aggiunto");
-				inserito = false;
+				estratta = false;
 			}
-		} while (inserito == false);
+		} while (estratta == false);
 
 		return true;
 	}
@@ -631,15 +631,5 @@ public class TavoloDaGioco {
 	}
 	
 	
-	//FIXME spostare nel main
-	/*public Vector<Carta> pescaCarteIniziali() {
-		Vector<Carta> carte = new Vector<Carta>();
-		int random = (int) (Math.random() * mazzoCarteOro.size());
-		carte.add(mazzoCarteOro.remove(random));
-		random = (int) (Math.random() * mazzoCarteRisorsa.size());
-		carte.add(mazzoCarteRisorsa.remove(random));
-		random = (int) (Math.random() * mazzoCarteRisorsa.size());
-		carte.add(mazzoCarteRisorsa.remove(random));
-		return carte;
-	}*/
+	
 }
