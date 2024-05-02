@@ -4,7 +4,9 @@ import java.util.Random;
 
 public class CarteObiettivo {
 	
-		
+	/***
+	 * @deprecated
+	 */
     String[] obiettivi = {
             "Due punti per ogni due piume",
             "Due punti per ogni due boccette",
