@@ -494,10 +494,10 @@ public class TavoloDaGioco {
 			if (!carteOroBanco.contains((CartaOro) mazzoCarteOro.get(randomNum))) {
 				carteOroBanco.add((CartaOro) mazzoCarteOro.get(randomNum));
 				mazzoCarteOro.remove(randomNum);
-				System.out.println("Elemento aggiunto con successo");
+				//System.out.println("Elemento aggiunto con successo");
 				inserito = true;
 			} else {
-				System.out.println("Elemento già presente, non aggiunto");
+				System.out.println("Errore - elemento già presente, non aggiunto");
 				inserito = false;
 			}
 		} while (inserito == false);
@@ -518,10 +518,10 @@ public class TavoloDaGioco {
 
 			if (!carteRisorsaBanco.contains((CartaRisorsa) mazzoCarteRisorsa.get(randomNum))) {
 				carteRisorsaBanco.add((CartaRisorsa) mazzoCarteRisorsa.get(randomNum));
-				System.out.println("Elemento aggiunto con successo");
+				//System.out.println("Elemento aggiunto con successo");
 				inserito = true;
 			} else {
-				System.out.println("Elemento già presente, non aggiunto");
+				System.out.println("Errore - elemento già presente, non aggiunto");
 				inserito = false;
 			}
 		} while (inserito == false);
@@ -555,13 +555,82 @@ public class TavoloDaGioco {
 		return true;
 	}
 	
+	/***
+	 * prima condizione di fine partita: caso che finiscono le carte nei mazzi e sul tavolo di gioco
+	 * @return true se tutte le carte sono finite, false se c'è almeno una carta ancora prendibile dal tavolo di gioco
+	 */
 	public boolean condEndGame1() {
-		if(mazzoCarteRisorsa.size()==0 && mazzoCarteOro.size()==0 && carteRisorsaBanco.size()==0 && carteOroBanco.size()==0)
+		if(mazzoCarteRisorsa.isEmpty() && mazzoCarteOro.isEmpty() && carteRisorsaBanco.isEmpty() && carteOroBanco.isEmpty())
 			return true;
 
 		return false;
 	}
-
+	
+	/***
+	 * Funzione per pescare una carta risorsa
+	 * @return ritorna la carta pescata
+	 */
+	public CartaRisorsa pescaCartaRisorsa() {
+		Random random = new Random();
+		int randomNum;
+		CartaRisorsa cartaPescata;
+		
+		randomNum = random.nextInt(mazzoCarteRisorsa.size());
+		cartaPescata = mazzoCarteRisorsa.get(randomNum);
+		mazzoCarteRisorsa.remove(randomNum);
+		
+		return cartaPescata;
+	}
+	
+	/***
+	 * Funzione per pescare una carta oro
+	 * @return ritorna la carta pescata
+	 */
+	public CartaOro pescaCartaOro() {
+		Random random = new Random();
+		int randomNum;
+		CartaOro cartaPescata;
+		
+		randomNum = random.nextInt(mazzoCarteOro.size());
+		cartaPescata = mazzoCarteOro.get(randomNum);
+		mazzoCarteOro.remove(randomNum);
+		
+		return cartaPescata;
+	}
+	
+	/***
+	 * Funzione per pescare una carta starter
+	 * @return ritorna la carta pescata
+	 */
+	public Carta pescaCartaStarter() {
+		Random random = new Random();
+		int randomNum;
+		Carta cartaPescata;
+		
+		randomNum = random.nextInt(mazzoCarteStarter.size());
+		cartaPescata = mazzoCarteStarter.get(randomNum);
+		mazzoCarteStarter.remove(randomNum);
+		
+		return cartaPescata;
+	}
+	
+	/***
+	 * Funzione per pescare una carta obiettivo
+	 * @return ritorna la carta pescata
+	 */
+	public CartaObiettivo pescaCartaObiettivo() {
+		Random random = new Random();
+		int randomNum;
+		CartaObiettivo cartaPescata;
+		
+		randomNum = random.nextInt(mazzoCarteObiettivo.size());
+		cartaPescata = mazzoCarteObiettivo.get(randomNum);
+		mazzoCarteObiettivo.remove(randomNum);
+		
+		return cartaPescata;
+	}
+	
+	
 	//FIXME spostare nel main
 	/*public Vector<Carta> pescaCarteIniziali() {
 		Vector<Carta> carte = new Vector<Carta>();

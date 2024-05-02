@@ -1,5 +1,6 @@
 package Giocatori;
 
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Random;
 import java.util.Scanner;
@@ -12,31 +13,24 @@ public class Giocatore {
 
 	private int punteggio;
 	private int turniGiocati;
-	private Vector<Carta> carte = new Vector<>();
+	private ArrayList<Carta> mano;
 	private CartaObiettivo cartaObiettivo;
 	private Carta cartaStarter;
-	// variabili della matrice
 	private CampoDaGioco campoPersonale;
 
 	/***
 	 * costruttore della classe giocatore
-	 * 
-	 * @param carte        le 3 carte che il giocatore ha all'inizio della partita
-	 * @param obiettivo    la carta obiettivo che gli viene assegnata all'inizio
-	 *                     della partita
-	 * @param cartaStarter la carta starter con cui inizia a giocare
+	 * @param obiettivo: la carta obiettivo che gli viene assegnata all'inizio della partita
+	 * @param cartaStarter: la carta starter con cui inizia a giocare
+	 * @param manoIniziale: le 3 carte che il giocatore ha all'inizio della partita
 	 */
-	public Giocatore(CartaObiettivo obiettivo, Carta cartaStarter, Vector<Carta> carte) {
-		// TODO
-		// al momento dell'avvio della partita al giocatore vengono assegnate tramite il
-		// main
-		// la carta obiettivo (che non cambierà mai)
-		// le 3 carte di partenza da usare
-		// la carta starter
+	public Giocatore(CartaObiettivo obiettivo, Carta cartaStarter, ArrayList<Carta> manoIniziale) {
 		this.punteggio = 0;
+		this.turniGiocati=0;
 		this.cartaObiettivo = obiettivo;
 		this.cartaStarter = cartaStarter;
-		this.carte = carte;
+		this.mano = new ArrayList<Carta>();
+		this.mano = manoIniziale;
 		/*
 		 * for(int i = 0; i < 3; i++) { this.carte.add(manoIniziale[i]); }
 		 */
@@ -56,7 +50,7 @@ public class Giocatore {
 		// cicli per chiedere all'utente di scegliere la prossima carta che vuole giocare
 		do {
 			for (int i = 0; i < 3; i++) {
-				System.out.println(i++ + ": " + carte.get(i).toString() + " \n");
+				System.out.println(i++ + ": " + mano.get(i).toString() + " \n");
 			}
 
 			System.out.println();
@@ -72,7 +66,7 @@ public class Giocatore {
 			if (scelta < 1 || scelta > 3) {
 				System.out.println("Inserisci un numero da tra 1 e 3 per scegliere la tua carta.");
 			} else {
-				cartaScelta = carte.get(scelta);
+				cartaScelta = mano.get(scelta);
 			}
 		} while (cartaScelta == null);
 
@@ -117,7 +111,7 @@ public class Giocatore {
 		} else {
 			// la carta e' stata posizionata correttamente
 			// rimozione della carta scelta dal vettore di carte del giocatore
-			carte.remove(scelta);
+			mano.remove(scelta);
 			return true;
 		}
 
@@ -126,13 +120,6 @@ public class Giocatore {
 		// sceglierne una ed aggiungerla al proprio tavolo
 	}
 
-	public String toString() {
-		String Giocatore = "carta starter: " + this.cartaStarter + 
-				" carta obiettivo: " + this.cartaObiettivo;
-		
-		return Giocatore;
-	}
-	
 	// getter e setter
 	public int getPunteggio() {
 		return punteggio;
@@ -142,14 +129,14 @@ public class Giocatore {
 		this.punteggio = punteggio;
 	}
 
-	public Vector<Carta> getCarte() {
-		return carte;
+	public ArrayList<Carta> getMano(){
+		return this.mano;
 	}
-
-	public void setCarte(Vector<Carta> carte) {
-		this.carte = carte;
+	
+	public void setMano(Carta carta) {
+		this.mano.add(carta);
 	}
-
+	
 	public CartaObiettivo getCartaObiettivo() {
 		return cartaObiettivo;
 	}
@@ -163,7 +150,18 @@ public class Giocatore {
 	}
 
 	public void incrementaTurniGiocati() {
-		this.turniGiocati += 1;
+		this.turniGiocati++;
+	}
+	
+	public String toString() {
+		System.out.println("Punteggio: " + this.punteggio);
+		System.out.println("Carta Starter: ");
+		System.out.println(this.cartaStarter.toString());
+		System.out.println("CartaObiettivo: ");
+		System.out.println(this.cartaObiettivo.toString());
+		System.out.println("Mano attuale: ");
+		System.out.println(this.mano.toString());
+		return " ";
 	}
 
 }

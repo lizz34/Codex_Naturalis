@@ -46,7 +46,7 @@ public class Carta {
 	}
 	
 	public String toString() {
-		System.out.println("(fronte | occupato | disegno)");
+		System.out.println("(occupato | disegno)");
 		if(fronte==true) {
 			for(int i=0; i<4; i++) {
 				if(angoli[i]==null)

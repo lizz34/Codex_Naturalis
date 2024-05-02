@@ -5,6 +5,7 @@ import Giocatori.*;
 import utility.Input;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
@@ -13,15 +14,41 @@ public class Main {
 
 	public static void main(String[] args) {
 		TavoloDaGioco tavolo = new TavoloDaGioco();
-		//FIXME aggiungi istanziamento giocatori
-		/*
-		 * ciclo sull'array giocatori istanziando correttamente ogni giocatore con le
-		 * proprie carte da gioco
-		 *//*
-		for (int i = 0; i < giocatori.length; i++) {
+		Scanner sc = new Scanner(System.in);
+		int nGiocatori;
+		Giocatore[] giocatori;
+		
+		//Inserimento numero giocatori
+		do {
+			System.out.println("Digitare il numero di giocatori (da 2 a 4) che parteciperanno alla partita: ");
+			nGiocatori = sc.nextInt();
+		}while(nGiocatori<2 || nGiocatori>4);
+		
+		
+		//Implementazione dei giocatori con tutte le carte iniziali
+		giocatori = new Giocatore[nGiocatori];
+		for(int i=0; i<nGiocatori; i++) {
+			ArrayList<Carta> manoIniziale = new ArrayList<Carta>();
+			manoIniziale.add(tavolo.pescaCartaRisorsa());
+			manoIniziale.add(tavolo.pescaCartaRisorsa());
+			manoIniziale.add(tavolo.pescaCartaOro());
+			giocatori[i] = new Giocatore(tavolo.pescaCartaObiettivo(), tavolo.pescaCartaStarter(), manoIniziale);
 		}
-		System.out.println("creati " + giocatori.length + " giocatori");
-		*/
+		
+		
+		
+		for(int i=0; i<nGiocatori; i++) {
+			System.out.println(giocatori[i].toString());
+		}
+		
+		while(tavolo.condEndGame1()==false) {
+			
+		}
+		
+		
+		
+		
+		/*
 		tavolo.mazzoCarteOro.get(0).setFronte(false);
 		//System.out.println(tavolo.mazzoCarteOro.get(39).toString());
 		for(int i=0; i<tavolo.mazzoCarteOro.size(); i++) {
@@ -29,7 +56,7 @@ public class Main {
 		}
 		
 		System.out.println(tavolo.condEndGame1());
-		
+		*/
 		/*
 		while (!condizioneFineGioco()) {
 
