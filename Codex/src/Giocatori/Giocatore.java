@@ -17,7 +17,6 @@ public class Giocatore {
 	private Carta cartaStarter;
 	// variabili della matrice
 	private CampoDaGioco campoPersonale;
-	// private CartaOro cartaOro;
 
 	/***
 	 * costruttore della classe giocatore
@@ -44,28 +43,20 @@ public class Giocatore {
 
 		campoPersonale = new CampoDaGioco(this.cartaStarter);
 	}
-	/*
-	 * cercando di fare ciclo su giocatori: chiedere conefrema.... public
-	 * Giocatore(String string) { this.cartaStarter = null; // TODO Auto-generated
-	 * constructor stub }
-	 */
+
 
 	/***
 	 * permette al giocatore di scegliere la carta da giocare tra le 3 nel suo mazzo
-	 * 
 	 * @return false se il posizionamento non e' avvenuto, true se e' avvenuto
 	 */
 	public boolean scegliCarta() {
 		Carta cartaScelta = null;
 		int scelta = 0;
 
-		// cicli per chiedere all'utente di scegliere la prossima carta che vuole
-		// giocare
+		// cicli per chiedere all'utente di scegliere la prossima carta che vuole giocare
 		do {
 			for (int i = 0; i < 3; i++) {
-				// System.out.println(i++ + ": " + carte[i].toString() + " \n");
-				// stampo a video le carte del giocatore
-
+				System.out.println(i++ + ": " + carte.get(i).toString() + " \n");
 			}
 
 			System.out.println();
@@ -85,8 +76,7 @@ public class Giocatore {
 			}
 		} while (cartaScelta == null);
 
-		// stampa la matrice per permettere al giocatore di scegliere dove posizionare
-		// la carta
+		// stampa la matrice per permettere al giocatore di scegliere dove posizionare la carta
 		campoPersonale.stampaCampoDaGioco();
 
 		// riga su cui l'utente vuole posizionare la carta
@@ -136,6 +126,13 @@ public class Giocatore {
 		// sceglierne una ed aggiungerla al proprio tavolo
 	}
 
+	public String toString() {
+		String Giocatore = "carta starter: " + this.cartaStarter + 
+				" carta obiettivo: " + this.cartaObiettivo;
+		
+		return Giocatore;
+	}
+	
 	// getter e setter
 	public int getPunteggio() {
 		return punteggio;
@@ -159,12 +156,6 @@ public class Giocatore {
 
 	public Carta getCartaStarter() {
 		return cartaStarter;
-
-	}
-
-	public void mostraMano() {
-		// TODO Auto-generated method stub
-
 	}
 
 	public int getTurniGiocati() {

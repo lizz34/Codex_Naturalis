@@ -16,10 +16,10 @@ public class TavoloDaGioco {
 	public ArrayList<CartaRisorsa> mazzoCarteRisorsa;
 
 	public ArrayList<CartaOro> mazzoCarteOro;
+	
+	private CartaObiettivo mazzoCarteObiettivo [];
 
-	public MazzoCarteObiettivo mazzoCartaObiettivo;
-
-	private int contaCarte;
+	private int contaCarte = 0;
 
 	private ArrayList<CartaRisorsa> carteRisorsaBanco;
 	private ArrayList<CartaOro> carteOroBanco;
@@ -250,12 +250,7 @@ public class TavoloDaGioco {
 					}
 				}
 
-				mazzoCarteRisorsa.add(new CartaRisorsa(angoli, col, dis, (Integer.parseInt(divisorio[0])))); // colore
-																												// giallo
-																												// per
-																												// le
-																												// starter
-																												// (?)
+				mazzoCarteRisorsa.add(new CartaRisorsa(angoli, col, dis, (Integer.parseInt(divisorio[0])))); // colore giallo per le starter																						// (?)
 
 				contaCarte++;
 			}
@@ -448,7 +443,26 @@ public class TavoloDaGioco {
 			System.out.println("An error occurred.");
 			e.printStackTrace();
 		}
+		
+		//creazione mazzo carte obiettivo
+			mazzoCarteObiettivo[0] = new CartaObiettivo("Due punti per ogni due piume");
+			mazzoCarteObiettivo[1] = new CartaObiettivo("Due punti per ogni due boccette");
+			mazzoCarteObiettivo[2] = new CartaObiettivo("Due punti per ogni due pergamene");
+			mazzoCarteObiettivo[3] = new CartaObiettivo("Tre punti se si hanno una piuma, una boccetta e una pergamena");
+			mazzoCarteObiettivo[4] = new CartaObiettivo("Due punti per ogni tre farfalle");
+			mazzoCarteObiettivo[5] = new CartaObiettivo("Due punti per ogni tre lupi");
+			mazzoCarteObiettivo[6] = new CartaObiettivo("Due punti per ogni tre foglie");
+			mazzoCarteObiettivo[7] = new CartaObiettivo("Due punti per ogni tre funghi");
+			mazzoCarteObiettivo[8] = new CartaObiettivo("Tre punti se si ha la seguente disposizione: due carte verticali di colore viola con l’angolo in alto a sinistra che combacia con l’angolo in basso a destra di una carta blu");
+			mazzoCarteObiettivo[9] = new CartaObiettivo("Tre punti se si ha la seguente disposizione: due carte verticali di colore blu con l'angolo in alto a destra che combacia con l'angolo in basso a sinistra di una carta rossa");
+			mazzoCarteObiettivo[10] = new CartaObiettivo("Tre punti se si ha la seguente disposizione: due carte verticali verdi dove l'angolo in basso a sinistra combacia con l'angolo in alto a destra di una carta viola");
+			mazzoCarteObiettivo[11] = new CartaObiettivo("Tre punti se si ha la seguente disposizione: due carte verticali rosse dove l'angolo in basso a destra combacia con l'angolo in alto a sinistra di una carta verde");
+			mazzoCarteObiettivo[12] = new CartaObiettivo("Due punti se si ha la seguente disposizione: se si hanno tre carte di colore viola disposte diagonalmente, dove la carta sinistra sarà quella più alta e quella a destra la più bassa");
+			mazzoCarteObiettivo[13] = new CartaObiettivo("Due punti se si ha la seguente disposizione: se si hanno tre carte di colore blu, dove la carta sinistra sarà la più bassa e quella destra la più alta");
+			mazzoCarteObiettivo[14] = new CartaObiettivo("Due punti se si ha la seguente disposizione: se si hanno tre carte di colore verde disposte diagonalmente, dove la carta sinistra sarà quella più alta e quella a destra la più bassa");
+			mazzoCarteObiettivo[15] = new CartaObiettivo("Due punti se si ha la seguente disposizione: se si hanno tre carte di colore rosso, dove la carta sinistra sarà la più bassa e quella destra la più alta");
 
+		//aggiunta delle carte di partenza che ci sono sul tavolo di gioco
 		carteRisorsaBanco = new ArrayList<CartaRisorsa>();
 		carteOroBanco = new ArrayList<CartaOro>();
 
@@ -489,10 +503,13 @@ public class TavoloDaGioco {
 				inserito = false;
 			}
 		} while (inserito == false);
-
-		caricaCarteObiettivo();
 	}
 
+	/***
+	 * estrae una carta risorsa dal mazzo e la posiziona sul tavolo da gioco
+	 * dopo che quella che c'era prima viene pescata da un giocatore
+	 * @return true se la carta viene pescata, false se il mazzo è vuoto
+	 */
 	public boolean giraCartaRisorsa() {
 		Random random = new Random();
 		int randomNum;
@@ -515,6 +532,11 @@ public class TavoloDaGioco {
 		return true;
 	}
 
+	/***
+	 * estrae una carta oro dal mazzo e la posiziona sul tavolo da gioco
+	 * dopo che quella che c'era prima viene pescata da un giocatore
+	 * @return true se la carta viene pescata, false se il mazzo è vuoto
+	 */
 	public boolean giraCartaOro() {
 		Random random = new Random();
 		int randomNum;
@@ -537,33 +559,9 @@ public class TavoloDaGioco {
 		return true;
 	}
 
-	private void caricaCarteObiettivo() {
-		try {
-			this.mazzoCartaObiettivo = new MazzoCarteObiettivo();
-			File carteobiettivo = new File("src\\carteObiettivo.txt"); // apro file carteObiettivo
-			Scanner scanner = new Scanner(carteobiettivo);
 
-			while (scanner.hasNextLine()) {
-				String data = scanner.nextLine();
-				CartaObiettivo co = new CartaObiettivo(data);
-				this.mazzoCartaObiettivo.add(co);
-
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
-
-	public CartaObiettivo pescaCartaObiettivo() {
-		return this.mazzoCartaObiettivo.pescaCarta();
-	}
-
-	public Carta pescaCartaStarter() {
-		int random = (int) (Math.random() * mazzoCarteStarter.size());
-		return this.mazzoCarteStarter.remove(0);
-	}
-
-	public Vector<Carta> pescaCarteIniziali() {
+	//FIXME spostare nel main
+	/*public Vector<Carta> pescaCarteIniziali() {
 		Vector<Carta> carte = new Vector<Carta>();
 		int random = (int) (Math.random() * mazzoCarteOro.size());
 		carte.add(mazzoCarteOro.remove(random));
@@ -572,6 +570,5 @@ public class TavoloDaGioco {
 		random = (int) (Math.random() * mazzoCarteRisorsa.size());
 		carte.add(mazzoCarteRisorsa.remove(random));
 		return carte;
-	}
-
+	}*/
 }
