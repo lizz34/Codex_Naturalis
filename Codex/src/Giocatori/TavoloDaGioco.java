@@ -9,9 +9,9 @@ import Carte.*;
 
 public class TavoloDaGioco {
 
-	public ArrayList<Carta> mazzoCarteStarter;
-	public ArrayList<CartaRisorsa> mazzoCarteRisorsa;
-	public ArrayList<CartaOro> mazzoCarteOro;
+	private ArrayList<Carta> mazzoCarteStarter;
+	private ArrayList<CartaRisorsa> mazzoCarteRisorsa;
+	private ArrayList<CartaOro> mazzoCarteOro;
 	private ArrayList<CartaObiettivo> mazzoCarteObiettivo;
 	private int contaCarte = 0;
 	private ArrayList<CartaRisorsa> carteRisorsaBanco;
@@ -476,7 +476,7 @@ public class TavoloDaGioco {
 			if (!carteRisorsaBanco.contains((CartaRisorsa) mazzoCarteRisorsa.get(randomNum))) {
 				carteRisorsaBanco.add((CartaRisorsa) mazzoCarteRisorsa.get(randomNum));
 				mazzoCarteRisorsa.remove(randomNum);
-				System.out.println("Elemento aggiunto con successo");
+				//System.out.println("Elemento aggiunto con successo");
 				inserito = true;
 			} else {
 				System.out.println("Elemento già presente, non aggiunto");
@@ -628,6 +628,22 @@ public class TavoloDaGioco {
 		mazzoCarteObiettivo.remove(randomNum);
 		
 		return cartaPescata;
+	}
+
+	/***
+	 * getter carte risorsa disponibili sul tavolo di gioco
+	 * @return ritorna le carte risorsa pescabili dal giocatore, quelle che si trovano sul tavolo di gioco
+	 */
+	public ArrayList<CartaRisorsa> getCarteRisorsaBanco() {
+		return carteRisorsaBanco;
+	}
+
+	/***
+	 * getter carte oro disponibili sul tavolo di gioco
+	 * @return ritorna le carte oro pescabili dal giocatore, quelle che si trovano sul tavolo di gioco
+	 */
+	public ArrayList<CartaOro> getCarteOroBanco() {
+		return carteOroBanco;
 	}
 	
 	

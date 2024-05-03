@@ -58,11 +58,15 @@ public class CartaOro extends Carta{
 	 */
 	public String toString(){
 		super.toString();
-		System.out.println("Criterio del punteggio: " + criterioPunti);
+		System.out.print("Criterio del punteggio: ");
+		if(criterioPunti!=null)
+			System.out.println(criterioPunti);
+		else
+			System.out.println("nessuno");
 		System.out.print("Richieste per posizionare la carta: ");
 		for(int i = 0; i < 5; i++) {
 			System.out.print(disegnoRichieste[i]+" ");
 		}
-		return "\nPunti: " + punti;
+		return "\nPunti: " + punti; //TODO DA SISTEMARE LA STAMPA PERCHE' STAMPA I PUNTI SOLO ALLA FINE
 	}
 }

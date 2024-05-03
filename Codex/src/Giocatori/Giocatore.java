@@ -7,16 +7,15 @@ import java.util.Scanner;
 import java.util.Vector;
 
 import Carte.*;
-import utility.Input;
 
 public class Giocatore {
 
 	private int punteggio;
 	private int turniGiocati;
-	private ArrayList<Carta> mano;
+	private ArrayList<Carta> mano; //arraylist cambia l'ordine quando vuole? o solo se si toglie/aggiunge elemento e poi rimangono fissi?
 	private CartaObiettivo cartaObiettivo;
 	private Carta cartaStarter;
-	private CampoDaGioco campoPersonale;
+	public CampoDaGioco campoPersonale; //public per testing
 
 	/***
 	 * costruttore della classe Giocatore
@@ -142,6 +141,16 @@ public class Giocatore {
 	 */
 	public ArrayList<Carta> getMano(){
 		return this.mano;
+	}
+	
+	/***
+	 * 
+	 */
+	public Carta getCartaMano(int index) {
+		if(index>=0 && index<this.mano.size())
+			return this.mano.get(index);
+		
+		return null;
 	}
 	
 	/***

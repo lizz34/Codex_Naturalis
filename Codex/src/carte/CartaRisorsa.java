@@ -30,6 +30,6 @@ public class CartaRisorsa extends Carta{
 	public String toString() {
 		System.out.println(super.toString());
 		return "punti: " + punti;
-	}
+	} //TODO DA SISTEMARE LA STAMPA PERCHE' STAMPA I PUNTI SOLO ALLA FINE
 }
 

@@ -92,7 +92,7 @@ public class Carta {
 			System.out.println("Disegni centrali: " +  disegni[0] + " " + disegni[1] + " " + disegni[2]);
 		}
 		
-		return "Colore: " + colore;
+		return "Colore: " + colore; //TODO DA SISTEMARE LA STAMPA DELLE SOTTOCLASSI
 	}
 	
 	public Angolo getSpecifiAngolo(int nAngolo) {
