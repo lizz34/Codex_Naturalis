@@ -21,6 +21,7 @@ public class CampoDaGioco {
 	
 	//la carta starter é nella posizione 24x24
 	
+	//HELP: non bisognerebbe passsare anche l'angolo che si vuole usare della carta che si sta posizionando nella matrice?
 	/***
 	 * funzione per posizionare la carta sulla matrice
 	 * @param carta: che vuoi posizionare

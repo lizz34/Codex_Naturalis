@@ -37,14 +37,38 @@ public class Giocatore {
 		campoPersonale = new CampoDaGioco(this.cartaStarter);
 	}
 
+	/***
+	 * posiziona una carta dalla mano del giocatore nella sua matrice, cancellandola poi dalla sua mano di carte
+	 * @param nCarta l'indice della carta che vuole posizionare
+	 * @param nRiga la riga della carta su cui vuole posizionare la sua
+	 * @param nColonna la colonna della carta su cui vuole posizionare la sua
+	 * @param nAngolo il numero dell'angolo che vuole sovrapporre con la sua carta
+	 * @return true se il posizionamento é avvenuto, false se c'é stato un errore
+	 */
+	public boolean posizionaCarta(int nCarta, int nRiga, int nColonna, int nAngolo) {
+		Carta cartaScelta = mano.get(nCarta);
+		
+		if (campoPersonale.posizionaCarta(cartaScelta, nRiga, nColonna, nAngolo) == false) {
+			return false;
+		}
+		else {
+			//se la carta é stata posizionata correttamente la si rimuove dalla lista delle carte che il giocatore ha in mano
+			mano.remove(nCarta);
+			return true;
+		}
+	}
 
 	/***
 	 * permette al giocatore di scegliere la carta da giocare tra le 3 nel suo mazzo
 	 * @return false se il posizionamento non e' avvenuto, true se e' avvenuto
+	 * @deprecated
 	 */
+	//FIXME: sta cosa e' da rifare implementandola nel main
 	public boolean scegliCarta() {
 		Carta cartaScelta = null;
 		int scelta = 0;
+		Scanner sc;
+		sc = new Scanner(System.in);
 
 		// cicli per chiedere all'utente di scegliere la prossima carta che vuole giocare
 		do {
@@ -56,10 +80,10 @@ public class Giocatore {
 			System.out.println("Inserisci il numero della carta che vuoi posizionare sul tuo tavolo di gioco: ");
 
 			try {
-				scelta = Input.readInt();
+				scelta = sc.nextInt();
 			} catch (Exception e) {
 				System.out.println("Input non valido. Inserisci un numero da 1 a 3.");
-				scelta = Input.readInt();
+				scelta = sc.nextInt();
 			}
 
 			if (scelta < 1 || scelta > 3) {
@@ -76,41 +100,44 @@ public class Giocatore {
 		int nRiga = 0;
 		System.out.println("inserisci il numero della riga della carta su cui vuoi posizionare la nuova carta: ");
 		try {
-			nRiga = Input.readInt();
+			nRiga = sc.nextInt();
 		} catch (InputMismatchException e) {
 			System.out.println("Input non valido. Inserisci un numero intero da 0 a 49.");
-			nRiga = Input.readInt();
+			nRiga = sc.nextInt();
 		}
 
 		// colonna su cui l'utente vuole posizionare la carta
 		int nColonna = 0;
 		System.out.println("inserisci il numero della colonna della carta su cui vuoi posizionare la nuova carta: ");
 		try {
-			nColonna = Input.readInt();
+			nColonna = sc.nextInt();
 		} catch (InputMismatchException e) {
 			System.out.println("Input non valido. Inserisci un numero intero da 0 a 49.");
-			nColonna = Input.readInt();
+			nColonna = sc.nextInt();
 		}
 
 		// angolo su cui l'utente vuole posizionare la carta
 		int nAngolo = 0;
 		System.out.println("inserisci il numero dell'angolo della carta su cui vuoi posizionare la nuova carta: ");
 		try {
-			nAngolo = Input.readInt();
+			nAngolo = sc.nextInt();
 		} catch (InputMismatchException e) {
 			System.out.println("Input non valido. Inserisci un numero intero da 0 a 7.");
-			nAngolo = Input.readInt();
+			nAngolo = sc.nextInt();
 		}
 
 		// funzione della campo da gioco per posizionare la carta nella matrice
 		if (campoPersonale.posizionaCarta(cartaScelta, nRiga, nColonna, nAngolo) == false) {
 			System.out.println("errore!! non puoi posizionare questa carta");
+			
+			sc.close();
 			return false;
 
 		} else {
 			// la carta e' stata posizionata correttamente
 			// rimozione della carta scelta dal vettore di carte del giocatore
 			mano.remove(scelta);
+			sc.close();
 			return true;
 		}
 
@@ -184,6 +211,10 @@ public class Giocatore {
 	public int getTurniGiocati() {
 		return this.turniGiocati;
 	}
+	
+	public CampoDaGioco getCampoPersonale() {
+		return campoPersonale;
+	}
 
 	/***
 	 * incrementa i turni giocati di +1
@@ -205,5 +236,7 @@ public class Giocatore {
 		System.out.println(this.mano.toString());
 		return " "; //VA BENE COME TOSTRING?
 	}
+
+
 
 }

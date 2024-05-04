@@ -4,9 +4,11 @@ import Carte.*;
 import Giocatori.*;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 //TODO FUNZIONE PER PULIRE LA CONSOLE?? chatgpt non ha aiutato :(
+//devi farlo tu a mano, é il quarto bottone partendo da sinistra della console
 public class Main {
 	
 	private static Giocatore[] giocatori;
@@ -53,6 +55,9 @@ public class Main {
 		while(tavolo.condEndGame1()==false) { //+altra condizione dei 20 punti
 			System.out.println("\nTurno del giocatore " + (turnoGiocatore+1));
 			
+			//variabile booleana per capire se il turno puo' passare al giocatore successivo
+			//diventa true solo nel caso in cui la carta scelta dal giocatore sia stata correttamente posizionata nella sua matrice
+			boolean continua = false;
 			//menu operazioni che un giocatore può fare
 			do {
 				
@@ -74,30 +79,102 @@ public class Main {
 				switch(scelta) {
 				case 1:
 					//posiziona carta dalla mano alla matrice
+					//paramentri necessari: carta da posizionare, nRiga, nColonna e nAngolo della carta da sovrapporre
 					
+					//numero carta da posizionare
+					int numCarta = 0;
+					do {
+						System.out.println("Inserisci il numero della carta che vuoi posizionare del tuo mazzo (da 1 a 3): ");
+						try {
+							numCarta = sc.nextInt();
+						}
+						catch(NumberFormatException e) {
+							System.out.println("errore: inserisci un numero intero.");
+						}
+					}
+					while(numCarta < 1 || numCarta > 3);
+					
+					//numero della riga su cui si vuole posizionare la carta
+					int nRiga = 0;
+					do {
+						System.out.println("inserisci il numero della riga della carta su cui vuoi posizionare la nuova carta: ");
+						try {
+							nRiga = sc.nextInt();
+						} catch (NumberFormatException e) {
+							System.out.println("Input non valido. Inserisci un numero intero da 0 a 49.");
+							nRiga = sc.nextInt();
+						}
+					}
+					while(nRiga < 0 || nRiga > 49);
+					
+					//numero della colonna su cui si vuole posizionare la carta
+					int nColonna = 0;
+					do {
+						System.out.println("inserisci il numero della colonna della carta su cui vuoi posizionare la nuova carta: ");
+						try {
+							nColonna = sc.nextInt();
+						} catch (NumberFormatException e) {
+							System.out.println("Input non valido. Inserisci un numero intero da 0 a 49.");
+							nColonna = sc.nextInt();
+						}
+					}
+					while(nColonna < 0 || nColonna > 49);
+					
+					//numero dell'angolo su cui si vuole posizionare la carta
+					int nAngolo = 0;
+					do {
+						System.out.println("inserisci il numero dell'angolo della carta su cui vuoi posizionare la nuova carta: ");
+						try {
+							nAngolo = sc.nextInt();
+						} catch (InputMismatchException e) {
+							System.out.println("Input non valido. Inserisci un numero intero da 0 a 7.");
+							nAngolo = sc.nextInt();
+						}
+					}
+					while(nAngolo < 0 || nAngolo > 7);
+					
+					//raccolti correttamente i parametri chiamata alla funzione del giocatore per posizionare la carta
+					if(!giocatori[turnoGiocatore].posizionaCarta(numCarta, nRiga, nColonna, nAngolo)) {
+						//se la funzione restituisce false c'é stato un errore nel posizionamento della carta
+						System.out.print("errore: riprova a posizionare la carta sul tuo tavolo di gioco di gioco.");
+						continua = false;
+					}
+					else {
+						//TODO: prima di farlo continuar bisogna fargli pescare una carta da quelle presenti sul tavolo da gioco
+						continua = true;
+					}
 					break;
 				case 2:
+					//stampa delle carte presenti sul tavolo da gioco che il giocatore puo' pescare
 					System.out.println("Carte risorsa che puoi pescare:");
 					System.out.println(tavolo.getCarteRisorsaBanco().toString() + "\n");
 					System.out.println("Carte oro che puoi pescare:");
 					System.out.println(tavolo.getCarteOroBanco().toString() + "\n");
+					
+					continua = false;
 					break;
 				case 3:
 					//stampa matrice
+					giocatori[turnoGiocatore].getCampoPersonale().stampaCampoDaGioco();
 					
+					continua = false;
 					break;
 				case 4:
+					//stampa della carte che il giocatore ha nella mano
 					System.out.println("Ecco le carte che hai in mano:");
 					System.out.println(giocatori[turnoGiocatore].getMano().toString() + "\n");
+					
+					continua = false;
 					break;
 				default:
 					System.out.println("Errore menu di scelta delle operazioni");
+					
+					continua = false;
 					break;
 				}
 				
 				
-				
-			}while(scelta!=1);
+			}while(continua = false);
 			
 			if(turnoGiocatore<(nGiocatori-1))
 				turnoGiocatore++;
