@@ -4,7 +4,6 @@ import Carte.*;
 import Giocatori.*;
 
 import java.util.ArrayList;
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
 //TODO FUNZIONE PER PULIRE LA CONSOLE?? chatgpt non ha aiutato :(
@@ -37,9 +36,9 @@ public class Main {
 		giocatori = new Giocatore[nGiocatori];
 		for(int i=0; i<nGiocatori; i++) {
 			ArrayList<Carta> manoIniziale = new ArrayList<Carta>();
-			manoIniziale.add(tavolo.pescaCartaRisorsa());
-			manoIniziale.add(tavolo.pescaCartaRisorsa());
-			manoIniziale.add(tavolo.pescaCartaOro());
+			manoIniziale.add(tavolo.giraCartaRisorsa());
+			manoIniziale.add(tavolo.giraCartaRisorsa());
+			manoIniziale.add(tavolo.giraCartaOro());
 			giocatori[i] = new Giocatore(tavolo.pescaCartaObiettivo(), tavolo.pescaCartaStarter(), manoIniziale);
 		}
 		
@@ -70,7 +69,7 @@ public class Main {
 					try {
 						scelta = Integer.parseInt(buffer);
 					}
-					catch(InputMismatchException e) {
+					catch(NumberFormatException e) {
 						System.out.println("Errore: l'input non è un numero intero");
 					}
 				}while(scelta<1 || scelta>4);
@@ -89,7 +88,7 @@ public class Main {
 						try {
 							numCarta = Integer.parseInt(buffer);
 						}
-						catch(InputMismatchException e) {
+						catch(NumberFormatException e) {
 							System.out.println("Errore: inserisci un numero intero");
 						}
 					}
@@ -103,7 +102,7 @@ public class Main {
 						try {
 							nRiga = Integer.parseInt(buffer);
 						}
-						catch(InputMismatchException e) {
+						catch(NumberFormatException e) {
 							System.out.println("Errore: inserisci un numero intero");
 						}
 					}
@@ -117,7 +116,7 @@ public class Main {
 						try {
 							nColonna = Integer.parseInt(buffer);
 						}
-						catch(InputMismatchException e) {
+						catch(NumberFormatException e) {
 							System.out.println("Errore: inserisci un numero intero");
 						}
 					}
@@ -131,20 +130,50 @@ public class Main {
 						try {
 							nAngolo = Integer.parseInt(buffer);
 						}
-						catch(InputMismatchException e) {
+						catch(NumberFormatException e) {
 							System.out.println("Errore: inserisci un numero intero");
 						}
 					}
-					while(nAngolo < 0 || nAngolo > 7);
+					while(nAngolo < 1 || nAngolo > 8);
 					
 					//raccolti correttamente i parametri chiamata alla funzione del giocatore per posizionare la carta
-					if(!giocatori[turnoGiocatore].posizionaCarta(numCarta-1, nRiga, nColonna, nAngolo)) {
+					if(!giocatori[turnoGiocatore].posizionaCarta(numCarta-1, nRiga, nColonna, nAngolo-1)) {
 						//se la funzione restituisce false c'é stato un errore nel posizionamento della carta
 						System.out.print("errore: riprova a posizionare la carta sul tuo tavolo di gioco di gioco.");
 						continua = false;
 					}
 					else {
 						//TODO: prima di farlo continuar bisogna fargli pescare una carta da quelle presenti sul tavolo da gioco
+						String tipoCartaPescata;
+						do {
+							System.out.println("Inserisci il tipo di carta che vuoi pescare (oro/risorsa): ");
+							tipoCartaPescata = sc.nextLine();
+							tipoCartaPescata.toLowerCase();
+							tipoCartaPescata.trim();
+						}while(!(tipoCartaPescata.equals("oro") || tipoCartaPescata.equals("risorsa")));
+						
+						numCarta=0;
+						do {
+							System.out.println("Inserisci il numero di carta che vuoi pescare (1/2): ");
+							buffer = sc.nextLine();
+							try {
+								numCarta = Integer.parseInt(buffer);
+							}
+							catch(NumberFormatException e) {
+								System.out.println("Errore: inserisci un numero intero");
+							}
+						}
+						while(numCarta < 1 || numCarta > 2);
+						
+						if(tipoCartaPescata.equals("oro")) {
+							giocatori[turnoGiocatore].setMano(tavolo.pescaCartaOro(numCarta-1));
+						}
+						else {
+							giocatori[turnoGiocatore].setMano(tavolo.pescaCartaRisorsa(numCarta-1));
+						}
+						
+						giocatori[turnoGiocatore].getCampoPersonale().stampaCampoDaGioco();
+						
 						continua = true;
 					}
 					break;
@@ -191,7 +220,7 @@ public class Main {
 				turnoGiocatore=0;
 		}
 		
-		
+		sc.close();
 		
 	}
 	

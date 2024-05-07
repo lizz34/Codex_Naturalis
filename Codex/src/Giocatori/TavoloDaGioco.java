@@ -13,7 +13,6 @@ public class TavoloDaGioco {
 	private ArrayList<CartaRisorsa> mazzoCarteRisorsa;
 	private ArrayList<CartaOro> mazzoCarteOro;
 	private ArrayList<CartaObiettivo> mazzoCarteObiettivo;
-	private int contaCarte = 0;
 	private ArrayList<CartaRisorsa> carteRisorsaBanco;
 	private ArrayList<CartaOro> carteOroBanco;
 
@@ -26,13 +25,9 @@ public class TavoloDaGioco {
 
 		//Creazione mazzo carteStarter
 		mazzoCarteStarter = new ArrayList<Carta>();
-		contaCarte = 0;
-
 		try {
 			File carteStarter = new File("src\\carteStarter.txt"); // apro file carteStarter
 			Scanner scanner = new Scanner(carteStarter);
-
-			contaCarte = 0;
 
 			while (scanner.hasNextLine()) {
 				String data = scanner.nextLine(); // salvo riga per riga in data
@@ -110,8 +105,6 @@ public class TavoloDaGioco {
 				}
 
 				mazzoCarteStarter.add(new Carta(angoli, Colore.giallo, dis)); // colore giallo per le starter (?)
-
-				contaCarte++;
 			}
 			scanner.close();
 		} catch (FileNotFoundException e) {
@@ -122,13 +115,9 @@ public class TavoloDaGioco {
 		//Creazione mazzo carte Risorsa
 
 		mazzoCarteRisorsa = new ArrayList<CartaRisorsa>();
-		contaCarte = 0;
-
 		try {
 			File carteRisorsa = new File("src\\carteRisorse.txt"); // apro file carteStarter
 			Scanner scanner = new Scanner(carteRisorsa);
-
-			contaCarte = 0;
 
 			while (scanner.hasNextLine()) {
 				String data = scanner.nextLine(); // salvo riga per riga in data
@@ -237,8 +226,6 @@ public class TavoloDaGioco {
 				}
 
 				mazzoCarteRisorsa.add(new CartaRisorsa(angoli, col, dis, (Integer.parseInt(divisorio[0])))); // colore giallo per le starter																						// (?)
-
-				contaCarte++;
 			}
 			scanner.close();
 		} catch (FileNotFoundException e) {
@@ -249,13 +236,9 @@ public class TavoloDaGioco {
 		// Creazione mazzo carte Oro
 
 		mazzoCarteOro = new ArrayList<CartaOro>();
-		contaCarte = 0;
-
 		try {
 			File carteOro = new File("src\\carteOro.txt"); // apro file carteStarter
 			Scanner scanner = new Scanner(carteOro);
-
-			contaCarte = 0;
 
 			while (scanner.hasNextLine()) {
 				String data = scanner.nextLine(); // salvo riga per riga in data
@@ -421,8 +404,6 @@ public class TavoloDaGioco {
 
 				mazzoCarteOro.add(
 						new CartaOro(angoli, col, dis, (Integer.parseInt(divisorio[0])), disRichieste, criterioPunti));
-
-				contaCarte++;
 			}
 			scanner.close();
 		} catch (FileNotFoundException e) {
@@ -454,115 +435,34 @@ public class TavoloDaGioco {
 		carteRisorsaBanco = new ArrayList<CartaRisorsa>();
 		carteOroBanco = new ArrayList<CartaOro>();
 
-		Random random = new Random();
-		int randomNum;
-		boolean inserito;
-
-		randomNum = random.nextInt(mazzoCarteRisorsa.size());
-		carteRisorsaBanco.add((CartaRisorsa) mazzoCarteRisorsa.get(randomNum));
-		mazzoCarteRisorsa.remove(randomNum);
+		carteRisorsaBanco.add(giraCartaRisorsa());
+		carteRisorsaBanco.add(giraCartaRisorsa());
 		
-		do {
-			randomNum = random.nextInt(mazzoCarteRisorsa.size());
-
-			if (!carteRisorsaBanco.contains((CartaRisorsa) mazzoCarteRisorsa.get(randomNum))) {
-				carteRisorsaBanco.add((CartaRisorsa) mazzoCarteRisorsa.get(randomNum));
-				mazzoCarteRisorsa.remove(randomNum);
-				//System.out.println("Elemento aggiunto con successo");
-				inserito = true;
-			} else {
-				System.out.println("Elemento già presente, non aggiunto");
-				inserito = false;
-			}
-		} while (inserito == false);
-
-		randomNum = random.nextInt(mazzoCarteOro.size());
-		carteOroBanco.add((CartaOro) mazzoCarteOro.get(randomNum));
-		mazzoCarteOro.remove(randomNum);
-
-		do {
-			randomNum = random.nextInt(mazzoCarteOro.size());
-
-			if (!carteOroBanco.contains((CartaOro) mazzoCarteOro.get(randomNum))) { //if non serve, da rivedere
-				carteOroBanco.add((CartaOro) mazzoCarteOro.get(randomNum));
-				mazzoCarteOro.remove(randomNum);
-				//System.out.println("Elemento aggiunto con successo");
-				inserito = true;
-			} else {
-				System.out.println("Errore - elemento già presente, non aggiunto");
-				inserito = false;
-			}
-		} while (inserito == false);
-	}
-
-	/***
-	 * estrae una carta risorsa dal mazzo e la posiziona sul tavolo da gioco
-	 * dopo che quella che c'era prima viene pescata da un giocatore
-	 * @return true se la carta viene estratta, false se il mazzo è vuoto
-	 */
-	public boolean giraCartaRisorsa() {
-		Random random = new Random();
-		int randomNum;
-		boolean estratta;
+		carteOroBanco.add(giraCartaOro());
+		carteOroBanco.add(giraCartaOro());
 		
-		do {
-			randomNum = random.nextInt(mazzoCarteRisorsa.size());
-
-			if (!carteRisorsaBanco.contains((CartaRisorsa) mazzoCarteRisorsa.get(randomNum))) {
-				carteRisorsaBanco.add((CartaRisorsa) mazzoCarteRisorsa.get(randomNum));
-				//System.out.println("Elemento aggiunto con successo");
-				estratta = true;
-			} else {
-				System.out.println("Errore - elemento già presente, non aggiunto");
-				estratta = false;
-			}
-		} while (estratta == false);
-
-		return true;
 	}
 
-	/***
-	 * estrae una carta oro dal mazzo e la posiziona sul tavolo da gioco
-	 * dopo che quella che c'era prima viene pescata da un giocatore
-	 * @return true se la carta viene estratta, false se il mazzo è vuoto
-	 */
-	public boolean giraCartaOro() {
-		Random random = new Random();
-		int randomNum;
-		boolean estratta;
-
-		do {
-			randomNum = random.nextInt(mazzoCarteOro.size());
-
-			if (!carteOroBanco.contains((CartaOro) mazzoCarteOro.get(randomNum))) {
-				carteOroBanco.add((CartaOro) mazzoCarteOro.get(randomNum));
-				System.out.println("Elemento aggiunto con successo");
-				estratta = true;
-			} else {
-				System.out.println("Elemento già presente, non aggiunto");
-				estratta = false;
-			}
-		} while (estratta == false);
-
-		return true;
-	}
+	
 	
 	/***
 	 * prima condizione di fine partita: caso che finiscono le carte nei mazzi e sul tavolo di gioco
 	 * @return true se tutte le carte sono finite, false se c'è almeno una carta ancora prendibile dal tavolo di gioco
 	 */
 	public boolean condEndGame1() {
-		if(mazzoCarteRisorsa.isEmpty() && mazzoCarteOro.isEmpty() && carteRisorsaBanco.isEmpty() && carteOroBanco.isEmpty())
+		if(mazzoCarteRisorsa.isEmpty() || mazzoCarteOro.isEmpty() || carteRisorsaBanco.isEmpty() || carteOroBanco.isEmpty())
 			return true;
 
 		return false;
 	}
 	
+	
 	/***
-	 * Funzione per pescare una carta risorsa
-	 * @return ritorna la carta pescata
+	 * estrae una carta risorsa dal mazzo e la posiziona sul tavolo da gioco
+	 * dopo che quella che c'era prima viene pescata da un giocatore
+	 * @return true se la carta viene estratta, false se il mazzo è vuoto
 	 */
-	public CartaRisorsa pescaCartaRisorsa() {
+	public CartaRisorsa giraCartaRisorsa() {
 		Random random = new Random();
 		int randomNum;
 		CartaRisorsa cartaPescata;
@@ -571,14 +471,31 @@ public class TavoloDaGioco {
 		cartaPescata = mazzoCarteRisorsa.get(randomNum);
 		mazzoCarteRisorsa.remove(randomNum);
 		
-		return cartaPescata;
+		return cartaPescata; //il controllo sull'esaurimento del mazzo viene effettuato all'inizio del main (while)
+		
 	}
 	
 	/***
-	 * Funzione per pescare una carta oro
+	 * Funzione per pescare una carta risorsa da quelle sul tavolo
 	 * @return ritorna la carta pescata
 	 */
-	public CartaOro pescaCartaOro() {
+	public CartaRisorsa pescaCartaRisorsa(int index) {
+		CartaRisorsa cartaPescata;
+		
+		cartaPescata = carteRisorsaBanco.get(index);
+		carteRisorsaBanco.remove(index);
+		carteRisorsaBanco.add(giraCartaRisorsa());
+		
+		return cartaPescata;
+	}
+	
+	
+	/***
+	 * estrae una carta oro dal mazzo e la posiziona sul tavolo da gioco
+	 * dopo che quella che c'era prima viene pescata da un giocatore
+	 * @return true se la carta viene estratta, false se il mazzo è vuoto
+	 */
+	public CartaOro giraCartaOro() {
 		Random random = new Random();
 		int randomNum;
 		CartaOro cartaPescata;
@@ -587,6 +504,20 @@ public class TavoloDaGioco {
 		cartaPescata = mazzoCarteOro.get(randomNum);
 		mazzoCarteOro.remove(randomNum);
 		
+		return cartaPescata;
+	}
+	
+	/***
+	 * Funzione per pescare una carta oro
+	 * @return ritorna la carta pescata
+	 */
+	public CartaOro pescaCartaOro(int index) {
+		CartaOro cartaPescata;
+		
+		cartaPescata = carteOroBanco.get(index);
+		carteOroBanco.remove(index);
+		carteOroBanco.add(giraCartaOro());
+			
 		return cartaPescata;
 	}
 	
@@ -622,6 +553,9 @@ public class TavoloDaGioco {
 		return cartaPescata;
 	}
 
+	public ArrayList<CartaRisorsa> getMazzoCarteRisorsa() {
+		return mazzoCarteRisorsa;
+	}
 	/***
 	 * getter carte risorsa disponibili sul tavolo di gioco
 	 * @return ritorna le carte risorsa pescabili dal giocatore, quelle che si trovano sul tavolo di gioco

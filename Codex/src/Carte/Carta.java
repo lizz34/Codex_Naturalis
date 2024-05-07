@@ -72,7 +72,7 @@ public class Carta {
 	/***
 	 * @override del metodo toString
 	 */
-	public String toString() {  //VA BENE COME FUNZIONE? PERCHE' SENNO' FACCIAMO STAMPA CARTA
+	public String toString() {  
 		System.out.println("(occupato | disegno)");
 		if(fronte==true) {
 			for(int i=0; i<4; i++) {
@@ -92,7 +92,7 @@ public class Carta {
 			System.out.println("Disegni centrali: " +  disegni[0] + " " + disegni[1] + " " + disegni[2]);
 		}
 		
-		return "Colore: " + colore; //TODO DA SISTEMARE LA STAMPA DELLE SOTTOCLASSI
+		return "Colore: " + colore;
 	}
 	
 	public Angolo getSpecifiAngolo(int nAngolo) {

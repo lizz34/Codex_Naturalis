@@ -2,10 +2,7 @@ package Giocatori;
 
 import java.util.ArrayList;
 import java.util.InputMismatchException;
-import java.util.Random;
 import java.util.Scanner;
-import java.util.Vector;
-
 import Carte.*;
 
 public class Giocatore {
