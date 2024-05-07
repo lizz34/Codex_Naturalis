@@ -5,6 +5,6 @@ public enum Colore {
 	verde,
 	blu,
 	viola,
-	giallo,
+	giallo, //per carte starter (altrimenti altro campo per specificare colore carte starter)
 	nero
 }
