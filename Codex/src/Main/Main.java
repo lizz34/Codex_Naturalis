@@ -70,7 +70,7 @@ public class Main {
 					try {
 						scelta = Integer.parseInt(buffer);
 					}
-					catch(NumberFormatException e) {
+					catch(InputMismatchException e) {
 						System.out.println("Errore: l'input non è un numero intero");
 					}
 				}while(scelta<1 || scelta>4);
@@ -82,14 +82,15 @@ public class Main {
 					//paramentri necessari: carta da posizionare, nRiga, nColonna e nAngolo della carta da sovrapporre
 					
 					//numero carta da posizionare
-					int numCarta = 0;
+					int numCarta=0;
 					do {
 						System.out.println("Inserisci il numero della carta che vuoi posizionare del tuo mazzo (da 1 a 3): ");
+						buffer = sc.nextLine();
 						try {
-							numCarta = sc.nextInt();
+							numCarta = Integer.parseInt(buffer);
 						}
-						catch(NumberFormatException e) {
-							System.out.println("errore: inserisci un numero intero.");
+						catch(InputMismatchException e) {
+							System.out.println("Errore: inserisci un numero intero");
 						}
 					}
 					while(numCarta < 1 || numCarta > 3);
@@ -98,11 +99,12 @@ public class Main {
 					int nRiga = 0;
 					do {
 						System.out.println("inserisci il numero della riga della carta su cui vuoi posizionare la nuova carta: ");
+						buffer = sc.nextLine();
 						try {
-							nRiga = sc.nextInt();
-						} catch (NumberFormatException e) {
-							System.out.println("Input non valido. Inserisci un numero intero da 0 a 49.");
-							nRiga = sc.nextInt();
+							nRiga = Integer.parseInt(buffer);
+						}
+						catch(InputMismatchException e) {
+							System.out.println("Errore: inserisci un numero intero");
 						}
 					}
 					while(nRiga < 0 || nRiga > 49);
@@ -111,11 +113,12 @@ public class Main {
 					int nColonna = 0;
 					do {
 						System.out.println("inserisci il numero della colonna della carta su cui vuoi posizionare la nuova carta: ");
+						buffer = sc.nextLine();
 						try {
-							nColonna = sc.nextInt();
-						} catch (NumberFormatException e) {
-							System.out.println("Input non valido. Inserisci un numero intero da 0 a 49.");
-							nColonna = sc.nextInt();
+							nColonna = Integer.parseInt(buffer);
+						}
+						catch(InputMismatchException e) {
+							System.out.println("Errore: inserisci un numero intero");
 						}
 					}
 					while(nColonna < 0 || nColonna > 49);
@@ -124,17 +127,18 @@ public class Main {
 					int nAngolo = 0;
 					do {
 						System.out.println("inserisci il numero dell'angolo della carta su cui vuoi posizionare la nuova carta: ");
+						buffer = sc.nextLine();
 						try {
-							nAngolo = sc.nextInt();
-						} catch (InputMismatchException e) {
-							System.out.println("Input non valido. Inserisci un numero intero da 0 a 7.");
-							nAngolo = sc.nextInt();
+							nAngolo = Integer.parseInt(buffer);
+						}
+						catch(InputMismatchException e) {
+							System.out.println("Errore: inserisci un numero intero");
 						}
 					}
 					while(nAngolo < 0 || nAngolo > 7);
 					
 					//raccolti correttamente i parametri chiamata alla funzione del giocatore per posizionare la carta
-					if(!giocatori[turnoGiocatore].posizionaCarta(numCarta, nRiga, nColonna, nAngolo)) {
+					if(!giocatori[turnoGiocatore].posizionaCarta(numCarta-1, nRiga, nColonna, nAngolo)) {
 						//se la funzione restituisce false c'é stato un errore nel posizionamento della carta
 						System.out.print("errore: riprova a posizionare la carta sul tuo tavolo di gioco di gioco.");
 						continua = false;
@@ -165,7 +169,9 @@ public class Main {
 				case 4:
 					//stampa della carte che il giocatore ha nella mano
 					System.out.println("Ecco le carte che hai in mano:");
-					System.out.println(giocatori[turnoGiocatore].getMano().toString() + "\n");
+					for(Carta c: giocatori[turnoGiocatore].getMano()) {
+						System.out.println(c.toString() + "\n");
+					}
 					
 					continua = false;
 					break;

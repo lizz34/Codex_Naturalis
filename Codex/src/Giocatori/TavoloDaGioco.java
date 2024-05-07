@@ -483,7 +483,7 @@ public class TavoloDaGioco {
 		do {
 			randomNum = random.nextInt(mazzoCarteOro.size());
 
-			if (!carteOroBanco.contains((CartaOro) mazzoCarteOro.get(randomNum))) {
+			if (!carteOroBanco.contains((CartaOro) mazzoCarteOro.get(randomNum))) { //if non serve, da rivedere
 				carteOroBanco.add((CartaOro) mazzoCarteOro.get(randomNum));
 				mazzoCarteOro.remove(randomNum);
 				//System.out.println("Elemento aggiunto con successo");
