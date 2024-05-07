@@ -147,10 +147,13 @@ public class Main {
 				case 2:
 					//stampa delle carte presenti sul tavolo da gioco che il giocatore puo' pescare
 					System.out.println("Carte risorsa che puoi pescare:");
-					System.out.println(tavolo.getCarteRisorsaBanco().toString() + "\n");
+					for(CartaRisorsa c: tavolo.getCarteRisorsaBanco()) {
+						System.out.println(c.toString() + "\n");
+					}
 					System.out.println("Carte oro che puoi pescare:");
-					System.out.println(tavolo.getCarteOroBanco().toString() + "\n");
-					
+					for(CartaOro c: tavolo.getCarteOroBanco()) {
+						System.out.println(c.toString() + "\n");
+					}
 					continua = false;
 					break;
 				case 3:
@@ -184,21 +187,6 @@ public class Main {
 		
 		
 		
-		
-		/*
-		tavolo.mazzoCarteOro.get(0).setFronte(false);
-		for(int i=0; i<tavolo.mazzoCarteOro.size(); i++) {
-			System.out.println(tavolo.mazzoCarteOro.get(i).toString());
-		}
-		System.out.println(tavolo.condEndGame1());
-		*/
-		/*
-		while (!condizioneFineGioco()) {
-
-			//TODO implemntare turni di gioco e incrementare numero turni giocatore
-
-		}
-		 */
 	}
 	
 	//qui sotto no. da reimplementare TODO
