@@ -23,8 +23,7 @@ public class CartaObiettivo {
             "Due punti se si ha la seguente disposizione: se si hanno tre carte di colore verde disposte diagonalmente, dove la carta sinistra sarà quella più alta e quella a destra la più bassa",
             "Due punti se si ha la seguente disposizione: se si hanno tre carte di colore rosso, dove la carta sinistra sarà la più bassa e quella destra la più alta"
     };
-
-
+    
     // Metodo per estrarre due frasi casuali diverse dall'array degli obiettivi
     String[] ottieniDueObiettiviCasuali() {
         Random rand = new Random();

@@ -11,7 +11,7 @@ public class Giocatore {
         String[] dueObiettivi = cartaObiettivo.ottieniDueObiettiviCasuali();
 
         // Estrai casualmente uno dei due obiettivi
-        int indiceCasuale = (int) (Math.random() * 2); /
+        int indiceCasuale = (int) (Math.random() * 2); 
         String obiettivoCasuale = dueObiettivi[indiceCasuale];
 
         // Stampa l'obiettivo estratto per la prova
