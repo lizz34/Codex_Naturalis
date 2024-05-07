@@ -177,7 +177,7 @@ public class Main {
 				}
 				
 				
-			}while(continua = false);
+			}while(continua == false);
 			
 			if(turnoGiocatore<(nGiocatori-1))
 				turnoGiocatore++;
