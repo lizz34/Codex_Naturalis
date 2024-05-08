@@ -6,8 +6,6 @@ import Giocatori.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-//TODO FUNZIONE PER PULIRE LA CONSOLE?? chatgpt non ha aiutato :(
-//devi farlo tu a mano, é il quarto bottone partendo da sinistra della console
 public class Main {
 	
 	private static Giocatore[] giocatori;
@@ -143,7 +141,7 @@ public class Main {
 						continua = false;
 					}
 					else {
-						//TODO: prima di farlo continuar bisogna fargli pescare una carta da quelle presenti sul tavolo da gioco
+						
 						String tipoCartaPescata;
 						do {
 							System.out.println("Inserisci il tipo di carta che vuoi pescare (oro/risorsa): ");
@@ -224,6 +222,7 @@ public class Main {
 		
 	}
 	
+	//FIXME
 	//qui sotto no. da reimplementare TODO
 	/***
 	 * funzione per sapere quando la partita conclude

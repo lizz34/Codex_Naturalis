@@ -67,6 +67,6 @@ public class CartaOro extends Carta{
 		for(int i = 0; i < 5; i++) {
 			System.out.print(disegnoRichieste[i]+" ");
 		}
-		return "\nPunti: " + punti; //TODO DA SISTEMARE LA STAMPA PERCHE' STAMPA I PUNTI SOLO ALLA FINE
+		return "\nPunti: " + punti;
 	}
 }

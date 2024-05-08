@@ -104,7 +104,7 @@ public class TavoloDaGioco {
 					}
 				}
 
-				mazzoCarteStarter.add(new Carta(angoli, Colore.giallo, dis)); // colore giallo per le starter (?)
+				mazzoCarteStarter.add(new Carta(angoli, Colore.giallo, dis)); // colore giallo per le starter
 			}
 			scanner.close();
 		} catch (FileNotFoundException e) {
@@ -247,8 +247,7 @@ public class TavoloDaGioco {
 				String divisorio[] = data.split("-"); // divido l'intera riga per "-"
 				// System.out.println(divisorio.length);
 
-				// ora devo assegnare e allocare la carta (ricordiamo Carta(Angolo ang[], Colore
-				// col, Disegno dis[]) )
+				// ora devo assegnare e allocare la carta (ricordiamo Carta(Angolo ang[], Colore col, Disegno dis[]) )
 				Colore col;
 				Disegno criterioPunti;
 				Disegno disRichieste[] = new Disegno[5];
@@ -270,8 +269,7 @@ public class TavoloDaGioco {
 					break;
 				default:
 					System.out.println("Errore lettura colore");
-					col = Colore.giallo; // giallo se errore (impossibile perchè risorsa hanno i 4 colori elencati
-											// sopra)
+					col = Colore.giallo; // giallo se errore (impossibile perchè risorsa hanno i 4 colori elencati sopra)
 					break;
 				}
 
@@ -323,16 +321,13 @@ public class TavoloDaGioco {
 				}
 
 				int contaAngoli = 0;
-				for (int j = 4; j < divisorio.length - 1; j++) { // scorro la riga, ora divisa in 9 elementi (8angoli,
-																	// 1per disegni dietro)
+				for (int j = 4; j < divisorio.length - 1; j++) { // scorro la riga, ora divisa in 9 elementi (8angoli, 1per disegni dietro)
 					String[] infoAngolo = divisorio[j].split(","); // divido ogni elemento in due sottoelementi
-					if (infoAngolo[0].equals("true")) { // se true devo creare l'angolo (ricordiamo Angolo(boolean
-														// fronte, Disegno disegno) )
+					if (infoAngolo[0].equals("true")) { // se true devo creare l'angolo (ricordiamo Angolo(boolean fronte, Disegno disegno) )
 						Disegno disegno = null;
 						boolean fronte;
 
-						if (j < divisorio.length / 2) // la metà del vettore segna la divisione tra angoli fronte 0-3 e
-														// angoli retro 4-7
+						if (j < divisorio.length / 2) // la metà del vettore segna la divisione tra angoli fronte 0-3 e angoli retro 4-7
 							fronte = true;
 						else
 							fronte = false; // FIXME !!!!
@@ -376,8 +371,7 @@ public class TavoloDaGioco {
 					contaAngoli++;
 				}
 
-				String[] infoDisegni = divisorio[divisorio.length - 1].split(","); // divido i tre disegni nell'ultimo
-																					// segmento
+				String[] infoDisegni = divisorio[divisorio.length - 1].split(","); // divido i tre disegni nell'ultimo segmento
 				for (int j = 0; j < dis.length; j++) {
 					switch (infoDisegni[j]) {
 					case "lupo":
@@ -553,6 +547,10 @@ public class TavoloDaGioco {
 		return cartaPescata;
 	}
 
+	/***
+	 * getter del mazzo delle carte risorsa
+	 * @return intero mazzo delle carte risorsa ancora disponibili
+	 */
 	public ArrayList<CartaRisorsa> getMazzoCarteRisorsa() {
 		return mazzoCarteRisorsa;
 	}

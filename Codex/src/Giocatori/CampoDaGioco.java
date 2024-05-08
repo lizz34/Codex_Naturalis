@@ -6,6 +6,10 @@ public class CampoDaGioco {
 	private final int nRigheTabella=50;
 	private final int nColonneTabella=50;
 	
+	/***
+	 * costruttore del campo da gioco dell'utente
+	 * @param cartaStarter che viene assegnata all'utente all'inizio della partita
+	 */
 	public CampoDaGioco(Carta cartaStarter) {
 		//generazione della matrice di gioco
 		this.campoPersonale = new Carta[this.nRigheTabella][this.nColonneTabella];
@@ -21,7 +25,6 @@ public class CampoDaGioco {
 	
 	//la carta starter é nella posizione 24x24
 	
-	//HELP: non bisognerebbe passsare anche l'angolo che si vuole usare della carta che si sta posizionando nella matrice?
 	/***
 	 * funzione per posizionare la carta sulla matrice
 	 * @param carta: che vuoi posizionare
@@ -221,7 +224,7 @@ public class CampoDaGioco {
 	/***
 	 * stampa della matrice ossia l'area di gioco del giocatore
 	 */
-	public void stampaCampoDaGioco() { //?????? ideeee
+	public void stampaCampoDaGioco() {
 		for(int i=0; i<nRigheTabella; i++) {
 			System.out.println("---------");
 			for(int j=0; j<nColonneTabella; j++) {
