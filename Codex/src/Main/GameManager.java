@@ -1,9 +1,6 @@
 package Main;
 
-import java.util.Scanner;
-
-import Giocatori.Giocatore;
-import Giocatori.TavoloDaGioco;
+import Giocatori.*;
 
 public class GameManager {
 
@@ -39,15 +36,7 @@ public class GameManager {
 	public void setTavolo(TavoloDaGioco tavolo) {
 		this.tavolo = tavolo;
 	}
-
-	public Scanner getSc() {
-		return sc;
-	}
-
-	public void setSc(Scanner sc) {
-		this.sc = sc;
-	}
-
+	
 	public int getnGiocatori() {
 		return nGiocatori;
 	}

@@ -1,5 +1,6 @@
 package Giocatori;
 import Carte.*;
+import Ecccezioni.*;
 
 public class CampoDaGioco {
 	private Carta campoPersonale[][];
@@ -215,6 +216,102 @@ public class CampoDaGioco {
 		default: //case null
 			break;
 		}
+	}
+	
+	/***
+	 * funzione per contare gli angoli sovrapposti da una carta oro per il conteggio dei punti da assegnare all'utente
+	 * @param carta la carta oro da cui partire per contare gli angoli sovrapposti
+	 * @return il numero degli angoli che la carta sovrappone
+	 */
+	public int angoliSovrapposti(Carta carta) {
+		int count = 0; //conta gli angoli sovrapposti
+		int index[] = null;  //0: riga, 1: colonna
+		//coordinate della carta da controllare
+		try {
+			index = trovaCarta(carta);
+			
+			//per avere il criterio dei punti la carta oro deve essere giocata di fronte
+			//quindi controllo solo gli angoli sul davanti della carta
+			if(carta.getAngoli()[0] != null) {
+				//controllo angolo in alto a sinistra
+				if(trovaCarta((index[0] - 1), (index[1] -1)) != null) {
+					//esiste una carta sotto quell'angolo
+					count++;
+				}
+			}
+			else if(carta.getAngoli()[1] != null) {
+				//controllo angolo in alto a destra
+				if(trovaCarta((index[0] -1), (index[1] + 1)) != null) {
+					//esiste una carta sotto quell'angolo
+					count++;
+				}
+			}
+			else if(carta.getAngoli()[2] != null) {
+				//controllo angolo in basso a destra
+				if(trovaCarta((index[0] + 1), (index[1] + 1)) != null) {
+					//esiste una carta sotto quell'angolo
+					count++;
+				}
+			}
+			else if(carta.getAngoli()[3] != null) {
+				//controllo angolo in basso a sinistra
+				if(trovaCarta((index[0] + 1), (index[1] - 1)) != null) {
+					//esiste una carta sotto quell'angolo
+					count++;
+				}
+			}
+			
+			//finito il conteggio degli angoli sovrapposti
+			return count;
+		}
+		catch(ElementNotFoundException e) {
+			//la carta non e' stata trovata nella matrice, lancia l'eccezione
+			throw e;
+		}
+	}
+	
+	/***
+	 * trova le coordinate di una specifica carta nella matrice
+	 * @param carta: la carta di cui si vogliono cercare le coordinate
+	 * @return un vettore contenente i due indici della matrice in cui si trova la carta
+	 */
+	public int[] trovaCarta (Carta carta){
+		int index [] = new int [2];
+		
+		//ciclo per scorrere gli elementi della matrice
+		for (int i = 0; i < campoPersonale.length; i++) {
+			for (int j = 0; j < campoPersonale[i].length; j++) {
+				if (campoPersonale[i][j].equals(carta)) {
+					index[1] = i;
+					index[2] = j;
+				}
+				else {
+					throw new ElementNotFoundException("L'elemento " + carta + " non è stato trovato nella matrice.");
+				}
+			}
+		}
+			
+		return index;
+	}
+	
+	/***
+	 * cerca una carta nella matrice in base alle sue coordinate
+	 * @param riga: la riga della carta nella matrice
+	 * @param colonna: la colonna della carta nella matrice
+	 * @return la carta se e' stata trovata, ElementNotFoundException se la carta non c'é
+	 */
+	public Carta trovaCarta(int riga, int colonna) {
+		Carta cartaTrovata = null;
+		
+		if(campoPersonale[riga][colonna] == null) {
+			//la carta non esiste
+			cartaTrovata = null;
+		}
+		else {
+			cartaTrovata = campoPersonale[riga][colonna];
+		}
+		
+		return cartaTrovata;
 	}
 	
 	/**

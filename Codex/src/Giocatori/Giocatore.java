@@ -1,9 +1,8 @@
 package Giocatori;
 
 import java.util.ArrayList;
-import java.util.InputMismatchException;
-import java.util.Scanner;
 import Carte.*;
+import Ecccezioni.ElementNotFoundException;
 
 public class Giocatore {
 
@@ -33,7 +32,8 @@ public class Giocatore {
 	}
 
 	/***
-	 * posiziona una carta dalla mano del giocatore nel suo capo da gioco, cancellandola poi dalla sua mano di carte
+	 * posiziona una carta dalla mano del giocatore nel suo capo da gioco, cancellandola poi dalla sua mano di carte e 
+	 * incrementando il punteggio del giocatore nel caso la carta abbia un modificatore di punteggio
 	 * @param nCarta l'indice della carta che vuole posizionare
 	 * @param nRiga la riga della carta su cui vuole posizionare la sua
 	 * @param nColonna la colonna della carta su cui vuole posizionare la sua
@@ -73,8 +73,15 @@ public class Giocatore {
 						case angoloSovrapposto:
 							//moltiplicazione dei punti per il numero degli angoli che la carta posizionata ha coperto
 							
-							//conteggio del numero  degli angoli: il contatore è almeno 1 (l'angolo su cui è stata posizionata la carta)
-							int countAngoli = 1;
+							try {
+								//conteggio del numero  degli angoli
+								int countAngoli = 0;
+								countAngoli = campoPersonale.angoliSovrapposti(cartaScelta);
+								this.punteggio += (puntiCarta * countAngoli);
+							}
+							catch(ElementNotFoundException e) {
+								return false;
+							}
 						break;
 						case boccetta:
 							//moltiplicazione dei punti per il numero di boccette sul campo da gioco
@@ -87,6 +94,8 @@ public class Giocatore {
 						case pergamena:
 							//moltiplicazione dei punti per il numero di pergamene sul campo da gioco
 							this.punteggio += (puntiCarta * contaDisegni[6]);
+						break;
+						default:
 						break;
 					}
 				}
@@ -202,7 +211,4 @@ public class Giocatore {
 		System.out.println(this.mano.toString());
 		return " ";
 	}
-
-
-
 }

@@ -2,6 +2,7 @@ package Carte;
 
 public class Carta {
 	
+	//vettore degli 8 angoli della carta (0-3 angoli davanti, 4-7 angoli dietro)
 	private final Angolo angoli[];
 	protected final Colore colore;
 	boolean fronte; //true=carta giocata con fronte visibile, false=carta giocata con il retro
