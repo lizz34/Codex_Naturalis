@@ -98,130 +98,126 @@ public class CampoDaGioco {
 	 * @param carta: carta che si vuole posizionare
 	 * @return ritorna true se la carta è posizionabile, false in caso contrario
 	 */
-	/*METTERE I CONTATORI IN UN VETTORE?
-	 * pro: meno righe di codice e possibilità di implementare una funzione che sostituisce i 3 switch e evita la ripetizione di codice
-	 * contro: ogni pos del vettore corrisponde ad un tipo: 0-->lupo 1-->foglia .... (non è molto intuitivo (però si può spiegare a commento))
-	 * NB: parlo di vettore poichè in java non si può passare un primitivo per riferimento
-	 */
 	public boolean controllaCarta(CartaOro carta) {
 		if(!(carta instanceof CartaOro))
 			return false;
 		
-		int contaLupi=0;
-		int contaFoglie=0;
-		int contaFarfalle=0;
-		int contaFunghi=0;
-		//figure?
-		int lupiRichiesti=0;
-		int foglieRichieste=0;
-		int farfalleRichieste=0;
-		int funghiRichiesti=0;
+		int contaFigure[] = new int[7]; //0=lupi; 1=foglie; 2=farfalle; 3=funghi; 4=boccetta; 5=piuma; 6=pergamena
+		int contaRichieste[] = new int [4]; //0=lupi; 1=foglie; 2=farfalle; 3=funghi
 		
+		for(int i=0; i<contaFigure.length; i++)
+			contaFigure[i]=0;
+		for(int i=0; i<contaRichieste.length; i++)
+			contaRichieste[i]=0;
+		
+		contaFigure(contaFigure);
+		
+		for(int i=0; i<carta.getDisegnoRichieste().length; i++) {
+			if(carta.getDisegnoRichieste()[i]!=null) {
+				contatoreDiFigure(contaRichieste, carta.getDisegnoRichieste()[i]);
+			}
+		}
+		
+		
+		boolean posiziona=true;
+		for(int i=0; i<contaRichieste.length; i++) {
+			if(contaRichieste[i]<=contaFigure[i] && posiziona == true)
+				posiziona=true;
+			else
+				posiziona=false;
+		}
+		
+		if(posiziona) {
+			System.out.print("Puoi posizionare la carta perche' le richieste di posizionamento sono soddisfatte");
+			return true;
+		}
+		else {
+			System.out.print("Per posizionare la carta servono: ");
+			if(contaRichieste[0]!=0)
+				System.out.print(contaRichieste[0] + " lupi ");
+			if(contaRichieste[1]!=0)
+				System.out.print(contaRichieste[1] + " foglie ");
+			if(contaRichieste[2]!=0)
+				System.out.print(contaRichieste[2] + " farfalle ");
+			if(contaRichieste[3]!=0)
+				System.out.print(contaRichieste[3] + " funghi ");
+			
+			System.out.print("\nInvece sul campo hai: ");
+			if(contaRichieste[0]!=0)
+				System.out.print(contaFigure[0] + " lupi ");
+			if(contaRichieste[1]!=0)
+				System.out.print(contaFigure[1] + " foglie ");
+			if(contaRichieste[2]!=0)
+				System.out.print(contaFigure[2] + " farfalle ");
+			if(contaRichieste[3]!=0)
+				System.out.print(contaFigure[3] + " funghi ");
+			System.out.println("\n");
+			return false;
+		}
+	}
+	
+	
+	/**
+	 * conta tutte le figure presenti sul campo da gioco del giocatore
+	 * @param contaFigure[]: vettore di interi i cui elementi verrano usati come contatori da incrementare
+	 */
+	public void contaFigure(int contaFigure[]) {
 		for(int i=0; i<this.nRigheTabella; i++) {
 			for(int j=0; j<this.nColonneTabella; j++) { //scorrimento della matrice
 				if(this.campoPersonale[i][j] != null) { //se troviamo una carta..
 					if(campoPersonale[i][j].getFronte()==true) { //se è giocata di fronte..
 						for(int k=0; k<4; k++) {
 							if(campoPersonale[i][j].getSpecifiAngolo(k).getOccupato() == false) { //se l'angolo non è occupato e quindi il disegno si può vedere..
-								switch(campoPersonale[i][j].getSpecifiAngolo(k).getDisegno()) { //contiamo il disegno incrementando un contatore
-								case lupo:
-									contaLupi++;
-									break;
-								case foglia:
-									contaFoglie++;
-									break;
-								case farfalla:
-									contaFarfalle++;
-									break;
-								case fungo:
-									contaFunghi++;
-									break;
-								default: //case null
-									break;
-								}
+								contatoreDiFigure(contaFigure, campoPersonale[i][j].getSpecifiAngolo(k).getDisegno()); //incremento contatore nel vettore corrispondente al disegno tramite una funzione apposita
 							}
 						}
 					}
 					else { //invece se è giocata con il retro a vista controllo gli angoli sul retro (4-7)
 						for(int k=4; k<8; k++) {
 							if(campoPersonale[i][j].getSpecifiAngolo(k).getOccupato() == false) { 
-								switch(campoPersonale[i][j].getSpecifiAngolo(k).getDisegno()) {
-								case lupo:
-									contaLupi++;
-									break;
-								case foglia:
-									contaFoglie++;
-									break;
-								case farfalla:
-									contaFarfalle++;
-									break;
-								case fungo:
-									contaFunghi++;
-									break;
-								default: //case null
-									break;
-								}
+								contatoreDiFigure(contaFigure, campoPersonale[i][j].getSpecifiAngolo(k).getDisegno());
 							}
 						}
 					}
 				}
 			}
 		}
-		
-		
-		for(int i=0; i<carta.getDisegnoRichieste().length; i++) {
-			if(carta.getDisegnoRichieste()[i]!=null) {
-				switch(carta.getDisegnoRichieste()[i]) {
-				case lupo:
-					lupiRichiesti++;
-					break;
-				case foglia:
-					foglieRichieste++;
-					break;
-				case farfalla:
-					farfalleRichieste++;
-					break;
-				case fungo:
-					funghiRichiesti++;
-					break;
-				default:
-					System.out.println("Default");
-					break;
-				}
-			}
-			
-		}
-		
-		if(lupiRichiesti<=contaLupi && foglieRichieste<=contaFoglie && farfalleRichieste<=contaFarfalle && funghiRichiesti<=contaFunghi) {
-			System.out.print("Puoi posizionare la carta perche' le richieste di posizionamento sono soddisfatte");
-			return true;
-		}
-		else {
-			System.out.print("Per posizionare la carta servono: ");
-			if(lupiRichiesti!=0)
-				System.out.print(lupiRichiesti + " lupi ");
-			if(foglieRichieste!=0)
-				System.out.print(foglieRichieste + " foglie ");
-			if(farfalleRichieste!=0)
-				System.out.print(farfalleRichieste + " farfalle ");
-			if(funghiRichiesti!=0)
-				System.out.print(funghiRichiesti + " funghi ");
-			
-			System.out.print("\nInvece sul campo hai: ");
-			if(lupiRichiesti!=0)
-				System.out.print(contaLupi + " lupi ");
-			if(foglieRichieste!=0)
-				System.out.print(contaFoglie + " foglie ");
-			if(farfalleRichieste!=0)
-				System.out.print(contaFarfalle + " farfalle ");
-			if(funghiRichiesti!=0)
-				System.out.print(contaFunghi + " funghi ");
-			System.out.println("\n");
-			return false;
+	}
+	
+	/**
+	 * contatore che incrementa l'elemento del vettore corrispondente al disegno passato in chiamata
+	 * @param contatore[]: vettore che contiene i contatori da incrementare
+	 * @param dis: disegno che verrà sottoposto a switch
+	 */
+	public void contatoreDiFigure(int contatore[], Disegno dis) {
+		switch(dis) {
+		case lupo:
+			contatore[0]++;
+			break;
+		case foglia:
+			contatore[1]++;
+			break;
+		case farfalla:
+			contatore[2]++;
+			break;
+		case fungo:
+			contatore[3]++;
+			break;
+		case boccetta:
+			contatore[4]++;
+			break;
+		case piuma:
+			contatore[5]++;
+			break;
+		case pergamena:
+			contatore[6]++;
+			break;
+		default: //case null
+			break;
 		}
 	}
 	
-	/***
+	/**
 	 * stampa della matrice ossia l'area di gioco del giocatore
 	 */
 	public void stampaCampoDaGioco() {
