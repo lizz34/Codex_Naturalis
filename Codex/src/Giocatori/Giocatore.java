@@ -33,7 +33,7 @@ public class Giocatore {
 	}
 
 	/***
-	 * posiziona una carta dalla mano del giocatore nella sua matrice, cancellandola poi dalla sua mano di carte
+	 * posiziona una carta dalla mano del giocatore nel suo capo da gioco, cancellandola poi dalla sua mano di carte
 	 * @param nCarta l'indice della carta che vuole posizionare
 	 * @param nRiga la riga della carta su cui vuole posizionare la sua
 	 * @param nColonna la colonna della carta su cui vuole posizionare la sua
@@ -47,6 +47,51 @@ public class Giocatore {
 			return false;
 		}
 		else {
+			//incremento del punteggio del giocatore quando viene posizionata la carta
+			
+			//se la carta posizionata è una carta risorsa viene solamente incrementato il punteggio
+			if(cartaScelta instanceof CartaRisorsa) {
+				this.punteggio += ((CartaRisorsa) cartaScelta).getPunti();
+			}
+			else if(cartaScelta instanceof CartaOro) {
+				//controllo se la carta oro ha dei criteri sul conteggio dei suoi punti
+				if(((CartaOro) cartaScelta).getCriterioPunti() == null) {
+					//la carta non ha nessun criterio per il conteggio dei punti, si incrementa solamente il punteggio
+					this.punteggio += ((CartaOro) cartaScelta).getPunti();
+				}
+				else {
+					//la carta oro ha dei criteri per il punteggio da controllare
+					Disegno criterio = ((CartaOro) cartaScelta).getCriterioPunti();
+					int puntiCarta = ((CartaOro) cartaScelta).getPunti();
+					//contatore per contare le figure presenti sul campo di gioco
+					//0=lupi; 1=foglie; 2=farfalle; 3=funghi; 4=boccetta; 5=piuma; 6=pergamena
+					int contaDisegni [] = new int [7];
+					//funzione per contare le figure sul campo
+					campoPersonale.contaFigure(contaDisegni);
+					
+					switch(criterio) {
+						case angoloSovrapposto:
+							//moltiplicazione dei punti per il numero degli angoli che la carta posizionata ha coperto
+							
+							//conteggio del numero  degli angoli: il contatore è almeno 1 (l'angolo su cui è stata posizionata la carta)
+							int countAngoli = 1;
+						break;
+						case boccetta:
+							//moltiplicazione dei punti per il numero di boccette sul campo da gioco
+							this.punteggio += (puntiCarta * contaDisegni[4]);
+						break;
+						case piuma:
+							//moltiplicazione dei punti per il numero di piume sul campo da gioco
+							this.punteggio += (puntiCarta * contaDisegni[5]);
+						break;
+						case pergamena:
+							//moltiplicazione dei punti per il numero di pergamene sul campo da gioco
+							this.punteggio += (puntiCarta * contaDisegni[6]);
+						break;
+					}
+				}
+			}
+
 			//se la carta é stata posizionata correttamente la si rimuove dalla lista delle carte che il giocatore ha in mano
 			mano.remove(nCarta);
 			return true;
@@ -134,6 +179,14 @@ public class Giocatore {
 	 */
 	public void incrementaTurniGiocati() {
 		this.turniGiocati++;
+	}
+	
+	/***
+	 * funzione per incrementare il punteggio del giocatore di un dato valore
+	 * @param increment il numero di punti da aggiungere
+	 */
+	public void incrementaPunteggio (int increment) {
+		this.punteggio += increment;
 	}
 	
 	/***

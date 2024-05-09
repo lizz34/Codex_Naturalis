@@ -24,9 +24,7 @@ public class Carta {
 		for(int i=0; i<this.disegni.length; i++) {
 			this.disegni[i]=dis[i];
 		}
-		this.colore=col;
-		
-		
+		this.colore=col;		
 	}
 
 	/***
@@ -70,6 +68,15 @@ public class Carta {
 	}
 	
 	/***
+	 * restituisce uno specifico angolo della carta
+	 * @param nAngolo il numero dell'angolo sulla carta (0-3 angoli fronte, 4-7 angoli retro)
+	 * @return l'oggetto angolo specificato
+	 */
+	public Angolo getSpecifiAngolo(int nAngolo) {
+		return angoli[nAngolo];
+	}
+	
+	/***
 	 * @override del metodo toString
 	 */
 	public String toString() {  
@@ -93,10 +100,6 @@ public class Carta {
 		}
 		
 		return "Colore: " + colore;
-	}
-	
-	public Angolo getSpecifiAngolo(int nAngolo) {
-		return angoli[nAngolo];
 	}
 
 }

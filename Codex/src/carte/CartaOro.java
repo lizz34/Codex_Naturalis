@@ -3,7 +3,9 @@ package Carte;
 public class CartaOro extends Carta{
 	
 	private final int punti;
+	//le 5 richieste sul basso della carta necessarie per posizionarla
 	private final Disegno disegnoRichieste[];
+	//il criterio in alto necessario per il conteggio dei punti
 	private final Disegno criterioPunti;
 	
 	/***
