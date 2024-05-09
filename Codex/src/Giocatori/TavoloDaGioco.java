@@ -9,6 +9,7 @@ import Carte.*;
 
 public class TavoloDaGioco {
 
+	private Giocatore giocatori[];
 	private ArrayList<Carta> mazzoCarteStarter;
 	private ArrayList<CartaRisorsa> mazzoCarteRisorsa;
 	private ArrayList<CartaOro> mazzoCarteOro;
@@ -21,8 +22,11 @@ public class TavoloDaGioco {
 	 * Istanzia tutte le carte nei vari mazzi di gioco
 	 * Gira le prime due carte risorsa e le prime due carte oro sul tavolo da gioco
 	 */
-	public TavoloDaGioco() {
+	public TavoloDaGioco(int nGiocatori) {
 
+		//Istanziamento giocatori
+		this.giocatori = new Giocatore[nGiocatori];
+		
 		//Creazione mazzo carteStarter
 		mazzoCarteStarter = new ArrayList<Carta>();
 		try {

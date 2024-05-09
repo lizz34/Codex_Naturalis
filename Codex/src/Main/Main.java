@@ -7,29 +7,30 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
-	
-	private static Giocatore[] giocatori;
 
 	public static void main(String[] args) {
+		/*
 		TavoloDaGioco tavolo = new TavoloDaGioco();
-		Scanner sc = new Scanner(System.in);
-		String buffer;
+		
 		int nGiocatori=0;
 		Giocatore[] giocatori;
+		*/
+		
+		Scanner sc = new Scanner(System.in);
+		String buffer;
+		
+		GameManager gm = new GameManager();
 		
 		//Inserimento numero giocatori
 		do {
 			System.out.println("Digitare il numero di giocatori (da 2 a 4) che parteciperanno alla partita: ");
 			buffer = sc.nextLine();
-			try {
-				nGiocatori = Integer.parseInt(buffer);
-			}
-			catch(NumberFormatException e) {
-				System.out.println("Errore: l'input non è un numero intero");
-			}
-		}while(nGiocatori<2 || nGiocatori>4);
+		}while(!gm.insertNumGiocatori(buffer));
+		
+		gm.createTable(gm.getnGiocatori());
 		
 		
+		//DA SPOSTARE IN TAVOLO DA GIOCO - COSTRUTTORE ---->>>
 		//Implementazione dei giocatori con tutte le carte iniziali
 		giocatori = new Giocatore[nGiocatori];
 		for(int i=0; i<nGiocatori; i++) {
@@ -220,45 +221,6 @@ public class Main {
 		
 		sc.close();
 		
-	}
-	
-	//FIXME
-	//qui sotto no. da reimplementare TODO
-	/***
-	 * funzione per sapere quando la partita conclude
-	 * @return true se la partita è finita, false se la partita va avanti
-	 */
-	private static boolean condizioneFineGioco() {
-		if (esisteGiocatoreConAlmenoVentiPunti() && tuttiIGiocatoriHannoLoStessoNumeroDiTurni())
-			return true;
-		else
-			return false;
-	}
-
-	/***
-	 * funzione per verificare che i giocatori abbiano lo stesso numero di turni quando è finita la partita
-	 * per assegnare eventuali turni bonus ai giocatori con un turno in meno
-	 * @return true se tutti i giocatori hanno lo stesso numero di turni, false il contrario
-	 */
-	private static boolean tuttiIGiocatoriHannoLoStessoNumeroDiTurni() {
-		for (int i = 0; i < giocatori.length; i++) {
-			if (giocatori[i].getTurniGiocati() != giocatori[i - 1].getTurniGiocati())
-				return false;
-		}
-		return true;
-	}
-
-	/***
-	 * funzione per controllare se esiste un giocatore con almeno 20 punti
-	 * @return true se esiste il giocatore, false se nessun giocatore è arrivato a 20 punti
-	 */
-	private static boolean esisteGiocatoreConAlmenoVentiPunti() {
-		for (int i = 0; i < giocatori.length; i++) {
-			if (giocatori[i].getPunteggio() >= 20)
-				return true;
-		}
-
-		return false;
 	}
 	
 }
