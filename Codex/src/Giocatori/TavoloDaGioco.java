@@ -3,6 +3,7 @@ package Giocatori;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 import Carte.*;
@@ -10,12 +11,12 @@ import Carte.*;
 public class TavoloDaGioco {
 
 	private Giocatore giocatori[];
-	private ArrayList<Carta> mazzoCarteStarter;
-	private ArrayList<CartaRisorsa> mazzoCarteRisorsa;
-	private ArrayList<CartaOro> mazzoCarteOro;
-	private ArrayList<CartaObiettivo> mazzoCarteObiettivo;
-	private ArrayList<CartaRisorsa> carteRisorsaBanco;
-	private ArrayList<CartaOro> carteOroBanco;
+	private List<Carta> mazzoCarteStarter;
+	private List<CartaRisorsa> mazzoCarteRisorsa;
+	private List<CartaOro> mazzoCarteOro;
+	private List<CartaObiettivo> mazzoCarteObiettivo;
+	private List<CartaRisorsa> carteRisorsaBanco;
+	private List<CartaOro> carteOroBanco;
 
 	/***
 	 * Costruttore della classe TavoloDaGioco
@@ -444,13 +445,30 @@ public class TavoloDaGioco {
 	
 	
 	/***
-	 * prima condizione di fine partita: caso che finiscono le carte nei mazzi e sul tavolo di gioco
+	 * controlla la prima condizione di fine partita: caso che finiscono le carte nei mazzi e sul tavolo di gioco
 	 * @return true se tutte le carte sono finite, false se c'è almeno una carta ancora prendibile dal tavolo di gioco
 	 */
 	public boolean condEndGame1() {
 		if(mazzoCarteRisorsa.isEmpty() || mazzoCarteOro.isEmpty() || carteRisorsaBanco.isEmpty() || carteOroBanco.isEmpty())
 			return true;
 
+		return false;
+	}
+	
+	/***
+	 * controlla la seconda condizione per la fine della partita: almeno un giocatore ha raggiunto i 20 punti
+	 * @return true se un giocatore ha 20 punti, false in caso contrario
+	 */
+	public boolean condEndGame2() {
+		for(Giocatore g: giocatori) {
+			if (g.getPunteggio() == 20) {
+				return true;
+			}
+			else {
+				return false;
+			}
+		}
+		
 		return false;
 	}
 	
@@ -469,12 +487,13 @@ public class TavoloDaGioco {
 		cartaPescata = mazzoCarteRisorsa.get(randomNum);
 		mazzoCarteRisorsa.remove(randomNum);
 		
-		return cartaPescata; //il controllo sull'esaurimento del mazzo viene effettuato all'inizio del main (while)
-		
+		return cartaPescata; 
+		//il controllo sull'esaurimento del mazzo viene effettuato all'inizio di ogni turno del giocatore 
 	}
 	
 	/***
 	 * Funzione per pescare una carta risorsa da quelle sul tavolo
+	 * @param index: l'indice della carta risorsa nella lista di carte risorsa
 	 * @return ritorna la carta pescata
 	 */
 	public CartaRisorsa pescaCartaRisorsa(int index) {
@@ -507,6 +526,7 @@ public class TavoloDaGioco {
 	
 	/***
 	 * Funzione per pescare una carta oro
+	 * @param index: l'indice della caraìta nella lista delle carte oro
 	 * @return ritorna la carta pescata
 	 */
 	public CartaOro pescaCartaOro(int index) {
@@ -555,14 +575,14 @@ public class TavoloDaGioco {
 	 * getter del mazzo delle carte risorsa
 	 * @return intero mazzo delle carte risorsa ancora disponibili
 	 */
-	public ArrayList<CartaRisorsa> getMazzoCarteRisorsa() {
+	public List<CartaRisorsa> getMazzoCarteRisorsa() {
 		return mazzoCarteRisorsa;
 	}
 	/***
 	 * getter carte risorsa disponibili sul tavolo di gioco
 	 * @return ritorna le carte risorsa pescabili dal giocatore, quelle che si trovano sul tavolo di gioco
 	 */
-	public ArrayList<CartaRisorsa> getCarteRisorsaBanco() {
+	public List<CartaRisorsa> getCarteRisorsaBanco() {
 		return carteRisorsaBanco;
 	}
 
@@ -570,7 +590,7 @@ public class TavoloDaGioco {
 	 * getter carte oro disponibili sul tavolo di gioco
 	 * @return ritorna le carte oro pescabili dal giocatore, quelle che si trovano sul tavolo di gioco
 	 */
-	public ArrayList<CartaOro> getCarteOroBanco() {
+	public List<CartaOro> getCarteOroBanco() {
 		return carteOroBanco;
 	}
 	
