@@ -38,10 +38,9 @@ public class PosizionaCarta implements MenuOption {
 		}
 		else {
 			//il posizionamento della carta è avvenuto con successo, l'utente deve pescare una nuova carta da quelle presenti sul tavolo da gioco
-			//TODO: dovrei richiamare da qua l'oggetto (implica che devo prendere i dati che mi servono da qua con uno scanner)
-			//o lasciare fare al metodo che ha chiamato questa opzione del menu (facendo ad esempio un return true)???
+			//TODO: quando verrà richiamata questa funzione sarà in un try catch
+			//FIXME la classe per pescare la carta va aggiunta qua perchè se no devo fare uno switch inutilmente nel menu manageer
+			//quindi i'm sorry ma devo aggiungere un System.out
 		}
-
 	}
-
 }
