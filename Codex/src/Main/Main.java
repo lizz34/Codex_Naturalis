@@ -32,14 +32,14 @@ public class Main {
 		
 		//DA SPOSTARE IN TAVOLO DA GIOCO - COSTRUTTORE ---->>>
 		//Implementazione dei giocatori con tutte le carte iniziali
-		giocatori = new Giocatore[nGiocatori];
+		/*giocatori = new Giocatore[nGiocatori];
 		for(int i=0; i<nGiocatori; i++) {
 			ArrayList<Carta> manoIniziale = new ArrayList<Carta>();
 			manoIniziale.add(tavolo.giraCartaRisorsa());
 			manoIniziale.add(tavolo.giraCartaRisorsa());
 			manoIniziale.add(tavolo.giraCartaOro());
 			giocatori[i] = new Giocatore(tavolo.pescaCartaObiettivo(), tavolo.pescaCartaStarter(), manoIniziale);
-		}
+		}*/
 		
 		//System.out.println(giocatori[0].campoPersonale.posizionaCarta(giocatori[0].getCartaMano(2), 24, 24, 1));
 		
@@ -134,7 +134,7 @@ public class Main {
 						}
 					}
 					while(nAngolo < 1 || nAngolo > 8);
-					
+					gm.getGiocatori();
 					//raccolti correttamente i parametri chiamata alla funzione del giocatore per posizionare la carta
 					if(!giocatori[turnoGiocatore].posizionaCarta(numCarta-1, nRiga, nColonna, nAngolo-1)) {
 						//se la funzione restituisce false c'é stato un errore nel posizionamento della carta
