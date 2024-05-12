@@ -34,8 +34,8 @@ public class CampoDaGioco {
 	 * @param nAngolo: num dell'angolo su cui vuoi posizionare la carta (da 0 a 7 in senso orario fronte e retro)
 	 * @return ritorna false se la carta non puo' essere posizionata, true se viene posizionata
 	 */
-	public boolean posizionaCarta(Carta carta, int nRiga, int nColonna, int nAngolo) {
-		if(campoPersonale[nRiga][nColonna]!=null && (nAngolo>=0 && nAngolo<8)) {
+	public boolean controlloPosizionaCarta(Carta carta, int nRiga, int nColonna, int nAngolo) {
+		if(campoPersonale[nRiga][nColonna]!=null && (nAngolo>=0 && nAngolo<8) && campoPersonale[nRiga][nColonna].getSpecifiAngolo(nAngolo)!=null) {
 			if(campoPersonale[nRiga][nColonna].getSpecifiAngolo(nAngolo).getOccupato()==false && controllaCarta(carta)==true) {
 				switch (nAngolo) {
 				case 0,4:
@@ -168,14 +168,14 @@ public class CampoDaGioco {
 				if(this.campoPersonale[i][j] != null) { //se troviamo una carta..
 					if(campoPersonale[i][j].getFronte()==true) { //se è giocata di fronte..
 						for(int k=0; k<4; k++) {
-							if(campoPersonale[i][j].getSpecifiAngolo(k).getOccupato() == false) { //se l'angolo non è occupato e quindi il disegno si può vedere..
+							if(campoPersonale[i][j].getSpecifiAngolo(k) != null && campoPersonale[i][j].getSpecifiAngolo(k).getOccupato() == false) { //se l'angolo non è occupato e quindi il disegno si può vedere..
 								contatoreDiFigure(contaFigure, campoPersonale[i][j].getSpecifiAngolo(k).getDisegno()); //incremento contatore nel vettore corrispondente al disegno tramite una funzione apposita
 							}
 						}
 					}
 					else { //invece se è giocata con il retro a vista controllo gli angoli sul retro (4-7)
 						for(int k=4; k<8; k++) {
-							if(campoPersonale[i][j].getSpecifiAngolo(k).getOccupato() == false) { 
+							if(campoPersonale[i][j].getSpecifiAngolo(k) != null && campoPersonale[i][j].getSpecifiAngolo(k).getOccupato() == false) { 
 								contatoreDiFigure(contaFigure, campoPersonale[i][j].getSpecifiAngolo(k).getDisegno());
 							}
 						}
@@ -319,15 +319,13 @@ public class CampoDaGioco {
 	 */
 	public void stampaCampoDaGioco() {
 		for(int i=0; i<nRigheTabella; i++) {
-			System.out.println("---------");
 			for(int j=0; j<nColonneTabella; j++) {
-				
 				if(campoPersonale[i][j]!=null) {
-					System.out.println("|   ");
+					System.out.println("Riga:"+i+ " Col:"+j);
 					System.out.println(campoPersonale[i][j].toString());
-					System.out.println("   |");
 				}
 			}
+			System.out.println();
 		}
 	}
 }

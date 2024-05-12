@@ -118,7 +118,7 @@ public class Main {
 					//raccolti correttamente i parametri chiamata alla funzione del giocatore per posizionare la carta
 					if(!gm.getTavolo().getGiocatori()[turnoGiocatore].posizionaCarta(numCarta-1, nRiga, nColonna, nAngolo-1)) {
 						//se la funzione restituisce false c'é stato un errore nel posizionamento della carta
-						System.out.print("errore: riprova a posizionare la carta sul tuo tavolo di gioco di gioco.");
+						System.out.println("errore: riprova a posizionare la carta sul tuo tavolo di gioco di gioco.");
 						continua = false;
 					}
 					else {
@@ -192,11 +192,12 @@ public class Main {
 				
 				
 			}while(continua == false);
-			
+			/*
 			if(turnoGiocatore<(gm.getTavolo().getGiocatori().length-1))
 				turnoGiocatore++;
 			else
 				turnoGiocatore=0;
+			*/
 		}
 		
 		sc.close();

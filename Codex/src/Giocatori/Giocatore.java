@@ -45,7 +45,7 @@ public class Giocatore {
 	public boolean posizionaCarta(int nCarta, int nRiga, int nColonna, int nAngolo) {
 		Carta cartaScelta = mano.get(nCarta);
 		
-		if (campoPersonale.posizionaCarta(cartaScelta, nRiga, nColonna, nAngolo) == false) {
+		if (campoPersonale.controlloPosizionaCarta(cartaScelta, nRiga, nColonna, nAngolo) == false) {
 			return false;
 		}
 		else {
