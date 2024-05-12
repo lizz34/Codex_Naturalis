@@ -1,20 +1,12 @@
 package Main;
 
 import Carte.*;
-import Giocatori.*;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
 
 	public static void main(String[] args) {
-		/*
-		TavoloDaGioco tavolo = new TavoloDaGioco();
-		
-		int nGiocatori=0;
-		Giocatore[] giocatori;
-		*/
 		
 		Scanner sc = new Scanner(System.in);
 		String buffer;
@@ -30,19 +22,6 @@ public class Main {
 		gm.createTable(gm.getnGiocatori());
 		
 		
-		//DA SPOSTARE IN TAVOLO DA GIOCO - COSTRUTTORE ---->>>
-		//Implementazione dei giocatori con tutte le carte iniziali
-		/*giocatori = new Giocatore[nGiocatori];
-		for(int i=0; i<nGiocatori; i++) {
-			ArrayList<Carta> manoIniziale = new ArrayList<Carta>();
-			manoIniziale.add(tavolo.giraCartaRisorsa());
-			manoIniziale.add(tavolo.giraCartaRisorsa());
-			manoIniziale.add(tavolo.giraCartaOro());
-			giocatori[i] = new Giocatore(tavolo.pescaCartaObiettivo(), tavolo.pescaCartaStarter(), manoIniziale);
-		}*/
-		
-		//System.out.println(giocatori[0].campoPersonale.posizionaCarta(giocatori[0].getCartaMano(2), 24, 24, 1));
-		
 		int turnoGiocatore=0;
 		int scelta=0;
 		
@@ -50,7 +29,7 @@ public class Main {
 		/*La rotazione dei turni è gestita dalla var turnoGiocatore che parte da 0 e si incrementa fino al numero massimo dei giocatori,
 		 * per poi riazzerarsi. In questo modo il vettore giocatori[] scorre dal giocatore 0 al giocare nGiocatori e tutti giocano un turno
 		 */
-		while(tavolo.condEndGame1()==false) { //+altra condizione dei 20 punti
+		while(gm.getTavolo().condEndGame1()==false && gm.getTavolo().condEndGame2()==false) {
 			System.out.println("\nTurno del giocatore " + (turnoGiocatore+1));
 			
 			//variabile booleana per capire se il turno puo' passare al giocatore successivo
@@ -134,9 +113,10 @@ public class Main {
 						}
 					}
 					while(nAngolo < 1 || nAngolo > 8);
-					gm.getGiocatori();
+
+					
 					//raccolti correttamente i parametri chiamata alla funzione del giocatore per posizionare la carta
-					if(!giocatori[turnoGiocatore].posizionaCarta(numCarta-1, nRiga, nColonna, nAngolo-1)) {
+					if(!gm.getTavolo().getGiocatori()[turnoGiocatore].posizionaCarta(numCarta-1, nRiga, nColonna, nAngolo-1)) {
 						//se la funzione restituisce false c'é stato un errore nel posizionamento della carta
 						System.out.print("errore: riprova a posizionare la carta sul tuo tavolo di gioco di gioco.");
 						continua = false;
@@ -165,13 +145,13 @@ public class Main {
 						while(numCarta < 1 || numCarta > 2);
 						
 						if(tipoCartaPescata.equals("oro")) {
-							giocatori[turnoGiocatore].setMano(tavolo.pescaCartaOro(numCarta-1));
+							gm.getTavolo().getGiocatori()[turnoGiocatore].setMano(gm.getTavolo().pescaCartaOro(numCarta-1));
 						}
 						else {
-							giocatori[turnoGiocatore].setMano(tavolo.pescaCartaRisorsa(numCarta-1));
+							gm.getTavolo().getGiocatori()[turnoGiocatore].setMano(gm.getTavolo().pescaCartaRisorsa(numCarta-1));
 						}
 						
-						giocatori[turnoGiocatore].getCampoPersonale().stampaCampoDaGioco();
+						gm.getTavolo().getGiocatori()[turnoGiocatore].getCampoPersonale().stampaCampoDaGioco();
 						
 						continua = true;
 					}
@@ -179,25 +159,25 @@ public class Main {
 				case 2:
 					//stampa delle carte presenti sul tavolo da gioco che il giocatore puo' pescare
 					System.out.println("Carte risorsa che puoi pescare:");
-					for(CartaRisorsa c: tavolo.getCarteRisorsaBanco()) {
+					for(CartaRisorsa c: gm.getTavolo().getCarteRisorsaBanco()) {
 						System.out.println(c.toString() + "\n");
 					}
 					System.out.println("Carte oro che puoi pescare:");
-					for(CartaOro c: tavolo.getCarteOroBanco()) {
+					for(CartaOro c: gm.getTavolo().getCarteOroBanco()) {
 						System.out.println(c.toString() + "\n");
 					}
 					continua = false;
 					break;
 				case 3:
 					//stampa matrice
-					giocatori[turnoGiocatore].getCampoPersonale().stampaCampoDaGioco();
+					gm.getTavolo().getGiocatori()[turnoGiocatore].getCampoPersonale().stampaCampoDaGioco();
 					
 					continua = false;
 					break;
 				case 4:
 					//stampa della carte che il giocatore ha nella mano
 					System.out.println("Ecco le carte che hai in mano:");
-					for(Carta c: giocatori[turnoGiocatore].getMano()) {
+					for(Carta c: gm.getTavolo().getGiocatori()[turnoGiocatore].getMano()) {
 						System.out.println(c.toString() + "\n");
 					}
 					
@@ -213,7 +193,7 @@ public class Main {
 				
 			}while(continua == false);
 			
-			if(turnoGiocatore<(nGiocatori-1))
+			if(turnoGiocatore<(gm.getTavolo().getGiocatori().length-1))
 				turnoGiocatore++;
 			else
 				turnoGiocatore=0;

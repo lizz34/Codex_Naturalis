@@ -6,7 +6,6 @@ public class GameManager {
 
 	private TavoloDaGioco tavolo;
 	private int nGiocatori;
-	private Giocatore[] giocatori;
 	
 	public GameManager() {
 		this.nGiocatori=0;
@@ -16,7 +15,6 @@ public class GameManager {
 		boolean approvato=true;
 		try {
 			this.nGiocatori = Integer.parseInt(buffer);
-			this.giocatori = new Giocatore[this.nGiocatori];
 		}
 		catch(NumberFormatException e) {
 			approvato=false;
@@ -32,27 +30,10 @@ public class GameManager {
 	public TavoloDaGioco getTavolo() {
 		return tavolo;
 	}
-
-	public void setTavolo(TavoloDaGioco tavolo) {
-		this.tavolo = tavolo;
-	}
 	
 	public int getnGiocatori() {
 		return nGiocatori;
 	}
-
-	public void setnGiocatori(int nGiocatori) {
-		this.nGiocatori = nGiocatori;
-	}
-
-	public Giocatore[] getGiocatori() {
-		return giocatori;
-	}
-
-	public void setGiocatori(Giocatore[] giocatori) {
-		this.giocatori = giocatori;
-	}
-	
 	
 	
 	

@@ -102,9 +102,5 @@ public class Carta {
 		
 		return "Colore: " + colore;
 	}
-	
-	public void attaccaCarta(Carta cartaDaAttaccare, int numeroAngolo) {
-		angoli[numeroAngolo].setCartaCollegata(cartaDaAttaccare);
-	}
 
 }

@@ -1,6 +1,8 @@
 package Giocatori;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import Carte.*;
 import Ecccezioni.ElementNotFoundException;
 
@@ -8,7 +10,7 @@ public class Giocatore {
 
 	private int punteggio;
 	private int turniGiocati;
-	private ArrayList<Carta> mano;
+	private List<Carta> mano;
 	private CartaObiettivo cartaObiettivo;
 	private Carta cartaStarter;
 	private CampoDaGioco campoPersonale;
@@ -19,7 +21,7 @@ public class Giocatore {
 	 * @param cartaStarter: la carta starter con cui inizia a giocare
 	 * @param manoIniziale: le 3 carte che il giocatore ha all'inizio della partita
 	 */
-	public Giocatore(CartaObiettivo obiettivo, Carta cartaStarter, ArrayList<Carta> manoIniziale) {
+	public Giocatore(CartaObiettivo obiettivo, Carta cartaStarter, List<Carta> manoIniziale) {
 		this.punteggio = 0;
 		this.turniGiocati=0;
 		this.cartaObiettivo = obiettivo;
@@ -127,7 +129,7 @@ public class Giocatore {
 	 * getter mano attuale del giocatore
 	 * @return ritorna la mano attuale del giocatore
 	 */
-	public ArrayList<Carta> getMano(){
+	public List<Carta> getMano(){
 		return this.mano;
 	}
 	

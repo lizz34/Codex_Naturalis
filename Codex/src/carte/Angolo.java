@@ -1,21 +1,9 @@
 package Carte;
 
 public class Angolo {
-	private boolean fronte;
+	private final boolean fronte;
 	private boolean occupato;
-	private Disegno disegno;
-	private Carta cartaCollegata;
-	
-	/*
-	 * attacco una carta a questo angolo
-	 */
-	public Carta getCartaCollegata() {
-		return cartaCollegata;
-	}
-
-	public void setCartaCollegata(Carta cartaCollegata) {
-		this.cartaCollegata = cartaCollegata;
-	}
+	private final Disegno disegno;
 
 	/***
 	 * costruttore della classe Angolo
