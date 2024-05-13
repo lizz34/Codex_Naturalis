@@ -9,8 +9,7 @@ import Giocatori.*;
 public class VisualizzaMatrice implements MenuOption {
 
 	/***
-	 * costruttore della classe che gestisce l'opzione del menu per visualizzare a console 
-	 * l'area di gioco di un giocatore
+	 * costruttore della classe che gestisce l'opzione del menu per visualizzare a console l'area di gioco di un giocatore
 	 */
 	public VisualizzaMatrice() {
 	}

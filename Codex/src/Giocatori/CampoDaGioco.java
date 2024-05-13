@@ -72,8 +72,6 @@ public class CampoDaGioco {
 			}
 			
 		}
-		
-		System.out.println("Non puoi posizionare la carta in quella posizione");
 		return false;
 	}
 	
@@ -90,7 +88,6 @@ public class CampoDaGioco {
 			return controllaCarta((CartaOro) carta);
 		}
 		
-		System.out.println("Errore identificazione carta");
 		return false;
 	}
 	
@@ -127,7 +124,6 @@ public class CampoDaGioco {
 		}
 		
 		if(posiziona) {
-			System.out.print("Puoi posizionare la carta perche' le richieste di posizionamento sono soddisfatte");
 			return true;
 		}
 		else {

@@ -25,7 +25,18 @@ public class CarteTavolo implements MenuOption {
 	 * 
 	 */
 	public void execute(Giocatore g) throws CardPlacementException {
-String stringa = "carte risorsa disponibili: \n";
+		
+		System.out.println("Carte risorsa che puoi pescare:");
+		for(CartaRisorsa c: tavolo.getCarteRisorsaBanco()) {
+			System.out.println(c.toString() + "\n");
+		}
+		
+		System.out.println("Carte oro che puoi pescare:");
+		for(CartaOro c: tavolo.getCarteOroBanco()) {
+			System.out.println(c.toString() + "\n");
+		}
+		/*
+		String stringa = "carte risorsa disponibili: \n";
 		
 		for(CartaRisorsa c: tavolo.getCarteRisorsaBanco()) {
 			stringa += c.toString() + "\n";
@@ -36,7 +47,7 @@ String stringa = "carte risorsa disponibili: \n";
 		}
 		
 		System.out.println(stringa);
-
+		*/
 	}
 	
 	public String toString() {

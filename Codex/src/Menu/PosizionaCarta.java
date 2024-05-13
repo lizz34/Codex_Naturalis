@@ -81,6 +81,7 @@ public class PosizionaCarta implements MenuOption {
 
 		if(!g.posizionaCarta(numCarta-1, nRiga, nColonna, nAngolo-1)) {
 			//se la funzione restituisce false c'é stato un errore nel posizionamento della carta
+			System.out.println("Errore nel posizionamento della carta"); //aggiungere la specifica dell'errore? tipo c'è già una carta oppure per i criteri dei punti?
 			throw new CardPlacementException();
 		}
 		else {

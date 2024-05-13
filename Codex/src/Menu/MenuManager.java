@@ -3,8 +3,6 @@ package Menu;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Scanner;
-
 import Ecccezioni.CardPlacementException;
 import Giocatori.*;
 
@@ -22,19 +20,21 @@ public class MenuManager {
 		CarteTavolo cTavolo = new CarteTavolo(t);
 		VisualizzaMatrice vMatrice = new VisualizzaMatrice();
 		CarteMano cMano = new CarteMano();
+		VisualizzaPunteggi vPunti = new VisualizzaPunteggi();
 		
 		//inserimento delle opzioni
 		opzioni.put(1, posCarta);
 		opzioni.put(2, cTavolo);
 		opzioni.put(3, vMatrice);
 		opzioni.put(4, cMano);
+		opzioni.put(5, vPunti);
 	}
     
     /***
      * visualizza a schermo il menu con tutte le sue opzioni
      */
     public void displayMenu() {
-        System.out.println("Menu: \n");
+        System.out.println("Menu:");
         // for generalizzato per stampare a schermo tutte le opzioni del menu
         for (Entry<Integer, MenuOption> o : opzioni.entrySet()) {
             System.out.println(o.getKey() + ". " + o.getValue());
