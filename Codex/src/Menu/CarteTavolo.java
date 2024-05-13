@@ -3,6 +3,7 @@ package Menu;
 import Carte.CartaOro;
 import Carte.CartaRisorsa;
 import Ecccezioni.CardPlacementException;
+import Giocatori.Giocatore;
 import Giocatori.TavoloDaGioco;
 
 /***
@@ -21,19 +22,10 @@ public class CarteTavolo implements MenuOption {
 
 	@Override
 	/***
-	 * usa il metodo toString per stampare le carte sul tavolo
+	 * 
 	 */
-	public void execute() throws CardPlacementException {
-		this.toString();
-
-	}
-	
-	/***
-	 * toString dell'opzione del menu per visualizzare le carte presenti sul tavolo da gioco.
-	 * da utilizzare al posto del metodo execute()
-	 */
-	public String toString() {
-		String stringa = "carte risorsa disponibili: \n";
+	public void execute(Giocatore g) throws CardPlacementException {
+String stringa = "carte risorsa disponibili: \n";
 		
 		for(CartaRisorsa c: tavolo.getCarteRisorsaBanco()) {
 			stringa += c.toString() + "\n";
@@ -43,7 +35,12 @@ public class CarteTavolo implements MenuOption {
 			stringa += c.toString() + "\n";
 		}
 		
-		return stringa;
+		System.out.println(stringa);
+
+	}
+	
+	public String toString() {
+		return "guarda le carte che puoi pescare";
 	}
 
 }

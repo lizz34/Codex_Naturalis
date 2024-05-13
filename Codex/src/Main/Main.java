@@ -1,6 +1,6 @@
 package Main;
 
-import Carte.*;
+import Menu.MenuManager;
 
 import java.util.Scanner;
 
@@ -19,11 +19,17 @@ public class Main {
 			buffer = sc.nextLine();
 		}while(!gm.insertNumGiocatori(buffer));
 		
+		//creazione del tavolo da gioco
 		gm.createTable(gm.getnGiocatori());
 		
 		
 		int turnoGiocatore=0;
 		int scelta=0;
+		
+		//non so se vada veramente, ho provato a eseguirlo un paio di volte e sembrava fare qualcosa
+		//credo fosse soolo un miracolo temporaneo, non speriamoci troppo
+		//e' sicuramente da ricontrollare il codice, commentare e controllare le eccezioni 
+		MenuManager mg = gm.getMg();
 		
 		//INIZIO DELLA PARTITA
 		/*La rotazione dei turni è gestita dalla var turnoGiocatore che parte da 0 e si incrementa fino al numero massimo dei giocatori,
@@ -39,21 +45,30 @@ public class Main {
 			do {
 				
 				do{
-					System.out.println("1- Posiziona una carta sull'area di gioco");
-					System.out.println("2- Guarda le carte che puoi pescare");
-					System.out.println("3- Guarda la tua area di gioco");
-					System.out.println("4- Guarda la tua mano");
+					//ciclo per richiedere una scelta all'utente
+					//continua a chiedere finché la scelta non é un numero compreso tra 1 e 4
+					mg.displayMenu();
+					
+					System.out.println("inserisci la tua scelta: \n");
+					
 					buffer = sc.nextLine();
 					try {
 						scelta = Integer.parseInt(buffer);
 					}
 					catch(NumberFormatException e) {
 						System.out.println("Errore: l'input non è un numero intero");
-					}
+					}					
+					/*System.out.println("1- Posiziona una carta sull'area di gioco");
+					System.out.println("2- Guarda le carte che puoi pescare");
+					System.out.println("3- Guarda la tua area di gioco");
+					System.out.println("4- Guarda la tua mano");*/					
 				}while(scelta<1 || scelta>4);
 				
+				//l'utente ha scelto un'opzione correttamente
+				mg.esegui(gm.getTavolo().getGiocatori()[turnoGiocatore], scelta);
 				
-				switch(scelta) {
+				
+				/*switch(scelta) {
 				case 1:
 					//posiziona carta dalla mano alla matrice
 					//paramentri necessari: carta da posizionare, nRiga, nColonna e nAngolo della carta da sovrapporre
@@ -188,9 +203,9 @@ public class Main {
 					
 					continua = false;
 					break;
-				}
+				}*/
 				
-				
+			//FIXME da sistemare la condizione per uscire da questo while
 			}while(continua == false);
 			/*
 			if(turnoGiocatore<(gm.getTavolo().getGiocatori().length-1))

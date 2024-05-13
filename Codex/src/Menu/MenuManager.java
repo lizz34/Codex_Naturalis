@@ -2,26 +2,33 @@ package Menu;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Scanner;
 
 import Ecccezioni.CardPlacementException;
+import Giocatori.*;
 
 public class MenuManager {
 	
 	private Map <Integer, MenuOption> opzioni;  //mappa per gestire le opzioni del menu (chiave + elemento)
+	TavoloDaGioco tavolo;
 
-	public MenuManager() {
+	public MenuManager(TavoloDaGioco t) {
 		//istanzia la mappa per le opzioni
 		this.opzioni = new HashMap<>();
+		this.tavolo = t;
+		
+		PosizionaCarta posCarta = new PosizionaCarta(t);
+		CarteTavolo cTavolo = new CarteTavolo(t);
+		VisualizzaMatrice vMatrice = new VisualizzaMatrice();
+		CarteMano cMano = new CarteMano();
+		
+		//inserimento delle opzioni
+		opzioni.put(1, posCarta);
+		opzioni.put(2, cTavolo);
+		opzioni.put(3, vMatrice);
+		opzioni.put(4, cMano);
 	}
-	
-	/***
-	 * aggiunge una nuova opzione alla mappa del menu
-	 * @param chiave: la chiave identificativa dell'opzione (un numero intero)
-	 * @param opzione: l'opzione da aggiungere
-	 */
-    public void aggiungiOpzione(int chiave, MenuOption opzione) {
-        opzioni.put(chiave, opzione);
-    }
     
     /***
      * visualizza a schermo il menu con tutte le sue opzioni
@@ -29,14 +36,41 @@ public class MenuManager {
     public void displayMenu() {
         System.out.println("Menu: \n");
         // for generalizzato per stampare a schermo tutte le opzioni del menu
-        for (Map.Entry<Integer, MenuOption> o : opzioni.entrySet()) {
-            System.out.println(o.getKey() + ". " + o.getValue().getClass().getSimpleName());
+        for (Entry<Integer, MenuOption> o : opzioni.entrySet()) {
+            System.out.println(o.getKey() + ". " + o.getValue());
         }
     }
     
-    public void run(int scelta) throws Exception {
+    public boolean esegui(Giocatore g, int scelta) {
+    	MenuOption opzione = opzioni.get(scelta);
+    	
+    	if(opzione != null) {
+    		try {
+				opzione.execute(g);
+				return true;
+			} catch (CardPlacementException e) {
+				e.printStackTrace();
+				return false;
+			}
+    	}
+    	else {
+    		return false;
+    	}
+    }
+    
+    /*public void run(int scelta) throws Exception {
     	//FIXME è da finire non credo che vada neanchè per bontà divina
-    	MenuOption opzioneScelta = opzioni.get(scelta);
+    	Scanner sc = new Scanner(System.in);
+    	boolean continua = true;
+    	
+    	while(continua) {
+    		///mostra a schermo il menu con le sue opzioni
+    		displayMenu();
+    		
+    		System.out.println("inserisci la tua scelta: ");
+    		int sceltaUtente = sc.nextInt();
+    	}
+    	String opzioneScelta = opzioni.get(opzioneScelta);
     	
     	if(opzioneScelta != null) {
     		try {
@@ -49,6 +83,6 @@ public class MenuManager {
     	else {
     		throw new Exception();
     	}
-    }
+    }*/
 
 }
