@@ -22,7 +22,9 @@ public class CarteTavolo implements MenuOption {
 
 	@Override
 	/***
-	 * 
+	 * mostra le carte che ci sono sul tavolo da gioco disponibili per essere pescate
+	 * @param g: il giocatore che ha selezionato l'opzione
+	 * @throws CardPlacementException
 	 */
 	public void execute(Giocatore g) throws CardPlacementException {
 		
@@ -35,21 +37,11 @@ public class CarteTavolo implements MenuOption {
 		for(CartaOro c: tavolo.getCarteOroBanco()) {
 			System.out.println(c.toString() + "\n");
 		}
-		/*
-		String stringa = "carte risorsa disponibili: \n";
-		
-		for(CartaRisorsa c: tavolo.getCarteRisorsaBanco()) {
-			stringa += c.toString() + "\n";
-		}
-		stringa+= "Carte oro che puoi pescare: \n";
-		for(CartaOro c: tavolo.getCarteOroBanco()) {
-			stringa += c.toString() + "\n";
-		}
-		
-		System.out.println(stringa);
-		*/
 	}
 	
+	/***
+	 * @return il nome esteso dell'opzione del menu
+	 */
 	public String toString() {
 		return "guarda le carte che puoi pescare";
 	}

@@ -21,6 +21,14 @@ public class PescaCarta implements MenuOption {
 	public void execute(Giocatore g) throws CardPlacementException {
 	}
 	
+	/***
+	 * pesca una nuova carta da quelle disponibili sul tavolo da gioco da aggiungere alla mano del giocatore
+	 * @param g: il giocatore che sta pescando la carta
+	 * @param tipoCarta: il tipo di carta che si vuole pescare (oro o risorsa)
+	 * @param indexCarta: l'indice della carta nel mazzo di carte disponibili sul tavolo da gioco (1 o 2)
+	 * @param tavolo: il tavolo da gioco su cui si sta svolgendo la partita
+	 * @throws CardPlacementException
+	 */
 	public void pesca(Giocatore g, String tipoCarta, int indexCarta, TavoloDaGioco tavolo) throws CardPlacementException {
 		if(tipoCarta.equals("oro")) {
 			//carta di tipo oro

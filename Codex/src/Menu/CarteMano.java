@@ -10,13 +10,17 @@ import Giocatori.*;
 public class CarteMano implements MenuOption {
 	
 	/***
-	 * costruttore della classe che permette al giocatore di vedere le carte che ha nella propria mano
-	 * @param g: il giocatore di cui si vogliono visualizzare le carte
+	 * istanzia un nuovo oggetto del menu' per l'opzione di visualizzare le carte che il giocatore ha in mano
 	 */
 	public CarteMano() {
 	}
 
 	@Override
+	/***
+	 * mostra le carte che il giocatore ha nella sua mano
+	 * @param g: il giocatore che ha scelto l'opzione
+	 * @throws CardPlacementException
+	 */
 	public void execute(Giocatore g) throws CardPlacementException {
 		// TODO Auto-generated method stub
 		System.out.println("Ecco le carte che hai in mano:");
@@ -25,6 +29,9 @@ public class CarteMano implements MenuOption {
 		}
 	}
 	
+	/***
+	 * @return il nome esteso dell'opzione del menu
+	 */
 	public String toString() {
 		return "visualizza le carte che hai in mano";
 	}

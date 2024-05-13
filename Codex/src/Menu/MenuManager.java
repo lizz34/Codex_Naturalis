@@ -16,6 +16,7 @@ public class MenuManager {
 		this.opzioni = new HashMap<>();
 		this.tavolo = t;
 		
+		//istanzia nuovi oggetti per le opzioni
 		PosizionaCarta posCarta = new PosizionaCarta(t);
 		CarteTavolo cTavolo = new CarteTavolo(t);
 		VisualizzaMatrice vMatrice = new VisualizzaMatrice();
@@ -43,7 +44,14 @@ public class MenuManager {
         }
     }
     
-    public boolean esegui(Giocatore g, int scelta) {
+    /***
+     * esegue l'opzione del menu' che é stata scelta
+     * @param g: il giocatore che ha scelto l'opzione
+     * @param scelta: il numero intero che corrisponde all'opzione scelta
+     * @return true se l'opzione é stata eseguita correttamente, false in caso contrario
+     * @throws CardPlacementException
+     */
+    public boolean esegui(Giocatore g, int scelta){
     	MenuOption opzione = opzioni.get(scelta);
     	
     	if(opzione != null) {
@@ -59,32 +67,5 @@ public class MenuManager {
     		return false;
     	}
     }
-    
-    /*public void run(int scelta) throws Exception {
-    	//FIXME è da finire non credo che vada neanchè per bontà divina
-    	Scanner sc = new Scanner(System.in);
-    	boolean continua = true;
-    	
-    	while(continua) {
-    		///mostra a schermo il menu con le sue opzioni
-    		displayMenu();
-    		
-    		System.out.println("inserisci la tua scelta: ");
-    		int sceltaUtente = sc.nextInt();
-    	}
-    	String opzioneScelta = opzioni.get(opzioneScelta);
-    	
-    	if(opzioneScelta != null) {
-    		try {
-    			opzioneScelta.execute();
-    		}
-    		catch(CardPlacementException e) {
-    			//TODO gestiore l'eccezione idk cosa fare whelp
-    		}
-    	}
-    	else {
-    		throw new Exception();
-    	}
-    }*/
 
 }

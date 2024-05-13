@@ -19,7 +19,9 @@ public class ReverseCard implements MenuOption{
 
 	@Override
 	/***
-	 * rovescia la carta 
+	 * permette al giocatore di girare una carta prima di giocarla
+	 * @param g: il giocatore che ha selezionato l'opzione
+	 * @throws CardPlacementException
 	 */
 	public void execute(Giocatore g) throws CardPlacementException {
 				
@@ -45,6 +47,9 @@ public class ReverseCard implements MenuOption{
 		
 	}
 	
+	/***
+	 * @return il nome esteso dell'opzione del menu
+	 */
 	public String toString() {
 		return "rovescia una carta della mano";
 	}

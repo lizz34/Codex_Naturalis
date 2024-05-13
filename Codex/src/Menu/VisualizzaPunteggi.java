@@ -16,12 +16,17 @@ public class VisualizzaPunteggi implements MenuOption{
 	@Override
 	/***
 	 * stampa sulla console il punteggio del giocatore selezionato
+	 * @param g: il giocatore che ha selezionato l'opzione
+	 * @throws CardPlacementException
 	 */
 	public void execute(Giocatore g) throws CardPlacementException {
 		System.out.println("Hai: " + g.getPunteggio() + " punti");
 
 	}
 	
+	/***
+	 * @return il nome esteso dell'opzione del menu
+	 */
 	public String toString() {
 		return "visualizza il tuo punteggio";
 	}

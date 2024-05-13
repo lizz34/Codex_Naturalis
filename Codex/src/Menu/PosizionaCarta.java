@@ -6,20 +6,24 @@ import Ecccezioni.*;
 
 public class PosizionaCarta implements MenuOption {
 
-	//cosa serve: index carta da posizionare, num riga colonna e angolo della carta da sovrascrivere
-	//il giocatore: posso passarglielo con this o qualcosa di simile da dove richiamo il metodo
 	Scanner sc = new Scanner(System.in);
 	String buffer;
 	TavoloDaGioco tavolo;
 	
 	/***
 	 * istanza un oggetto per posizionare una nuova carta
+	 * @param tavolo: il tavolo da gioco su cui si sta svolgendo la partita
 	 */
 	public PosizionaCarta(TavoloDaGioco tavolo) {
 		this.tavolo = tavolo;
 	}
 	
 	@Override
+	/***
+	 * funzione per posizionare una carta sul proprio campo da gioco da quelle che si hanno in mano
+	 * @param g: il giocatore che ha scelto l'opzione
+	 * @throws CardPlacementException
+	 */
 	public void execute(Giocatore g) throws CardPlacementException {
 		//raccolta dati
 		int numCarta=0;
@@ -119,6 +123,9 @@ public class PosizionaCarta implements MenuOption {
 		}
 	}
 	
+	/***
+	 * @return il nome esteso dell'opzione del menu
+	 */
 	public String toString() {
 		return "posiziona una nuova carta";
 	}

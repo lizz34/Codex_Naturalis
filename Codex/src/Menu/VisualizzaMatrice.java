@@ -17,10 +17,14 @@ public class VisualizzaMatrice implements MenuOption {
 	@Override
 	/***
 	 * stampa sulla console la matrice del giocatore selezionato
+	 * @param g: il giocatore che ha selezionato l'opzione
+	 * @throws CardPlacmentException
 	 */
 	public void execute(Giocatore g) throws CardPlacementException {
 		g.getCampoPersonale().stampaCampoDaGioco();
 		
+		//aggiunge il numero di figure che sono presenti sul campo da gioco
+		//per facilitare il posizionamento delle carte al giocatore
 		int cont[] = new int[7]; //0=lupi; 1=foglie; 2=farfalle; 3=funghi; 4=boccetta; 5=piuma; 6=pergamena
 		g.getCampoPersonale().contaFigure(cont);
 		System.out.print("Sul campo hai: ");
@@ -42,6 +46,9 @@ public class VisualizzaMatrice implements MenuOption {
 		
 	}
 	
+	/***
+	 * @return il nome esteso dell'opzione del menu
+	 */
 	public String toString() {
 		return "visualizza la tua area di gioco";
 	}
