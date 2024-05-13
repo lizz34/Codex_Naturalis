@@ -45,7 +45,7 @@ public class Main {
 					catch(NumberFormatException e) {
 						System.out.println("Errore: l'input non è un numero intero");
 					}								
-				}while(scelta<1 || scelta>5);
+				}while(scelta<1 || scelta>6);
 				
 				//l'utente ha scelto un'opzione correttamente
 				mg.esegui(gm.getTavolo().getGiocatori()[turnoGiocatore], scelta);

@@ -21,6 +21,7 @@ public class MenuManager {
 		VisualizzaMatrice vMatrice = new VisualizzaMatrice();
 		CarteMano cMano = new CarteMano();
 		VisualizzaPunteggi vPunti = new VisualizzaPunteggi();
+		ReverseCard rCarta = new ReverseCard();
 		
 		//inserimento delle opzioni
 		opzioni.put(1, posCarta);
@@ -28,6 +29,7 @@ public class MenuManager {
 		opzioni.put(3, vMatrice);
 		opzioni.put(4, cMano);
 		opzioni.put(5, vPunti);
+		opzioni.put(6, rCarta);
 	}
     
     /***

@@ -18,7 +18,7 @@ public class VisualizzaPunteggi implements MenuOption{
 	 * stampa sulla console il punteggio del giocatore selezionato
 	 */
 	public void execute(Giocatore g) throws CardPlacementException {
-		System.out.println(g.getPunteggio());
+		System.out.println("Hai: " + g.getPunteggio() + " punti");
 
 	}
 	

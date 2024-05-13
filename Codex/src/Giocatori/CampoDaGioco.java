@@ -127,7 +127,7 @@ public class CampoDaGioco {
 			return true;
 		}
 		else {
-			System.out.print("Per posizionare la carta servono: ");
+			System.out.print("Per posizionare la carta ti servono un totale di: ");
 			if(contaRichieste[0]!=0)
 				System.out.print(contaRichieste[0] + " lupi ");
 			if(contaRichieste[1]!=0)
@@ -137,16 +137,7 @@ public class CampoDaGioco {
 			if(contaRichieste[3]!=0)
 				System.out.print(contaRichieste[3] + " funghi ");
 			
-			System.out.print("\nInvece sul campo hai: ");
-			if(contaRichieste[0]!=0)
-				System.out.print(contaFigure[0] + " lupi ");
-			if(contaRichieste[1]!=0)
-				System.out.print(contaFigure[1] + " foglie ");
-			if(contaRichieste[2]!=0)
-				System.out.print(contaFigure[2] + " farfalle ");
-			if(contaRichieste[3]!=0)
-				System.out.print(contaFigure[3] + " funghi ");
-			System.out.println("\n");
+			System.out.println();
 			return false;
 		}
 	}

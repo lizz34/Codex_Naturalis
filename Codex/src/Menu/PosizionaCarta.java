@@ -1,9 +1,7 @@
 package Menu;
 
 import Giocatori.*;
-
 import java.util.Scanner;
-
 import Ecccezioni.*;
 
 public class PosizionaCarta implements MenuOption {
@@ -67,6 +65,10 @@ public class PosizionaCarta implements MenuOption {
 		
 		//numero dell'angolo su cui si vuole posizionare la carta
 		int nAngolo = 0;
+		boolean fronte = true;
+		if(g.getCampoPersonale().trovaCarta(nRiga, nColonna).getFronte() != true)
+			fronte=false;
+			
 		do {
 			System.out.println("inserisci il numero dell'angolo della carta su cui vuoi posizionare la nuova carta: ");
 			buffer = sc.nextLine();
@@ -77,7 +79,7 @@ public class PosizionaCarta implements MenuOption {
 				System.out.println("Errore: inserisci un numero intero");
 			}
 		}
-		while(nAngolo < 1 || nAngolo > 8);
+		while((fronte==false || (nAngolo < 1 || nAngolo > 4)) && (fronte==true || (nAngolo < 5 || nAngolo > 8)));
 
 		if(!g.posizionaCarta(numCarta-1, nRiga, nColonna, nAngolo-1)) {
 			//se la funzione restituisce false c'é stato un errore nel posizionamento della carta

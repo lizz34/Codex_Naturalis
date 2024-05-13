@@ -59,17 +59,26 @@ public class CartaOro extends Carta{
 	 * @override del metodo toString (con richiamo alla superclasse Carta)
 	 */
 	public String toString(){
-		super.toString();
-		System.out.print("Criterio del punteggio: ");
-		if(criterioPunti!=null)
-			System.out.println(criterioPunti);
-		else
-			System.out.println("nessuno");
-		System.out.print("Richieste per posizionare la carta: ");
-		for(int i = 0; i < 5; i++) {
-			System.out.print(disegnoRichieste[i]+" ");
+		if(super.getFronte()==false) {
+			super.toString();
+			return "";
 		}
-		return "\nPunti: " + punti;
+		else {
+			super.toString();
+			System.out.print("Criterio del punteggio: ");
+			if(criterioPunti!=null)
+				System.out.println(criterioPunti);
+			else
+				System.out.println("nessuno");
+			
+			System.out.print("Richieste per posizionare la carta: ");
+			for(int i = 0; i < 5; i++) {
+				System.out.print(disegnoRichieste[i]+" ");
+			}
+			
+			return "\nPunti: " + punti;
+		}
+		
 	}
 	
 }
