@@ -87,7 +87,7 @@ public class CampoDaGioco {
 			return true;
 		}
 		else if(carta instanceof CartaOro) {
-			return controllaCarta((CartaOro)carta);
+			return controllaCarta((CartaOro) carta);
 		}
 		
 		System.out.println("Errore identificazione carta");
@@ -100,8 +100,6 @@ public class CampoDaGioco {
 	 * @return ritorna true se la carta è posizionabile, false in caso contrario
 	 */
 	public boolean controllaCarta(CartaOro carta) {
-		if(!(carta instanceof CartaOro))
-			return false;
 		
 		int contaFigure[] = new int[7]; //0=lupi; 1=foglie; 2=farfalle; 3=funghi; 4=boccetta; 5=piuma; 6=pergamena
 		int contaRichieste[] = new int [4]; //0=lupi; 1=foglie; 2=farfalle; 3=funghi
@@ -168,7 +166,7 @@ public class CampoDaGioco {
 				if(this.campoPersonale[i][j] != null) { //se troviamo una carta..
 					if(campoPersonale[i][j].getFronte()==true) { //se è giocata di fronte..
 						for(int k=0; k<4; k++) {
-							if(campoPersonale[i][j].getSpecifiAngolo(k) != null && campoPersonale[i][j].getSpecifiAngolo(k).getOccupato() == false) { //se l'angolo non è occupato e quindi il disegno si può vedere..
+							if(campoPersonale[i][j].getSpecifiAngolo(k)!=null && campoPersonale[i][j].getSpecifiAngolo(k).getOccupato()==false) { //se l'angolo non è occupato e quindi il disegno si può vedere..
 								contatoreDiFigure(contaFigure, campoPersonale[i][j].getSpecifiAngolo(k).getDisegno()); //incremento contatore nel vettore corrispondente al disegno tramite una funzione apposita
 							}
 						}
@@ -191,30 +189,32 @@ public class CampoDaGioco {
 	 * @param dis: disegno che verrà sottoposto a switch
 	 */
 	public void contatoreDiFigure(int contatore[], Disegno dis) {
-		switch(dis) {
-		case lupo:
-			contatore[0]++;
-			break;
-		case foglia:
-			contatore[1]++;
-			break;
-		case farfalla:
-			contatore[2]++;
-			break;
-		case fungo:
-			contatore[3]++;
-			break;
-		case boccetta:
-			contatore[4]++;
-			break;
-		case piuma:
-			contatore[5]++;
-			break;
-		case pergamena:
-			contatore[6]++;
-			break;
-		default: //case null
-			break;
+		if(dis != null) {
+			switch(dis) {
+			case lupo:
+				contatore[0]++;
+				break;
+			case foglia:
+				contatore[1]++;
+				break;
+			case farfalla:
+				contatore[2]++;
+				break;
+			case fungo:
+				contatore[3]++;
+				break;
+			case boccetta:
+				contatore[4]++;
+				break;
+			case piuma:
+				contatore[5]++;
+				break;
+			case pergamena:
+				contatore[6]++;
+				break;
+			default: //case null
+				break;
+			}
 		}
 	}
 	
@@ -228,32 +228,34 @@ public class CampoDaGioco {
 		int index[] = null;  //0: riga, 1: colonna
 		//coordinate della carta da controllare
 		try {
-			index = trovaCarta(carta);
+			index = trovaCoordinateCarta(carta);
 			
 			//per avere il criterio dei punti la carta oro deve essere giocata di fronte
 			//quindi controllo solo gli angoli sul davanti della carta
-			if(carta.getAngoli()[0] != null) {
+			if(carta.getSpecifiAngolo(0) != null) {
 				//controllo angolo in alto a sinistra
 				if(trovaCarta((index[0] - 1), (index[1] -1)) != null) {
 					//esiste una carta sotto quell'angolo
 					count++;
 				}
 			}
-			else if(carta.getAngoli()[1] != null) {
+			
+			if(carta.getSpecifiAngolo(1) != null) {
 				//controllo angolo in alto a destra
 				if(trovaCarta((index[0] -1), (index[1] + 1)) != null) {
 					//esiste una carta sotto quell'angolo
 					count++;
 				}
 			}
-			else if(carta.getAngoli()[2] != null) {
+			
+			if(carta.getSpecifiAngolo(2) != null) {
 				//controllo angolo in basso a destra
 				if(trovaCarta((index[0] + 1), (index[1] + 1)) != null) {
 					//esiste una carta sotto quell'angolo
 					count++;
 				}
 			}
-			else if(carta.getAngoli()[3] != null) {
+			else if(carta.getSpecifiAngolo(3) != null) {
 				//controllo angolo in basso a sinistra
 				if(trovaCarta((index[0] + 1), (index[1] - 1)) != null) {
 					//esiste una carta sotto quell'angolo
@@ -275,15 +277,15 @@ public class CampoDaGioco {
 	 * @param carta: la carta di cui si vogliono cercare le coordinate
 	 * @return un vettore contenente i due indici della matrice in cui si trova la carta
 	 */
-	public int[] trovaCarta (Carta carta){
+	public int[] trovaCoordinateCarta (Carta carta){
 		int index [] = new int [2];
 		
 		//ciclo per scorrere gli elementi della matrice
-		for (int i = 0; i < campoPersonale.length; i++) {
-			for (int j = 0; j < campoPersonale[i].length; j++) {
+		for (int i=0; i<this.nRigheTabella; i++) {
+			for (int j=0; j<this.nColonneTabella; j++) {
 				if (campoPersonale[i][j].equals(carta)) {
-					index[1] = i;
-					index[2] = j;
+					index[0] = i;
+					index[1] = j;
 				}
 				else {
 					throw new ElementNotFoundException("L'elemento " + carta + " non è stato trovato nella matrice.");
@@ -301,17 +303,11 @@ public class CampoDaGioco {
 	 * @return la carta se e' stata trovata, ElementNotFoundException se la carta non c'é
 	 */
 	public Carta trovaCarta(int riga, int colonna) {
-		Carta cartaTrovata = null;
 		
-		if(campoPersonale[riga][colonna] == null) {
-			//la carta non esiste
-			cartaTrovata = null;
-		}
-		else {
-			cartaTrovata = campoPersonale[riga][colonna];
-		}
+		if(campoPersonale[riga][colonna] != null) 
+			return campoPersonale[riga][colonna];
 		
-		return cartaTrovata;
+		return null;
 	}
 	
 	/**
