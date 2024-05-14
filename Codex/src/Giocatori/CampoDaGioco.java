@@ -1,4 +1,8 @@
 package Giocatori;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import Carte.*;
 import Ecccezioni.*;
 
@@ -303,6 +307,7 @@ public class CampoDaGioco {
 		if(o.getIndex() >= 0 || o.getIndex() <= 7) {
 			//obiettivi per il controllo delle figure
 			int contatore [] = new int [7];
+			List <Integer> temp = new ArrayList <Integer>();
 			
 			contaFigure(contatore);  //conta le figure presenti sul campo di gioco
 			switch(o.getIndex()) {
@@ -316,24 +321,49 @@ public class CampoDaGioco {
 				punti = 2 * (contatore[6] / 2);
 			break;
 			case 3: //3 punti x 1 boccetta, 1 piuma, 1 pergamena
+				temp.add(contatore[4]); //boccetta
+				temp.add(contatore[5]); //piuma
+				temp.add(contatore[6]); //pergamena 
 				
+				//moltiplica il modificatore di punteggio per il valore minore tra tre disegni che necessita
+				//(vuol dire che sicuramente gli altri ne hanno di piu' e non bisogna fare ulteriori controlli)
+				punti = 3 * Collections.min(temp);
+				temp.clear();			
 			break;
-			case 4:
-			
+			case 4: //2 punti x 3 farfalle
+				punti = 2 * (contatore[2] / 3);
 			break;
-			case 5:
-				
+			case 5: //2 punti x 3 lupi
+				punti = 2 * (contatore[0] / 3);
 			break;
-			case 6:
-				
+			case 6: //2 punti x 3 foglie
+				punti = 2 * (contatore[1] / 3);
 			break;
-			case 7:
-				
+			case 7: //2 punti x 3 funghi
+				punti = 2 * (contatore[3] / 3);
 			break;
 			}
 		}
 		else {
 			//obiettivi per il controllo della disposizione delle carte
+			switch(o.getIndex()) {
+			case 8:
+			break;
+			case 9:
+			break;
+			case 10:
+			break;
+			case 11:
+			break;
+			case 12:
+			break;
+			case 13:
+			break;
+			case 14:
+			break;
+			case 15: 
+			break;
+			}
 		}
 	}
 	
