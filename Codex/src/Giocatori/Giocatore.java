@@ -35,80 +35,82 @@ public class Giocatore {
 
 	/***
 	 * posiziona una carta dalla mano del giocatore nel suo capo da gioco, cancellandola poi dalla sua mano di carte e 
-	 * incrementando il punteggio del giocatore nel caso la carta abbia un modificatore di punteggio
-	 * @param nCarta l'indice della carta che vuole posizionare
-	 * @param nRiga la riga della carta su cui vuole posizionare la sua
-	 * @param nColonna la colonna della carta su cui vuole posizionare la sua
-	 * @param nAngolo il numero dell'angolo che vuole sovrapporre con la sua carta
+	 * nel caso in cui la carta sia giocata di fronte viene incrementato il punteggio del giocatore se la carta possiede un modificatore di punteggio,
+	 * se la carta é giocata sul retro non viene fatto nessun controllo sul punteggio
+	 * @param nCarta: l'indice della carta che vuole posizionare
+	 * @param nRiga: la riga della carta su cui vuole posizionare la sua
+	 * @param nColonna: la colonna della carta su cui vuole posizionare la sua
+	 * @param nAngolo: il numero dell'angolo che vuole sovrapporre con la sua carta
+	 * @param fronte: indica se la carta viene giocata davanti oppure dietro
 	 * @return true se il posizionamento é avvenuto, false se c'é stato un errore
 	 */
-	public boolean posizionaCarta(int nCarta, int nRiga, int nColonna, int nAngolo) {
+	public boolean posizionaCarta(int nCarta, int nRiga, int nColonna, int nAngolo, boolean fronte) {
 		Carta cartaScelta = mano.get(nCarta);
 		
 		if (campoPersonale.controlloPosizionaCarta(cartaScelta, nRiga, nColonna, nAngolo) == false) {
 			return false;
 		}
 		else {
-			//incremento del punteggio del giocatore quando viene posizionata la carta
-			
-			//se la carta posizionata è una carta risorsa viene solamente incrementato il punteggio
-			if(cartaScelta instanceof CartaRisorsa) {
-				this.punteggio += ((CartaRisorsa) cartaScelta).getPunti();
-			}
-			else if(cartaScelta instanceof CartaOro) {
-				//controllo se la carta oro ha dei criteri sul conteggio dei suoi punti
-				if(((CartaOro) cartaScelta).getCriterioPunti() == null) {
-					//la carta non ha nessun criterio per il conteggio dei punti, si incrementa solamente il punteggio
-					this.punteggio += ((CartaOro) cartaScelta).getPunti();
+			if(fronte == true) {
+				//se la carta viene giocata davanti si controlla se c'é da incrementare il punteggio
+				//se la carta posizionata è una carta risorsa viene solamente incrementato il punteggio
+				if(cartaScelta instanceof CartaRisorsa) {
+					this.punteggio += ((CartaRisorsa) cartaScelta).getPunti();
 				}
-				else {
-					//la carta oro ha dei criteri per il punteggio da controllare
-					Disegno criterio = ((CartaOro) cartaScelta).getCriterioPunti();
-					int puntiCarta = ((CartaOro) cartaScelta).getPunti();
-					//contatore per contare le figure presenti sul campo di gioco
-					//0=lupi; 1=foglie; 2=farfalle; 3=funghi; 4=boccetta; 5=piuma; 6=pergamena
-					int contaDisegni [] = new int [7];
-					//funzione per contare le figure sul campo
-					campoPersonale.contaFigure(contaDisegni);
-					
-					switch(criterio) {
-						case angoloSovrapposto:
-							//moltiplicazione dei punti per il numero degli angoli che la carta posizionata ha coperto
-							
-							try {
-								//conteggio del numero  degli angoli
-								int countAngoli = 0;
-								countAngoli = campoPersonale.angoliSovrapposti(cartaScelta);
-								this.punteggio += (puntiCarta * countAngoli);
-							}
-							catch(ElementNotFoundException e) {
-								return false;
-							}
-						break;
-						case boccetta:
-							//moltiplicazione dei punti per il numero di boccette sul campo da gioco
-							this.punteggio += (puntiCarta * contaDisegni[4]);
-						break;
-						case piuma:
-							//moltiplicazione dei punti per il numero di piume sul campo da gioco
-							this.punteggio += (puntiCarta * contaDisegni[5]);
-						break;
-						case pergamena:
-							//moltiplicazione dei punti per il numero di pergamene sul campo da gioco
-							this.punteggio += (puntiCarta * contaDisegni[6]);
-						break;
-						default:
-						break;
+				else if(cartaScelta instanceof CartaOro) {
+					//controllo se la carta oro ha dei criteri sul conteggio dei suoi punti
+					if(((CartaOro) cartaScelta).getCriterioPunti() == null) {
+						//la carta non ha nessun criterio per il conteggio dei punti, si incrementa solamente il punteggio
+						this.punteggio += ((CartaOro) cartaScelta).getPunti();
+					}
+					else {
+						//la carta oro ha dei criteri per il punteggio da controllare
+						Disegno criterio = ((CartaOro) cartaScelta).getCriterioPunti();
+						int puntiCarta = ((CartaOro) cartaScelta).getPunti();
+						//contatore per contare le figure presenti sul campo di gioco
+						//0=lupi; 1=foglie; 2=farfalle; 3=funghi; 4=boccetta; 5=piuma; 6=pergamena
+						int contaDisegni [] = new int [7];
+						//funzione per contare le figure sul campo
+						campoPersonale.contaFigure(contaDisegni);
+						
+						switch(criterio) {
+							case angoloSovrapposto:
+								//moltiplicazione dei punti per il numero degli angoli che la carta posizionata ha coperto
+								
+								try {
+									//conteggio del numero  degli angoli
+									int countAngoli = 0;
+									countAngoli = campoPersonale.angoliSovrapposti(cartaScelta);
+									this.punteggio += (puntiCarta * countAngoli);
+								}
+								catch(ElementNotFoundException e) {
+									return false;
+								}
+							break;
+							case boccetta:
+								//moltiplicazione dei punti per il numero di boccette sul campo da gioco
+								this.punteggio += (puntiCarta * contaDisegni[4]);
+							break;
+							case piuma:
+								//moltiplicazione dei punti per il numero di piume sul campo da gioco
+								this.punteggio += (puntiCarta * contaDisegni[5]);
+							break;
+							case pergamena:
+								//moltiplicazione dei punti per il numero di pergamene sul campo da gioco
+								this.punteggio += (puntiCarta * contaDisegni[6]);
+							break;
+							default:
+							break;
+						}
 					}
 				}
 			}
-
 			//se la carta é stata posizionata correttamente la si rimuove dalla lista delle carte che il giocatore ha in mano
 			mano.remove(nCarta);
 			return true;
-		}
+		}		
 	}
-
+	
 	/***
 	 * getter punteggio
 	 * @return ritorna il punteggio del giocatore

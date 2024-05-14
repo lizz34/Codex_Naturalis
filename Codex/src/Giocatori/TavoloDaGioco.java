@@ -11,12 +11,15 @@ import Carte.*;
 public class TavoloDaGioco {
 
 	private Giocatore giocatori[];
+	//mazzi di carte
 	private List<Carta> mazzoCarteStarter;
 	private List<CartaRisorsa> mazzoCarteRisorsa;
 	private List<CartaOro> mazzoCarteOro;
 	private List<CartaObiettivo> mazzoCarteObiettivo;
+	//carte disponibili sul tavolo da gioco
 	private List<CartaRisorsa> carteRisorsaBanco;
 	private List<CartaOro> carteOroBanco;
+	private final List <CartaObiettivo> carteObiettivoBanco;
 
 	/***
 	 * Costruttore della classe TavoloDaGioco
@@ -115,7 +118,6 @@ public class TavoloDaGioco {
 		}
 
 		//Creazione mazzo carte Risorsa
-
 		mazzoCarteRisorsa = new ArrayList<CartaRisorsa>();
 		try {
 			File carteRisorsa = new File("src\\carteRisorse.txt"); // apro file carteStarter
@@ -236,7 +238,6 @@ public class TavoloDaGioco {
 		}
 
 		// Creazione mazzo carte Oro
-
 		mazzoCarteOro = new ArrayList<CartaOro>();
 		try {
 			File carteOro = new File("src\\carteOro.txt"); // apro file carteStarter
@@ -408,6 +409,8 @@ public class TavoloDaGioco {
 		}
 		
 		//creazione mazzo carte obiettivo
+		//indici da 0 a 7: obiettivo sul numero di figure
+		//indici da 8 a 15: obiettio sulla disposizione delle carte
 		mazzoCarteObiettivo = new ArrayList<CartaObiettivo>();
 			mazzoCarteObiettivo.add(new CartaObiettivo("Due punti per ogni due piume"));
 			mazzoCarteObiettivo.add(new CartaObiettivo("Due punti per ogni due boccette"));
@@ -430,12 +433,23 @@ public class TavoloDaGioco {
 		//aggiunta delle carte di partenza che ci sono sul tavolo di gioco
 		carteRisorsaBanco = new ArrayList<CartaRisorsa>();
 		carteOroBanco = new ArrayList<CartaOro>();
+		carteObiettivoBanco = new ArrayList<CartaObiettivo>();
 
 		carteRisorsaBanco.add(giraCartaRisorsa());
 		carteRisorsaBanco.add(giraCartaRisorsa());
 		
 		carteOroBanco.add(giraCartaOro());
 		carteOroBanco.add(giraCartaOro());
+		
+		//istanziamento delle due carte obiettivo presenti sul tavolo da gioco
+		Random r = new Random();
+		int index1 = r.nextInt(mazzoCarteObiettivo.size());
+		carteObiettivoBanco.add(mazzoCarteObiettivo.get(index1));
+		int index2;
+        do {
+            index2 = r.nextInt(mazzoCarteObiettivo.size());
+        } while (index2 == index1);
+        carteObiettivoBanco.add(mazzoCarteObiettivo.get(index2));
 		
 		
 		//Istanziamento giocatori

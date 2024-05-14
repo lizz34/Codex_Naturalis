@@ -69,7 +69,7 @@ public class PosizionaCarta implements MenuOption {
 		
 		//numero dell'angolo su cui si vuole posizionare la carta
 		int nAngolo = 0;
-		boolean fronte = true;
+		boolean fronte = true; //indica se la carta si gioca davanti o dietro
 		if(g.getCampoPersonale().trovaCarta(nRiga, nColonna).getFronte() != true)
 			fronte=false;
 			
@@ -85,7 +85,7 @@ public class PosizionaCarta implements MenuOption {
 		}
 		while((fronte==false || (nAngolo < 1 || nAngolo > 4)) && (fronte==true || (nAngolo < 5 || nAngolo > 8)));
 
-		if(!g.posizionaCarta(numCarta-1, nRiga, nColonna, nAngolo-1)) {
+		if(!g.posizionaCarta(numCarta-1, nRiga, nColonna, nAngolo-1, fronte)) {
 			//se la funzione restituisce false c'é stato un errore nel posizionamento della carta
 			System.out.println("Errore nel posizionamento della carta"); //aggiungere la specifica dell'errore? tipo c'è già una carta oppure per i criteri dei punti?
 			throw new CardPlacementException();

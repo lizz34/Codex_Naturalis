@@ -159,6 +159,7 @@ public class CampoDaGioco {
 						}
 					}
 					else { //invece se è giocata con il retro a vista controllo gli angoli sul retro (4-7)
+						//FIXME non bisognerebbe controllare i disegni al centro invece degli angoli??
 						for(int k=4; k<8; k++) {
 							if(campoPersonale[i][j].getSpecifiAngolo(k) != null && campoPersonale[i][j].getSpecifiAngolo(k).getOccupato() == false) { 
 								contatoreDiFigure(contaFigure, campoPersonale[i][j].getSpecifiAngolo(k).getDisegno());
@@ -295,6 +296,45 @@ public class CampoDaGioco {
 			return campoPersonale[riga][colonna];
 		
 		return null;
+	}
+	
+	public void controllaObiettivo(CartaObiettivo o) {
+		int punti = 0; //punti che verrano aggiunti al punteggio del giocatore in seguito al controllo sulla carta obiettivo
+		if(o.getIndex() >= 0 || o.getIndex() <= 7) {
+			//obiettivi per il controllo delle figure
+			int contatore [] = new int [7];
+			
+			contaFigure(contatore);  //conta le figure presenti sul campo di gioco
+			switch(o.getIndex()) {
+			case 0: //2 punti x 2 piume
+				punti = 2 * (contatore[5] / 2);
+			break;
+			case 1: //2 punti x 2 boccette
+				punti = 2 * (contatore[4] / 2);
+			break;
+			case 2: //2 punti x 2 pergamene
+				punti = 2 * (contatore[6] / 2);
+			break;
+			case 3: //3 punti x 1 boccetta, 1 piuma, 1 pergamena
+				
+			break;
+			case 4:
+			
+			break;
+			case 5:
+				
+			break;
+			case 6:
+				
+			break;
+			case 7:
+				
+			break;
+			}
+		}
+		else {
+			//obiettivi per il controllo della disposizione delle carte
+		}
 	}
 	
 	/**
