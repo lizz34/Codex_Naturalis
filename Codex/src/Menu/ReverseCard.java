@@ -23,7 +23,7 @@ public class ReverseCard implements MenuOption{
 	 * @param g: il giocatore che ha selezionato l'opzione
 	 * @throws CardPlacementException
 	 */
-	public void execute(Giocatore g) throws CardPlacementException {
+	public void execute(Giocatore g) throws CardPlacementException{
 				
 		int nCarta=0;
 		do {
@@ -51,7 +51,7 @@ public class ReverseCard implements MenuOption{
 	 * @return il nome esteso dell'opzione del menu
 	 */
 	public String toString() {
-		return "rovescia una carta della mano";
+		return "Rovescia una carta della mano";
 	}
 }
 

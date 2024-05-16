@@ -20,7 +20,7 @@ public class VisualizzaMatrice implements MenuOption {
 	 * @param g: il giocatore che ha selezionato l'opzione
 	 * @throws CardPlacmentException
 	 */
-	public void execute(Giocatore g) throws CardPlacementException {
+	public void execute(Giocatore g) throws CardPlacementException{
 		g.getCampoPersonale().stampaCampoDaGioco();
 		
 		//aggiunge il numero di figure che sono presenti sul campo da gioco
@@ -50,7 +50,7 @@ public class VisualizzaMatrice implements MenuOption {
 	 * @return il nome esteso dell'opzione del menu
 	 */
 	public String toString() {
-		return "visualizza la tua area di gioco";
+		return "Visualizza la tua area di gioco";
 	}
 
 }

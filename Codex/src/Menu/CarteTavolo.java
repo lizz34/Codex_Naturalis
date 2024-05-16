@@ -43,7 +43,7 @@ public class CarteTavolo implements MenuOption {
 	 * @return il nome esteso dell'opzione del menu
 	 */
 	public String toString() {
-		return "guarda le carte che puoi pescare";
+		return "Guarda le carte che puoi pescare";
 	}
 
 }

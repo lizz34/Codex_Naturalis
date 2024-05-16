@@ -21,16 +21,18 @@ public class MenuManager {
 		CarteTavolo cTavolo = new CarteTavolo(t);
 		VisualizzaMatrice vMatrice = new VisualizzaMatrice();
 		CarteMano cMano = new CarteMano();
-		VisualizzaPunteggi vPunti = new VisualizzaPunteggi();
+		VisualizzaPunteggio vPunti = new VisualizzaPunteggio();
 		ReverseCard rCarta = new ReverseCard();
+		VisualizzaObiettivi vObiettivi = new VisualizzaObiettivi(t);
 		
 		//inserimento delle opzioni
 		opzioni.put(1, posCarta);
 		opzioni.put(2, cTavolo);
 		opzioni.put(3, vMatrice);
 		opzioni.put(4, cMano);
-		opzioni.put(5, vPunti);
-		opzioni.put(6, rCarta);
+		opzioni.put(5, rCarta);
+		opzioni.put(6, vPunti);
+		opzioni.put(7, vObiettivi);
 	}
     
     /***

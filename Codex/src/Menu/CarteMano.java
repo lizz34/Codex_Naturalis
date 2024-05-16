@@ -33,7 +33,7 @@ public class CarteMano implements MenuOption {
 	 * @return il nome esteso dell'opzione del menu
 	 */
 	public String toString() {
-		return "visualizza le carte che hai in mano";
+		return "Visualizza le carte che hai in mano";
 	}
 
 }

@@ -42,7 +42,7 @@ public class PosizionaCarta implements MenuOption {
 		//numero della riga su cui si vuole posizionare la carta
 		int nRiga = 0;
 		do {
-			System.out.println("inserisci il numero della riga della carta su cui vuoi posizionare la nuova carta: ");
+			System.out.println("Inserisci il numero della riga della carta su cui vuoi posizionare la nuova carta: ");
 			buffer = sc.nextLine();
 			try {
 				nRiga = Integer.parseInt(buffer);
@@ -56,7 +56,7 @@ public class PosizionaCarta implements MenuOption {
 		//numero della colonna su cui si vuole posizionare la carta
 		int nColonna = 0;
 		do {
-			System.out.println("inserisci il numero della colonna della carta su cui vuoi posizionare la nuova carta: ");
+			System.out.println("Inserisci il numero della colonna della carta su cui vuoi posizionare la nuova carta: ");
 			buffer = sc.nextLine();
 			try {
 				nColonna = Integer.parseInt(buffer);
@@ -70,11 +70,17 @@ public class PosizionaCarta implements MenuOption {
 		//numero dell'angolo su cui si vuole posizionare la carta
 		int nAngolo = 0;
 		boolean fronte = true; //indica se la carta si gioca davanti o dietro
-		if(g.getCampoPersonale().trovaCarta(nRiga, nColonna).getFronte() != true)
-			fronte=false;
+		try {
+			if(g.getCampoPersonale().trovaCarta(nRiga, nColonna).getFronte() != true)
+				fronte=false;
+		}
+		catch (NullPointerException e){
+			//TODO gestire meglio le eccezioni di questa classe
+			System.out.println("Alla riga e colonna (" +nRiga+ "," +nColonna+ ") non è presente nessuna carta");
+		}
 			
 		do {
-			System.out.println("inserisci il numero dell'angolo della carta su cui vuoi posizionare la nuova carta: ");
+			System.out.println("Inserisci il numero dell'angolo della carta su cui vuoi posizionare la nuova carta: ");
 			buffer = sc.nextLine();
 			try {
 				nAngolo = Integer.parseInt(buffer);
@@ -84,7 +90,8 @@ public class PosizionaCarta implements MenuOption {
 			}
 		}
 		while((fronte==false || (nAngolo < 1 || nAngolo > 4)) && (fronte==true || (nAngolo < 5 || nAngolo > 8)));
-
+		
+		
 		if(!g.posizionaCarta(numCarta-1, nRiga, nColonna, nAngolo-1, fronte)) {
 			//se la funzione restituisce false c'é stato un errore nel posizionamento della carta
 			System.out.println("Errore nel posizionamento della carta"); //aggiungere la specifica dell'errore? tipo c'è già una carta oppure per i criteri dei punti?
@@ -127,6 +134,6 @@ public class PosizionaCarta implements MenuOption {
 	 * @return il nome esteso dell'opzione del menu
 	 */
 	public String toString() {
-		return "posiziona una nuova carta";
+		return "Posiziona una nuova carta";
 	}
 }

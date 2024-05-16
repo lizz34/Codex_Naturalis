@@ -20,7 +20,6 @@ public class Main {
 		//creazione tavolo di gioco
 		gm.createTable(gm.getnGiocatori());
 		
-		
 		int turnoGiocatore=0;
 		int scelta=0;
 
@@ -40,7 +39,7 @@ public class Main {
 				do{
 					mg.displayMenu();
 					
-					System.out.println("inserisci la tua scelta: ");
+					System.out.println("Inserisci la tua scelta: ");
 					
 					//inserimento della scelta da parte dell'utente
 					buffer = sc.nextLine();
@@ -50,23 +49,23 @@ public class Main {
 					catch(NumberFormatException e) {
 						System.out.println("Errore: l'input non è un numero intero");
 					}								
-				}while(scelta<1 || scelta>6);
+				}while(scelta<1 || scelta>7);
 				
-					//l'utente ha scelto un'opzione correttamente
-					if(mg.esegui(gm.getTavolo().getGiocatori()[turnoGiocatore], scelta)) {
-						//l'opzione scelta é stata eseguita correttamente 
-						continua = true;
-					}
-					else {
-						//c'é stato un errore nell'esecuzione di un opzione
-						//l'unica opzione che potrebbe lanciare un errore che non é stato gestito é quella per posizionare una carta
-						System.out.println("errore: prova di nuovo");
-						continua = false;
-					}
+				//l'utente ha scelto un'opzione correttamente
+				if(mg.esegui(gm.getTavolo().getGiocatori()[turnoGiocatore], scelta)) {
+					//l'opzione scelta é stata eseguita correttamente 
+					continua = true;
+				}
+				else {
+					//c'é stato un errore nell'esecuzione di un opzione
+					//l'unica opzione che potrebbe lanciare un errore che non é stato gestito é quella per posizionare una carta
+					System.out.println("Errore: prova di nuovo");
+					continua = false;
+				}
 
 			//il giocatore continua il suo turno finché non posiziona una carta e
 			//solo nel caso in cui il posizionamento non abbia restituito errori
-			}while(scelta!= 1 && continua == false);
+			}while(scelta!= 1 || continua == false);
 			
 			/*//DE-COMMENTARE PER AVERE IL CICLO DEI GIOCATORI
 			if(turnoGiocatore<(gm.getTavolo().getGiocatori().length-1))
@@ -75,6 +74,8 @@ public class Main {
 				turnoGiocatore=0;
 			*/
 		}
+		
+		//aggiungere conteggio punti finali + classifica giocatori
 		sc.close();
 	}
 }

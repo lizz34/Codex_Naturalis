@@ -23,6 +23,8 @@ public class GameManager {
 		boolean approvato=true;
 		try {
 			this.nGiocatori = Integer.parseInt(buffer);
+			if(nGiocatori<2 || nGiocatori>4)
+				approvato=false;
 		}
 		catch(NumberFormatException e) {
 			approvato=false;

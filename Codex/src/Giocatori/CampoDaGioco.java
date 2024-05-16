@@ -164,8 +164,11 @@ public class CampoDaGioco {
 					}
 					else { 
 						//invece se è giocata con il retro a vista si controlla il disegno al centro della carta
-						Carta c = this.trovaCarta(i, j); //la carta di cui si deve controllare il disegno
-						contatoreDiFigure(contaFigure, c.getDisegni()[0]);
+						for(Disegno dis : campoPersonale[i][j].getDisegni()) { //essendoci al max 3 disegni, scorro e controllo se esiste il disegno
+							if(dis!=null) {
+								contatoreDiFigure(contaFigure, dis);
+							}
+						}
 					}
 				}
 			}
@@ -301,7 +304,7 @@ public class CampoDaGioco {
 	
 	public void controllaObiettivo(CartaObiettivo o) {
 		int punti = 0; //punti che verrano aggiunti al punteggio del giocatore in seguito al controllo sulla carta obiettivo
-		if(o.getIndex() >= 0 || o.getIndex() <= 7) {
+		if(o.getIndex() >= 0 && o.getIndex() <= 7) {
 			//obiettivi per il controllo delle figure
 			int contatore [] = new int [7];
 			List <Integer> temp = new ArrayList <Integer>();
