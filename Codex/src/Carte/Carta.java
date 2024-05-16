@@ -6,7 +6,8 @@ public class Carta {
 	private final Angolo angoli[];
 	protected final Colore colore;
 	boolean fronte; //true=carta giocata con fronte visibile, false=carta giocata con il retro
-	private final Disegno disegni[];
+	//per tutte le carte diverse dalle starter l'unico disegno presente sul retro viene messo in posizione zero
+	private final Disegno disegni[]; 
 	
 	/***
 	 * costruttore classe Carta

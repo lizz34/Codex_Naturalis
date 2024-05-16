@@ -25,6 +25,7 @@ public class TavoloDaGioco {
 	 * Costruttore della classe TavoloDaGioco
 	 * Istanzia tutte le carte nei vari mazzi di gioco
 	 * Gira le prime due carte risorsa e le prime due carte oro sul tavolo da gioco
+	 * e estrae i due obiettivi casuali per tutti i giocatori
 	 */
 	public TavoloDaGioco(int nGiocatori) {
 	
@@ -482,7 +483,7 @@ public class TavoloDaGioco {
 	 */
 	public boolean condEndGame2() {
 		for(Giocatore g: giocatori) {
-			if (g.getPunteggio() == 20) {
+			if (g.getPunteggio() >= 20) {
 				return true;
 			}
 			else {

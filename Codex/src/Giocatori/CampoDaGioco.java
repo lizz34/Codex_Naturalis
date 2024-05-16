@@ -162,13 +162,10 @@ public class CampoDaGioco {
 							}
 						}
 					}
-					else { //invece se è giocata con il retro a vista controllo gli angoli sul retro (4-7)
-						//FIXME non bisognerebbe controllare i disegni al centro invece degli angoli??
-						for(int k=4; k<8; k++) {
-							if(campoPersonale[i][j].getSpecifiAngolo(k) != null && campoPersonale[i][j].getSpecifiAngolo(k).getOccupato() == false) { 
-								contatoreDiFigure(contaFigure, campoPersonale[i][j].getSpecifiAngolo(k).getDisegno());
-							}
-						}
+					else { 
+						//invece se è giocata con il retro a vista si controlla il disegno al centro della carta
+						Carta c = this.trovaCarta(i, j); //la carta di cui si deve controllare il disegno
+						contatoreDiFigure(contaFigure, c.getDisegni()[0]);
 					}
 				}
 			}
@@ -177,7 +174,7 @@ public class CampoDaGioco {
 	
 	/**
 	 * contatore che incrementa l'elemento del vettore corrispondente al disegno passato in chiamata
-	 * @param contatore[]: vettore che contiene i contatori da incrementare
+	 * @param contatore[] vettore che contiene i contatori da incrementare
 	 * @param dis: disegno che verrà sottoposto a switch
 	 */
 	public void contatoreDiFigure(int contatore[], Disegno dis) {
