@@ -411,7 +411,7 @@ public class TavoloDaGioco {
 		
 		//creazione mazzo carte obiettivo
 		//indici da 0 a 7: obiettivo sul numero di figure
-		//indici da 8 a 15: obiettio sulla disposizione delle carte
+		//indici da 8 a 15: obiettivo sulla disposizione delle carte
 		mazzoCarteObiettivo = new ArrayList<CartaObiettivo>();
 		mazzoCarteObiettivo.add(new CartaObiettivo("Due punti per ogni due piume"));
 		mazzoCarteObiettivo.add(new CartaObiettivo("Due punti per ogni due boccette"));

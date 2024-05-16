@@ -343,10 +343,11 @@ public class CampoDaGioco {
 				punti = 2 * (contatore[3] / 3);
 				break;
 			}
-		}/*
+		}
 		else {
 			//obiettivi per il controllo della disposizione delle carte
 			switch(o.getIndex()) {
+			//casi disposizione a "L"
 			case 8:
 			break;
 			case 9:
@@ -355,17 +356,68 @@ public class CampoDaGioco {
 			break;
 			case 11:
 			break;
+			//casi disposizione diagonale
 			case 12:
+				//2 punti x 3 carte viola disposte diagonalmente verso destra (partendo dall'alto)
+				if(this.obiettivoDiagonaleDestra(Colore.viola)) punti = 2;
 			break;
 			case 13:
+				//2 punti x 3 carte blu disposte diagonalmente verso sinistra (partendo dall'alto)
+				if(this.obiettivoDiagonaleSinistra(Colore.blu)) punti = 2;
 			break;
 			case 14:
+				//2 punti x 3 carte verdi disposte diagonalmente verso destra (partendo dall'alto)
+				if(this.obiettivoDiagonaleDestra(Colore.verde)) punti = 2;
 			break;
 			case 15: 
+				//2 punti x 3 carte rosse disposte diagonalmente verso sinistra (partendo dall'alto)
+				if(this.obiettivoDiagonaleSinistra(Colore.rosso)) punti = 2;
 			break;
 			}
-		}*/
+		}
 		return punti;
+	}
+	
+	/***
+	 * Controllo per le carte obiettivo: 3 carte di uno stesso colore poste in diagonale verso destra (partendo dall'alto)
+	 * @param colore: il colore che devono avere le 3 carte
+	 * @return true se la disposizione è presente, false in caso contrario
+	 */
+	public boolean obiettivoDiagonaleDestra(Colore colore) {
+		for(int i = 0; i < nRigheTabella; i++) { //scorre le righe della tabella
+			for(int j = 0; j < nColonneTabella; j++) {
+				if(campoPersonale[i][j].getColore().equals(colore)){
+					//trovata una carta che ha lo stesso colore che serve nell'obiettivo, controllo sulle carte in diagonale
+					if(campoPersonale[i+1][j+1].getColore().equals(colore) && campoPersonale[i+2][j+2].getColore().equals(colore)) {
+						//sono state trovate due carte sulla diagonale verso destra che hanno lo stessso colore
+						return true;
+					}
+					else return false;
+				}
+			}		
+		}
+		return false;
+	}
+	
+	/***
+	 * Controllo per le carte obiettivo: 3 carte di uno stesso colore poste in diagonale verso sinistra (partendo dall'alto)
+	 * @param colore: il colore che devono avere le 3 carte
+	 * @return true se la disposizione è presente, false in caso contrario
+	 */
+	public boolean obiettivoDiagonaleSinistra(Colore colore) {
+		for(int i = 0; i < nRigheTabella; i++) { //scorre le righe della tabella
+			for(int j = 0; j < nColonneTabella; j++) {
+				if(campoPersonale[i][j].getColore().equals(colore)){
+					//trovata una carta che ha lo stesso colore che serve nell'obiettivo, controllo sulle carte in diagonale
+					if(campoPersonale[i+1][j-1].getColore().equals(colore) && campoPersonale[i+2][j-2].getColore().equals(colore)) {
+						//sono state trovate due carte sulla diagonale verso destra che hanno lo stessso colore
+						return true;
+					}
+					else return false;
+				}
+			}		
+		}
+		return false;
 	}
 	
 	/**
