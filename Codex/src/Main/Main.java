@@ -75,7 +75,8 @@ public class Main {
 			*/
 		}
 		
-		//aggiungere conteggio punti finali + classifica giocatori
+		mg.calcoloClassifica(); //calcola classifica e la stampa
+		
 		sc.close();
 	}
 }

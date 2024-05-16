@@ -3,6 +3,10 @@ package Menu;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Set;
+import java.util.TreeSet;
+
+import Carte.CartaObiettivo;
 import Ecccezioni.CardPlacementException;
 import Giocatori.*;
 
@@ -69,5 +73,49 @@ public class MenuManager {
     		return false;
     	}
     }
-
+    
+    /***
+     * funzione che esegue il calcolo dei punti finali dei giocatori, aggiungendo al loro punteggio quello dei vari obiettivi, se conseguiti
+     */
+    public void calcoloClassifica() {
+    	int punti;
+    	
+    	for(int i=0; i<this.tavolo.getGiocatori().length; i++){
+    		punti=0;
+    		
+    		for(CartaObiettivo o : this.tavolo.getObiettiviComuni()) {
+    			punti+=this.tavolo.getGiocatori()[i].getCampoPersonale().controllaObiettivo(o);
+    		}
+    		
+    		punti+=this.tavolo.getGiocatori()[i].getCampoPersonale().controllaObiettivo(this.tavolo.getGiocatori()[i].getCartaObiettivo());
+    		
+    		this.tavolo.getGiocatori()[i].incrementaPunteggio(punti);
+    		System.out.println("Punti che vengono assegnati al giocatore " +i+ ": "+punti);
+    		System.out.println("Punti del giocatore "+i+": "+this.tavolo.getGiocatori()[i].getPunteggio());
+    		
+    	}
+    	
+    	this.stampaClassifica();
+    }
+    
+    /***
+     * funzione che stampa la classifica finale della partita
+     */
+    public void stampaClassifica() {
+    	
+    	Set<Integer> punteggi = new TreeSet<>(); //TreeSet non ammette duplicati al suo interno e inoltre i suoi elementi sono sempre ordinati
+    	
+    	for(Giocatore g : this.tavolo.getGiocatori()) {
+    		punteggi.add(g.getPunteggio());
+    	}
+    	
+    	for(int p : punteggi) {
+    		for(Giocatore g : this.tavolo.getGiocatori()) {
+    			if(p==g.getPunteggio())
+    				System.out.println(getClass().toString() + " " + p); //TODO pensare ad una stampa migliore
+    		}
+    	}
+    	
+    }
+    
 }

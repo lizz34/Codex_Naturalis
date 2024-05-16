@@ -302,24 +302,24 @@ public class CampoDaGioco {
 		return null;
 	}
 	
-	public void controllaObiettivo(CartaObiettivo o) {
+	public int controllaObiettivo(CartaObiettivo o) {
 		int punti = 0; //punti che verrano aggiunti al punteggio del giocatore in seguito al controllo sulla carta obiettivo
-		if(o.getIndex() >= 0 && o.getIndex() <= 7) {
-			//obiettivi per il controllo delle figure
+		if(o.getIndex() >= 0 && o.getIndex() <= 7) { //obiettivi per il controllo delle figure
+			
 			int contatore [] = new int [7];
 			List <Integer> temp = new ArrayList <Integer>();
-			
 			contaFigure(contatore);  //conta le figure presenti sul campo di gioco
+			
 			switch(o.getIndex()) {
 			case 0: //2 punti x 2 piume
 				punti = 2 * (contatore[5] / 2);
-			break;
+				break;
 			case 1: //2 punti x 2 boccette
 				punti = 2 * (contatore[4] / 2);
-			break;
+				break;
 			case 2: //2 punti x 2 pergamene
 				punti = 2 * (contatore[6] / 2);
-			break;
+				break;
 			case 3: //3 punti x 1 boccetta, 1 piuma, 1 pergamena
 				temp.add(contatore[4]); //boccetta
 				temp.add(contatore[5]); //piuma
@@ -329,21 +329,21 @@ public class CampoDaGioco {
 				//(vuol dire che sicuramente gli altri ne hanno di piu' e non bisogna fare ulteriori controlli)
 				punti = 3 * Collections.min(temp);
 				temp.clear();			
-			break;
+				break;
 			case 4: //2 punti x 3 farfalle
 				punti = 2 * (contatore[2] / 3);
-			break;
+				break;
 			case 5: //2 punti x 3 lupi
 				punti = 2 * (contatore[0] / 3);
-			break;
+				break;
 			case 6: //2 punti x 3 foglie
 				punti = 2 * (contatore[1] / 3);
-			break;
+				break;
 			case 7: //2 punti x 3 funghi
 				punti = 2 * (contatore[3] / 3);
-			break;
+				break;
 			}
-		}
+		}/*
 		else {
 			//obiettivi per il controllo della disposizione delle carte
 			switch(o.getIndex()) {
@@ -364,7 +364,8 @@ public class CampoDaGioco {
 			case 15: 
 			break;
 			}
-		}
+		}*/
+		return punti;
 	}
 	
 	/**
