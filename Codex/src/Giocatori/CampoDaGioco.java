@@ -302,6 +302,11 @@ public class CampoDaGioco {
 		return null;
 	}
 	
+	/***
+	 * controlla che l'obiettivo della carta che gli viene passata sia soddisfatto sul corrente campo da gioco
+	 * @param o: la carta obiettivo da controllare
+	 * @return il punteggio che va aggiunto al giocatore se l'obiettivo é soddisfatto
+	 */
 	public int controllaObiettivo(CartaObiettivo o) {
 		int punti = 0; //punti che verrano aggiunti al punteggio del giocatore in seguito al controllo sulla carta obiettivo
 		if(o.getIndex() >= 0 && o.getIndex() <= 7) { //obiettivi per il controllo delle figure
@@ -347,14 +352,18 @@ public class CampoDaGioco {
 		else {
 			//obiettivi per il controllo della disposizione delle carte
 			switch(o.getIndex()) {
-			//casi disposizione a "L"
+			//casi disposizione a "L" (3 punti se soddisfatto)
 			case 8:
+				if(this.obiettivoVerticaleInferiore(Colore.viola, Colore.blu, +1, +1, +2)) punti = 3;
 			break;
 			case 9:
+				if(this.obiettivoVerticaleInferiore(Colore.blu, Colore.rosso, -1, +1, +2)) punti = 3;
 			break;
 			case 10:
+				if(this.obiettivoVerticaleSuperiore(Colore.verde, Colore.viola, -1, +1, +2)) punti = 3;
 			break;
 			case 11:
+				if(this.obiettivoVerticaleSuperiore(Colore.rosso, Colore.verde, +1, +1, +2)) punti = 3;
 			break;
 			//casi disposizione diagonale
 			case 12:
@@ -392,7 +401,6 @@ public class CampoDaGioco {
 						//sono state trovate due carte sulla diagonale verso destra che hanno lo stessso colore
 						return true;
 					}
-					else return false;
 				}
 			}		
 		}
@@ -413,9 +421,62 @@ public class CampoDaGioco {
 						//sono state trovate due carte sulla diagonale verso destra che hanno lo stessso colore
 						return true;
 					}
-					else return false;
 				}
 			}		
+		}
+		return false;
+	}
+	
+	/***
+	 * funzione per controllare la carta obiettivo che ha la disposizione di due carte in verticale una sopra l'altra con 
+	 * un dato colore e un'altra carta posta in diagonale rispetto a quella piu' alta con un altro colore.
+	 * il calcolo viene fatto partendo dalla carta posta piu' in alto nella disposizione (in questo caso quella con colore diverso)
+	 * @param colVerticale: il colore delle carte verticali
+	 * @param col1: il colore della carta posta in diagonale
+	 * @param modColonna: il modificatore delle colonne rispetto alla carta da cui si parte a contare
+	 * @param modRiga1: il modificare di riga della prima carta verticale
+	 * @param modRiga2: il modificatore di riga rispetto alla seconda carta verticale
+	 * @return true se l'obiettivo é soddisfatto, false in caso contrario
+	 */
+	public boolean obiettivoVerticaleInferiore(Colore colVerticale, Colore col1, int modColonna, int modRiga1, int modRiga2) {
+		for(int i = 0; i < nRigheTabella; i++) {	//scorre righe tabella
+			for(int j = 0; j < nColonneTabella; j++) {	//scorre colonna tabella
+				if(campoPersonale[i][j].getColore().equals(col1)) {
+					//trovata carta con un colore che corrisponde con il colore della carta non in verticale
+					if(campoPersonale[i+modRiga1][j+modColonna].getColore().equals(colVerticale) &&
+						campoPersonale[i+modRiga2][j+modColonna].getColore().equals(colVerticale)) {
+						//sono state trovate due carte, poste in verticale secondo la disp richiesta, con il colore richiesto
+						return true;
+					}
+				}
+			}
+		}
+		return false;
+	}
+	
+	/***
+	 * funzione per controllare la carta obiettivo che ha la disposizione di due carte in verticale una sopra l'altra con
+	 * lo stesso colore e un'altras crta posta in diagonale rispetto alla carta piu' bassa con un altro colore.
+	 * il calcolo viene fatto partendo dalla carta piu' in alto (in questo caso la prima delle carte verticali)
+	 * @param colVerticale: il colore delle carte verticali
+	 * @param col1: il colore della carta posta in diagonale
+	 * @param modColonna: il modificatore di colonna rispetto alla carta da cui si parte a contare (per la carta in diagonale)
+	 * @param modRiga1: il modificatore di riga della seconda carta verticale
+	 * @param modRiga2: il modificatore di riga per la carta in diagonale
+	 * @return true se l'obiettivo é soddisfatto, false in caso contrario
+	 */
+	public boolean obiettivoVerticaleSuperiore(Colore colVerticale, Colore col1, int modColonna, int modRiga1, int modRiga2) {
+		for(int i = 0; i < nRigheTabella; i++) {	//scorre righe tabella
+			for(int j = 0; j < nColonneTabella; j++) {	//scorre colonna tabella
+				if(campoPersonale[i][j].getColore().equals(colVerticale)) {
+					//trovata carta con colore che corrisponde con quello della carta verticale piu' in alto
+					if(campoPersonale[i+modRiga1][j].getColore().equals(colVerticale) && 
+						campoPersonale[i+modRiga2][j+modColonna].getColore().equals(col1)) {
+						//trovate due carte che soddisfano i requisiti di disposizione e colore
+						return true;
+					}
+				}
+			}
 		}
 		return false;
 	}
