@@ -74,8 +74,10 @@ public class Main {
 				turnoGiocatore=0;
 			*/
 		}
+		//PARTITA FINITA!!	
 		
-		mg.calcoloClassifica(); //calcola classifica e la stampa
+		gm.calcoloPuntiObiettivi();		//calcolo punteggi delle carte obiettivo
+		mg.calcoloClassifica(); 		//calcola classifica e la stampa
 		
 		sc.close();
 	}

@@ -45,6 +45,18 @@ public class GameManager {
 	}
 	
 	/***
+	 * calcola a fine partita i punti da aggiungere ad ogni giocatore nel caso in cui abbiano completato la loro
+	 * carta obiettivo personale e/o le due carte obiettivo comuni sul tavolo da gioco
+	 */
+	public void calcoloPuntiObiettivi() {
+		for(Giocatore g: tavolo.getGiocatori()) {
+			g.incrementaPunteggio(g.getCampoPersonale().controllaObiettivo(g.getCartaObiettivo()));					//obiettivo personale del giocatore
+			g.incrementaPunteggio(g.getCampoPersonale().controllaObiettivo(tavolo.getObiettiviComuni().get(0)));	//primo obiettivo comune
+			g.incrementaPunteggio(g.getCampoPersonale().controllaObiettivo(tavolo.getObiettiviComuni().get(1)));	//secondo obiettivo comune
+		}
+	}
+	
+	/***
 	 * getter del tavolo da gioco
 	 * @return il tavolo da gioco
 	 */
