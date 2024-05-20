@@ -334,7 +334,7 @@ public class TavoloDaGioco {
 						if (j < divisorio.length / 2) // la metà del vettore segna la divisione tra angoli fronte 0-3 e angoli retro 4-7
 							fronte = true;
 						else
-							fronte = false; // FIXME !!!!
+							fronte = false;
 
 						switch (infoAngolo[1]) { // assegno angolo
 						case "foglia":

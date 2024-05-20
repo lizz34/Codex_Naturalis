@@ -22,7 +22,6 @@ public class CarteMano implements MenuOption {
 	 * @throws CardPlacementException
 	 */
 	public void execute(Giocatore g) throws CardPlacementException {
-		// TODO Auto-generated method stub
 		System.out.println("Ecco le carte che hai in mano:");
 		for(Carta c: g.getMano()) {
 			System.out.println(c.toString() + "\n");

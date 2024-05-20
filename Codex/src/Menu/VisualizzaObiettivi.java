@@ -28,8 +28,6 @@ public class VisualizzaObiettivi implements MenuOption{
 			System.out.print(c.getObiettivo()+"\n");
 		}
 		
-		//TODO come gli faccio vedere gli obiettivi comuni?
-		
 		System.out.println("\nObiettivo privato:\n"+g.getCartaObiettivo().getObiettivo() + "\n");
 	}
 	

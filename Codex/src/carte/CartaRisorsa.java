@@ -32,6 +32,13 @@ public class CartaRisorsa extends Carta{
 		return "punti: " + punti;
 	}
 	
+	/***
+	 * metodo per copiare una carta risorsa
+	 * @return ritorna una nuova carta risorsa uguale a quella chiamata
+	 */
+	public CartaRisorsa deepCopy() {
+		return new CartaRisorsa(super.getAngoli(), super.getColore(), super.getDisegni(), this.getPunti());
+	}
 	
 }
 

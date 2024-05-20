@@ -112,7 +112,7 @@ public class MenuManager {
     	for(int p : punteggi) {
     		for(Giocatore g : this.tavolo.getGiocatori()) {
     			if(p==g.getPunteggio())
-    				System.out.println(getClass().toString() + " " + p); //TODO pensare ad una stampa migliore
+    				System.out.println(getClass().toString() + " " + p); //TODO pensare ad una stampa migliore con anche il nome del giocatore
     		}
     	}
     	

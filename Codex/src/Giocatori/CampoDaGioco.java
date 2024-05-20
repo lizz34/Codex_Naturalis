@@ -1,7 +1,9 @@
 package Giocatori;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import Carte.*;
 import Ecccezioni.*;
@@ -355,33 +357,33 @@ public class CampoDaGioco {
 			//casi disposizione a "L" (3 punti se soddisfatto)
 			case 8:
 				if(this.obiettivoVerticaleInferiore(Colore.viola, Colore.blu, +1, +1, +2)) punti = 3;
-			break;
+				break;
 			case 9:
 				if(this.obiettivoVerticaleInferiore(Colore.blu, Colore.rosso, -1, +1, +2)) punti = 3;
-			break;
+				break;
 			case 10:
 				if(this.obiettivoVerticaleSuperiore(Colore.verde, Colore.viola, -1, +1, +2)) punti = 3;
-			break;
+				break;
 			case 11:
 				if(this.obiettivoVerticaleSuperiore(Colore.rosso, Colore.verde, +1, +1, +2)) punti = 3;
-			break;
+				break;
 			//casi disposizione diagonale
 			case 12:
-				//2 punti x 3 carte viola disposte diagonalmente verso destra (partendo dall'alto)
-				if(this.obiettivoDiagonaleDestra(Colore.viola)) punti = 2;
-			break;
+				//2 punti x ogni 3 carte viola disposte diagonalmente verso destra (partendo dall'alto)
+				punti = this.obiettivoDiagonaleDestra(Colore.viola)*2;
+				break;
 			case 13:
-				//2 punti x 3 carte blu disposte diagonalmente verso sinistra (partendo dall'alto)
-				if(this.obiettivoDiagonaleSinistra(Colore.blu)) punti = 2;
-			break;
+				//2 punti x ogni 3 carte blu disposte diagonalmente verso sinistra (partendo dall'alto)
+				punti = this.obiettivoDiagonaleSinistra(Colore.blu)*2;
+				break;
 			case 14:
-				//2 punti x 3 carte verdi disposte diagonalmente verso destra (partendo dall'alto)
-				if(this.obiettivoDiagonaleDestra(Colore.verde)) punti = 2;
-			break;
+				//2 punti x ogni 3 carte verdi disposte diagonalmente verso destra (partendo dall'alto)
+				punti = this.obiettivoDiagonaleDestra(Colore.verde)*2;
+				break;
 			case 15: 
-				//2 punti x 3 carte rosse disposte diagonalmente verso sinistra (partendo dall'alto)
-				if(this.obiettivoDiagonaleSinistra(Colore.rosso)) punti = 2;
-			break;
+				//2 punti x ogni 3 carte rosse disposte diagonalmente verso sinistra (partendo dall'alto)
+				punti = this.obiettivoDiagonaleSinistra(Colore.rosso)*2;
+				break;
 			}
 		}
 		return punti;
@@ -392,7 +394,47 @@ public class CampoDaGioco {
 	 * @param colore: il colore che devono avere le 3 carte
 	 * @return true se la disposizione è presente, false in caso contrario
 	 */
-	public boolean obiettivoDiagonaleDestra(Colore colore) {
+	public int obiettivoDiagonaleDestra(Colore colore) {
+		Set<Integer> index = new HashSet<Integer>();
+		int tris=0;
+		
+		for(int i = 0; i < nRigheTabella; i++) { //scorre le righe della tabella
+			for(int j = 0; j < nColonneTabella; j++) {
+				if(campoPersonale[i][j] != null) {
+					if(campoPersonale[i][j].getColore().equals(colore)){
+						//trovata una carta che ha lo stesso colore che serve nell'obiettivo, controllo sulle carte in diagonale
+						if(campoPersonale[i+1][j+1]!=null && campoPersonale[i+2][j+2]!=null) {
+							if(campoPersonale[i+1][j+1].getColore().equals(colore) && campoPersonale[i+2][j+2].getColore().equals(colore)) {
+								if(!index.contains(i) && !index.contains(j) && !index.contains(i+1) && !index.contains(j+1) && !index.contains(i+2) && !index.contains(j+2)) {
+									//sono state trovate due carte sulla diagonale verso destra che hanno lo stessso colore
+									index.add(i);
+									index.add(j);
+									index.add(i+1);
+									index.add(j+1);
+									index.add(i+2);
+									index.add(j+2);
+									tris++;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		return tris;
+		/*
+		 * copio tutto in una nuova matrice e se trovo le carte le cancello definitivamente
+		Carta cg1[][] = new Carta[this.nRigheTabella][this.nColonneTabella];
+		
+		for(int i = 0; i < nRigheTabella; i++) {
+			for(int j = 0; j < nColonneTabella; j++) {
+				cg1[i][j] = campoPersonale[i][j].deepCopy();
+			}		
+		}
+		*/
+		
+		/*
 		for(int i = 0; i < nRigheTabella; i++) { //scorre le righe della tabella
 			for(int j = 0; j < nColonneTabella; j++) {
 				if(campoPersonale[i][j].getColore().equals(colore)){
@@ -405,6 +447,7 @@ public class CampoDaGioco {
 			}		
 		}
 		return false;
+		*/
 	}
 	
 	/***
@@ -412,7 +455,37 @@ public class CampoDaGioco {
 	 * @param colore: il colore che devono avere le 3 carte
 	 * @return true se la disposizione è presente, false in caso contrario
 	 */
-	public boolean obiettivoDiagonaleSinistra(Colore colore) {
+	public int obiettivoDiagonaleSinistra(Colore colore) {
+		Set<Integer> index = new HashSet<Integer>();
+		int tris=0;
+		
+		for(int i = 0; i < nRigheTabella; i++) { //scorre le righe della tabella
+			for(int j = 0; j < nColonneTabella; j++) {
+				if(campoPersonale[i][j] != null) {
+					if(campoPersonale[i][j].getColore().equals(colore)){
+						if(campoPersonale[i+1][j-1]!=null && campoPersonale[i+2][j-2]!=null) {
+							//trovata una carta che ha lo stesso colore che serve nell'obiettivo, controllo sulle carte in diagonale
+							if(campoPersonale[i+1][j-1].getColore().equals(colore) && campoPersonale[i+2][j-2].getColore().equals(colore)) {
+								if(!index.contains(i) && !index.contains(j) && !index.contains(i+1) && !index.contains(j-1) && !index.contains(i+2) && !index.contains(j-2)) {
+									//sono state trovate due carte sulla diagonale verso destra che hanno lo stessso colore
+									index.add(i);
+									index.add(j);
+									index.add(i+1);
+									index.add(j-1);
+									index.add(i+2);
+									index.add(j-2);
+									tris++;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		
+		return tris;
+		
+		/*
 		for(int i = 0; i < nRigheTabella; i++) { //scorre le righe della tabella
 			for(int j = 0; j < nColonneTabella; j++) {
 				if(campoPersonale[i][j].getColore().equals(colore)){
@@ -425,6 +498,7 @@ public class CampoDaGioco {
 			}		
 		}
 		return false;
+		*/
 	}
 	
 	/***
@@ -439,14 +513,21 @@ public class CampoDaGioco {
 	 * @return true se l'obiettivo é soddisfatto, false in caso contrario
 	 */
 	public boolean obiettivoVerticaleInferiore(Colore colVerticale, Colore col1, int modColonna, int modRiga1, int modRiga2) {
+		
+		//TODO Implementare, come per il controllo in diagonale, il fatto che possono esserci diverse combo di questo tipo
+		
 		for(int i = 0; i < nRigheTabella; i++) {	//scorre righe tabella
 			for(int j = 0; j < nColonneTabella; j++) {	//scorre colonna tabella
-				if(campoPersonale[i][j].getColore().equals(col1)) {
-					//trovata carta con un colore che corrisponde con il colore della carta non in verticale
-					if(campoPersonale[i+modRiga1][j+modColonna].getColore().equals(colVerticale) &&
-						campoPersonale[i+modRiga2][j+modColonna].getColore().equals(colVerticale)) {
-						//sono state trovate due carte, poste in verticale secondo la disp richiesta, con il colore richiesto
-						return true;
+				if(campoPersonale[i][j] != null) {
+					if(campoPersonale[i][j].getColore().equals(col1)) {
+						//trovata carta con un colore che corrisponde con il colore della carta non in verticale
+						if(campoPersonale[i+modRiga1][j+modColonna]!=null && campoPersonale[i+modRiga2][j+modColonna]!=null) {
+							if(campoPersonale[i+modRiga1][j+modColonna].getColore().equals(colVerticale) &&
+								campoPersonale[i+modRiga2][j+modColonna].getColore().equals(colVerticale)) {
+								//sono state trovate due carte, poste in verticale secondo la disp richiesta, con il colore richiesto
+								return true;
+							}
+						}
 					}
 				}
 			}
@@ -466,14 +547,21 @@ public class CampoDaGioco {
 	 * @return true se l'obiettivo é soddisfatto, false in caso contrario
 	 */
 	public boolean obiettivoVerticaleSuperiore(Colore colVerticale, Colore col1, int modColonna, int modRiga1, int modRiga2) {
+		
+		//TODO Implementare, come per il controllo in diagonale, il fatto che possono esserci diverse combo di questo tipo
+
 		for(int i = 0; i < nRigheTabella; i++) {	//scorre righe tabella
 			for(int j = 0; j < nColonneTabella; j++) {	//scorre colonna tabella
-				if(campoPersonale[i][j].getColore().equals(colVerticale)) {
-					//trovata carta con colore che corrisponde con quello della carta verticale piu' in alto
-					if(campoPersonale[i+modRiga1][j].getColore().equals(colVerticale) && 
-						campoPersonale[i+modRiga2][j+modColonna].getColore().equals(col1)) {
-						//trovate due carte che soddisfano i requisiti di disposizione e colore
-						return true;
+				if(campoPersonale[i][j]!=null) {
+					if(campoPersonale[i][j].getColore().equals(colVerticale)) {
+						//trovata carta con colore che corrisponde con quello della carta verticale piu' in alto
+						if(campoPersonale[i+modRiga1][j]!=null && campoPersonale[i+modRiga2][j+modColonna]!=null) {
+							if(campoPersonale[i+modRiga1][j].getColore().equals(colVerticale) && 
+								campoPersonale[i+modRiga2][j+modColonna].getColore().equals(col1)) {
+								//trovate due carte che soddisfano i requisiti di disposizione e colore
+								return true;
+							}
+						}
 					}
 				}
 			}

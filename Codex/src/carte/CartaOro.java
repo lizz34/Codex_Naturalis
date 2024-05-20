@@ -81,4 +81,11 @@ public class CartaOro extends Carta{
 		
 	}
 	
+	/***
+	 * metodo per copiare una carta oro
+	 * @return ritorna una nuova carta oro uguale a quella chiamata
+	 */
+	public Carta deepCopy() {
+		return new CartaOro(super.getAngoli(), super.getColore(), super.getDisegni(), this.getPunti(), this.getDisegnoRichieste(), this.getCriterioPunti());
+	}
 }
