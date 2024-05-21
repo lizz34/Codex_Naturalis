@@ -125,6 +125,8 @@ public class Giocatore {
 	 */
 	public void setPunteggio(int punteggio) {
 		this.punteggio = punteggio;
+		if(this.punteggio>29) 
+			this.punteggio=29;
 	}
 
 	/***
@@ -200,6 +202,8 @@ public class Giocatore {
 	 */
 	public void incrementaPunteggio (int increment) {
 		this.punteggio += increment;
+		if(this.punteggio>29)
+			this.punteggio=29;
 	}
 	
 	/***

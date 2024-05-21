@@ -3,6 +3,7 @@ package Giocatori;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
@@ -610,8 +611,6 @@ public class TavoloDaGioco {
 		return carteOroBanco;
 	}
 
-
-
 	public Giocatore[] getGiocatori() {
 		return giocatori;
 	}
@@ -620,4 +619,26 @@ public class TavoloDaGioco {
 		return this.carteObiettivoBanco;
 	}
 	
+	/***
+	 * funzione che verifica che tutti i giocatori abbiano giocato lo stesso numero di turni
+	 * @return true se condizione rispettata, false in caso contrario
+	 */
+	public boolean condEndGame3() {
+		List<Integer> cont = new ArrayList<Integer>();
+		int condVerificata=0;
+		
+		for(int i=0; i<this.getGiocatori().length; i++) {
+			cont.add(this.getGiocatori()[i].getTurniGiocati());
+		}
+		
+		for(int c : cont) {
+			if(!(c==Collections.max(cont)))
+				condVerificata++;
+		}
+		
+		if(condVerificata==0)
+			return true;
+		else
+			return false;
+	}
 }

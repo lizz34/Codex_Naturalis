@@ -356,16 +356,16 @@ public class CampoDaGioco {
 			switch(o.getIndex()) {
 			//casi disposizione a "L" (3 punti se soddisfatto)
 			case 8:
-				if(this.obiettivoVerticaleInferiore(Colore.viola, Colore.blu, +1, +1, +2)) punti = 3;
+				punti = this.obiettivoVerticaleInferiore(Colore.viola, Colore.blu, +1, +1, +2)*3;
 				break;
 			case 9:
-				if(this.obiettivoVerticaleInferiore(Colore.blu, Colore.rosso, -1, +1, +2)) punti = 3;
+				punti = this.obiettivoVerticaleInferiore(Colore.blu, Colore.rosso, -1, +1, +2)*3;
 				break;
 			case 10:
-				if(this.obiettivoVerticaleSuperiore(Colore.verde, Colore.viola, -1, +1, +2)) punti = 3;
+				punti = this.obiettivoVerticaleSuperiore(Colore.verde, Colore.viola, -1, +1, +2)*3;
 				break;
 			case 11:
-				if(this.obiettivoVerticaleSuperiore(Colore.rosso, Colore.verde, +1, +1, +2)) punti = 3;
+				punti = this.obiettivoVerticaleSuperiore(Colore.rosso, Colore.verde, +1, +1, +2)*3;
 				break;
 			//casi disposizione diagonale
 			case 12:
@@ -405,7 +405,7 @@ public class CampoDaGioco {
 						//trovata una carta che ha lo stesso colore che serve nell'obiettivo, controllo sulle carte in diagonale
 						if(campoPersonale[i+1][j+1]!=null && campoPersonale[i+2][j+2]!=null) {
 							if(campoPersonale[i+1][j+1].getColore().equals(colore) && campoPersonale[i+2][j+2].getColore().equals(colore)) {
-								if(!index.contains(i) && !index.contains(j) && !index.contains(i+1) && !index.contains(j+1) && !index.contains(i+2) && !index.contains(j+2)) {
+								if(controllaIndici(index, i, j, i+1, j+1, i+2, j+2)) {
 									//sono state trovate due carte sulla diagonale verso destra che hanno lo stessso colore
 									index.add(i);
 									index.add(j);
@@ -466,7 +466,7 @@ public class CampoDaGioco {
 						if(campoPersonale[i+1][j-1]!=null && campoPersonale[i+2][j-2]!=null) {
 							//trovata una carta che ha lo stesso colore che serve nell'obiettivo, controllo sulle carte in diagonale
 							if(campoPersonale[i+1][j-1].getColore().equals(colore) && campoPersonale[i+2][j-2].getColore().equals(colore)) {
-								if(!index.contains(i) && !index.contains(j) && !index.contains(i+1) && !index.contains(j-1) && !index.contains(i+2) && !index.contains(j-2)) {
+								if(controllaIndici(index, i, j, i+1, j-1, i+2, j-2)) {
 									//sono state trovate due carte sulla diagonale verso destra che hanno lo stessso colore
 									index.add(i);
 									index.add(j);
@@ -512,9 +512,9 @@ public class CampoDaGioco {
 	 * @param modRiga2: il modificatore di riga rispetto alla seconda carta verticale
 	 * @return true se l'obiettivo é soddisfatto, false in caso contrario
 	 */
-	public boolean obiettivoVerticaleInferiore(Colore colVerticale, Colore col1, int modColonna, int modRiga1, int modRiga2) {
-		
-		//TODO Implementare, come per il controllo in diagonale, il fatto che possono esserci diverse combo di questo tipo
+	public int obiettivoVerticaleInferiore(Colore colVerticale, Colore col1, int modColonna, int modRiga1, int modRiga2) {
+		Set<Integer> index = new HashSet<Integer>();
+		int tris=0;
 		
 		for(int i = 0; i < nRigheTabella; i++) {	//scorre righe tabella
 			for(int j = 0; j < nColonneTabella; j++) {	//scorre colonna tabella
@@ -524,15 +524,23 @@ public class CampoDaGioco {
 						if(campoPersonale[i+modRiga1][j+modColonna]!=null && campoPersonale[i+modRiga2][j+modColonna]!=null) {
 							if(campoPersonale[i+modRiga1][j+modColonna].getColore().equals(colVerticale) &&
 								campoPersonale[i+modRiga2][j+modColonna].getColore().equals(colVerticale)) {
-								//sono state trovate due carte, poste in verticale secondo la disp richiesta, con il colore richiesto
-								return true;
+								if(controllaIndici(index, i, j, i+modRiga1, j+modColonna, i+modRiga2, j+modColonna)) {
+									//sono state trovate due carte, poste in verticale secondo la disp richiesta, con il colore richiesto
+									index.add(i);
+									index.add(j);
+									index.add(i+modRiga1);
+									index.add(j+modColonna);
+									index.add(i+modRiga2);
+									index.add(j+modColonna);
+									tris++;
+								}
 							}
 						}
 					}
 				}
 			}
 		}
-		return false;
+		return tris;
 	}
 	
 	/***
@@ -546,10 +554,10 @@ public class CampoDaGioco {
 	 * @param modRiga2: il modificatore di riga per la carta in diagonale
 	 * @return true se l'obiettivo é soddisfatto, false in caso contrario
 	 */
-	public boolean obiettivoVerticaleSuperiore(Colore colVerticale, Colore col1, int modColonna, int modRiga1, int modRiga2) {
+	public int obiettivoVerticaleSuperiore(Colore colVerticale, Colore col1, int modColonna, int modRiga1, int modRiga2) {
+		Set<Integer> index = new HashSet<Integer>();
+		int tris=0;
 		
-		//TODO Implementare, come per il controllo in diagonale, il fatto che possono esserci diverse combo di questo tipo
-
 		for(int i = 0; i < nRigheTabella; i++) {	//scorre righe tabella
 			for(int j = 0; j < nColonneTabella; j++) {	//scorre colonna tabella
 				if(campoPersonale[i][j]!=null) {
@@ -558,14 +566,29 @@ public class CampoDaGioco {
 						if(campoPersonale[i+modRiga1][j]!=null && campoPersonale[i+modRiga2][j+modColonna]!=null) {
 							if(campoPersonale[i+modRiga1][j].getColore().equals(colVerticale) && 
 								campoPersonale[i+modRiga2][j+modColonna].getColore().equals(col1)) {
-								//trovate due carte che soddisfano i requisiti di disposizione e colore
-								return true;
+								if(controllaIndici(index, i, j, i+modRiga1, j, i+modRiga2, j+modColonna)) {
+									//trovate due carte che soddisfano i requisiti di disposizione e colore
+									index.add(i);
+									index.add(j);
+									index.add(i+modRiga1);
+									index.add(j);
+									index.add(i+modRiga2);
+									index.add(j+modColonna);
+									tris++;
+								}
 							}
 						}
 					}
 				}
 			}
 		}
+		
+		return tris;
+	}
+	
+	public boolean controllaIndici(Set<Integer> index, int a, int b, int c, int d, int e, int f) {
+		if(!index.contains(a) && !index.contains(b) && !index.contains(c) && !index.contains(d) && !index.contains(e) && !index.contains(f))
+			return true;
 		return false;
 	}
 	

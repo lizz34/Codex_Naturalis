@@ -1,7 +1,5 @@
 package Carte;
 
-import Giocatori.CampoDaGioco;
-
 public class Carta {
 	
 	//vettore degli 8 angoli della carta (0-3 angoli davanti, 4-7 angoli dietro)

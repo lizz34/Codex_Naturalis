@@ -20,6 +20,18 @@ public class Main {
 		//creazione tavolo di gioco
 		gm.createTable(gm.getnGiocatori());
 		
+		//codice per giocare la carta starter sul retro
+		do {
+			System.out.println("Ci sono giocatori che vogliono giocare la carta starter di retro? (si/no)");
+			buffer = sc.nextLine();
+			buffer = buffer.toLowerCase();
+			buffer.trim();
+		}while(!(buffer.equals("si") || buffer.equals("no")));
+		
+		if(buffer.equals("si"))
+			gm.rovesciaStarter(buffer);
+		
+
 		int turnoGiocatore=0;
 		int scelta=0;
 
@@ -27,7 +39,7 @@ public class Main {
 		MenuManager mg = gm.getMg();
 		
 		//controllo delle condizioni per la fine della partita
-		while(gm.getTavolo().condEndGame1()==false && gm.getTavolo().condEndGame2()==false) {
+		while((gm.getTavolo().condEndGame1()==false && gm.getTavolo().condEndGame2()==false) || gm.getTavolo().condEndGame3()==false) {
 			System.out.println("\nTurno del giocatore " + (turnoGiocatore+1));
 			
 			//variabile booleana per capire se il turno puo' passare al giocatore successivo
@@ -67,6 +79,8 @@ public class Main {
 			//solo nel caso in cui il posizionamento non abbia restituito errori
 			}while(scelta!= 1 || continua == false);
 			
+			gm.getTavolo().getGiocatori()[turnoGiocatore].incrementaTurniGiocati();
+
 			/*//DE-COMMENTARE PER AVERE IL CICLO DEI GIOCATORI
 			if(turnoGiocatore<(gm.getTavolo().getGiocatori().length-1))
 				turnoGiocatore++;

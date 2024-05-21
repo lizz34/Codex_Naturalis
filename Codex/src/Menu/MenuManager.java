@@ -65,7 +65,7 @@ public class MenuManager {
 				opzione.execute(g);
 				return true;
 			} catch (CardPlacementException e) {
-				e.printStackTrace();
+				//e.printStackTrace();
 				return false;
 			}
     	}
