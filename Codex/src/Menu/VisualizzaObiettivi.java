@@ -1,7 +1,7 @@
 package Menu;
-import Carte.CartaObiettivo;
 import Ecccezioni.CardPlacementException;
 import Giocatori.*;
+import obiettivi.CartaObiettivo;
 
 /***
  * opzione del menu per visualizzare a console il proprio punteggio

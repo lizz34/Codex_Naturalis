@@ -7,6 +7,7 @@ import java.util.Set;
 
 import Carte.*;
 import Ecccezioni.*;
+import obiettivi.CartaObiettivo;
 
 public class CampoDaGioco {
 	private Carta campoPersonale[][];

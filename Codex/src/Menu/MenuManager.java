@@ -6,9 +6,9 @@ import java.util.Map.Entry;
 import java.util.Set;
 import java.util.TreeSet;
 
-import Carte.CartaObiettivo;
 import Ecccezioni.CardPlacementException;
 import Giocatori.*;
+import obiettivi.CartaObiettivo;
 
 public class MenuManager {
 	

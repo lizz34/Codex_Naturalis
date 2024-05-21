@@ -5,6 +5,7 @@ import java.util.List;
 
 import Carte.*;
 import Ecccezioni.ElementNotFoundException;
+import obiettivi.CartaObiettivo;
 
 public class Giocatore {
 

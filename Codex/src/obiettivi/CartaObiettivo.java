@@ -1,9 +1,10 @@
-package Carte;
+package obiettivi;
 
 public class CartaObiettivo {
 	private static int COUNTER = 0;
 	
 	private final String obiettivo;
+	private final int punti;
 	private final int index;
 	
 	/***
@@ -12,9 +13,14 @@ public class CartaObiettivo {
 	 * La prima carta obiettivo avrà quindi indice 0.
 	 * @param obiettivo: la stringa contenente l'obiettivo della carta
 	 */
-	public CartaObiettivo(String obiettivo) {
-		this.obiettivo=obiettivo;
+	public CartaObiettivo(String obiettivo, int punti) {
+		this.obiettivo = obiettivo;
+		this.punti = punti;
 		index = COUNTER++;
+	}
+	
+	public String toString() {
+		return this.index + " - " + this.obiettivo;
 	}
 
 	/***
@@ -31,5 +37,9 @@ public class CartaObiettivo {
 	 */
 	public int getIndex() {
 		return index;
+	}
+
+	public int getPunti() {
+		return punti;
 	}
 }
