@@ -424,33 +424,15 @@ public class TavoloDaGioco {
 		mazzoCarteObiettivo.add(new ObiettivoFigure("Due punti per ogni tre lupi", 2, Disegno.lupo, null, null, 3));
 		mazzoCarteObiettivo.add(new ObiettivoFigure("Due punti per ogni tre foglie", 2, Disegno.foglia, null, null, 3));
 		mazzoCarteObiettivo.add(new ObiettivoFigure("Due punti per ogni tre funghi", 2, Disegno.fungo, null, null, 3));
-		mazzoCarteObiettivo.add(new ObiettivoDisposizione("Tre punti se si ha la seguente disposizione: due carte verticali di colore viola con l’angolo in alto a sinistra che combacia con l’angolo in basso a destra di una carta blu", 3, Colore.viola, Colore.blu, "l"));
-		mazzoCarteObiettivo.add(new ObiettivoDisposizione("Tre punti se si ha la seguente disposizione: due carte verticali di colore blu con l'angolo in alto a destra che combacia con l'angolo in basso a sinistra di una carta rossa", 3, Colore.blu, Colore.rosso, "l"));
-		mazzoCarteObiettivo.add(new ObiettivoDisposizione("Tre punti se si ha la seguente disposizione: due carte verticali verdi dove l'angolo in basso a sinistra combacia con l'angolo in alto a destra di una carta viola", 3, Colore.verde, Colore.viola, "l"));
-		mazzoCarteObiettivo.add(new ObiettivoDisposizione("Tre punti se si ha la seguente disposizione: due carte verticali rosse dove l'angolo in basso a destra combacia con l'angolo in alto a sinistra di una carta verde", 3, Colore.rosso, Colore.verde, "l"));
-		mazzoCarteObiettivo.add(new ObiettivoDisposizione("Due punti se si ha la seguente disposizione: se si hanno tre carte di colore viola disposte diagonalmente, dove la carta sinistra sarà quella più alta e quella a destra la più bassa", 2, Colore.viola, null, "diagonale"));
-		mazzoCarteObiettivo.add(new ObiettivoDisposizione("Due punti se si ha la seguente disposizione: se si hanno tre carte di colore blu disposte diagonalmente, dove la carta sinistra sarà la più bassa e quella destra la più alta", 2, Colore.blu, null, "diagonale"));
-		mazzoCarteObiettivo.add(new ObiettivoDisposizione("Due punti se si ha la seguente disposizione: se si hanno tre carte di colore verde disposte diagonalmente, dove la carta sinistra sarà quella più alta e quella a destra la più bassa", 2, Colore.verde, null, "diagonale"));
-		mazzoCarteObiettivo.add(new ObiettivoDisposizione("Due punti se si ha la seguente disposizione: se si hanno tre carte di colore rosso, dove la carta sinistra sarà la più bassa e quella destra la più alta", 2, Colore.rosso, null, "diagonale"));
+		mazzoCarteObiettivo.add(new ObiettivoVerticale("Tre punti se si ha la seguente disposizione: due carte verticali di colore viola con l’angolo in alto a sinistra che combacia con l’angolo in basso a destra di una carta blu", 3, Colore.viola, Colore.blu, "verticale inferiore"));
+		mazzoCarteObiettivo.add(new ObiettivoVerticale("Tre punti se si ha la seguente disposizione: due carte verticali di colore blu con l'angolo in alto a destra che combacia con l'angolo in basso a sinistra di una carta rossa", 3, Colore.blu, Colore.rosso, "verticale inferiore"));
+		mazzoCarteObiettivo.add(new ObiettivoVerticale("Tre punti se si ha la seguente disposizione: due carte verticali verdi dove l'angolo in basso a sinistra combacia con l'angolo in alto a destra di una carta viola", 3, Colore.verde, Colore.viola, "verticale superiore"));
+		mazzoCarteObiettivo.add(new ObiettivoVerticale("Tre punti se si ha la seguente disposizione: due carte verticali rosse dove l'angolo in basso a destra combacia con l'angolo in alto a sinistra di una carta verde", 3, Colore.rosso, Colore.verde, "verticale superiore"));
+		mazzoCarteObiettivo.add(new ObiettivoDiagonale("Due punti se si ha la seguente disposizione: se si hanno tre carte di colore viola disposte diagonalmente, dove la carta sinistra sarà quella più alta e quella a destra la più bassa", 2, Colore.viola, "destra"));
+		mazzoCarteObiettivo.add(new ObiettivoDiagonale("Due punti se si ha la seguente disposizione: se si hanno tre carte di colore blu disposte diagonalmente, dove la carta sinistra sarà la più bassa e quella destra la più alta", 2, Colore.blu, "sinistra"));
+		mazzoCarteObiettivo.add(new ObiettivoDiagonale("Due punti se si ha la seguente disposizione: se si hanno tre carte di colore verde disposte diagonalmente, dove la carta sinistra sarà quella più alta e quella a destra la più bassa", 2, Colore.verde, "destra"));
+		mazzoCarteObiettivo.add(new ObiettivoDiagonale("Due punti se si ha la seguente disposizione: se si hanno tre carte di colore rosso disposte diagonalmente, dove la carta sinistra sarà la più bassa e quella destra la più alta", 2, Colore.rosso, "sinistra"));
 		
-		//mazzoCarteObiettivo.add(new CartaObiettivo("Due punti per ogni due piume"));
-		//mazzoCarteObiettivo.add(new CartaObiettivo("Due punti per ogni due boccette"));
-		//mazzoCarteObiettivo.add(new CartaObiettivo("Due punti per ogni due pergamene"));
-		//mazzoCarteObiettivo.add(new CartaObiettivo("Tre punti se si hanno una piuma, una boccetta e una pergamena"));
-		//mazzoCarteObiettivo.add(new CartaObiettivo("Due punti per ogni tre farfalle"));
-		//mazzoCarteObiettivo.add(new CartaObiettivo("Due punti per ogni tre lupi"));
-		//mazzoCarteObiettivo.add(new CartaObiettivo("Due punti per ogni tre foglie"));golo in alto a destra che combacia con l'angolo in basso a sinistra di una carta rossa"));
-		//mazzoCarteObiettivo.add(new CartaObiettivo("Due punti per ogni tre funghi"));
-		//mazzoCarteObiettivo.add(new CartaObiettivo("Tre punti se si ha la seguente disposizione: due carte verticali di colore viola con l’angolo in alto a sinistra che combacia con l’angolo in basso a destra di una carta blu"));
-		//mazzoCarteObiettivo.add(new CartaObiettivo("Tre punti se si ha la seguente disposizione: due carte verticali di colore blu con l'angolo in alto a destra che combacia con l'angolo in basso a sinistra di una carta rossa"));
-		//mazzoCarteObiettivo.add(new CartaObiettivo("Tre punti se si ha la seguente disposizione: due carte verticali verdi dove l'angolo in basso a sinistra combacia con l'angolo in alto a destra di una carta viola"));
-		//mazzoCarteObiettivo.add(new CartaObiettivo("Tre punti se si ha la seguente disposizione: due carte verticali rosse dove l'angolo in basso a destra combacia con l'angolo in alto a sinistra di una carta verde"));
-		//mazzoCarteObiettivo.add(new CartaObiettivo("Due punti se si ha la seguente disposizione: se si hanno tre carte di colore viola disposte diagonalmente, dove la carta sinistra sarà quella più alta e quella a destra la più bassa"));
-		//mazzoCarteObiettivo.add(new CartaObiettivo("Due punti se si ha la seguente disposizione: se si hanno tre carte di colore blu, dove la carta sinistra sarà la più bassa e quella destra la più alta"));
-		//mazzoCarteObiettivo.add(new CartaObiettivo("Due punti se si ha la seguente disposizione: se si hanno tre carte di colore verde disposte diagonalmente, dove la carta sinistra sarà quella più alta e quella a destra la più bassa"));
-		//mazzoCarteObiettivo.add(new CartaObiettivo("Due punti se si ha la seguente disposizione: se si hanno tre carte di colore rosso, dove la carta sinistra sarà la più bassa e quella destra la più alta"));
-
-			
 		//aggiunta delle carte di partenza che ci sono sul tavolo di gioco
 		carteRisorsaBanco = new ArrayList<CartaRisorsa>();
 		carteOroBanco = new ArrayList<CartaOro>();
@@ -476,9 +458,7 @@ public class TavoloDaGioco {
 			manoIniziale.add(giraCartaOro());
 			giocatori[i] = new Giocatore(pescaCartaObiettivo(), pescaCartaStarter(), manoIniziale);
 		}
-	}
-
-	
+	}	
 	
 	/***
 	 * controlla la prima condizione di fine partita: caso che finiscono le carte nei mazzi e sul tavolo di gioco
@@ -509,7 +489,7 @@ public class TavoloDaGioco {
 	}
 	
 	/***
-	 * funzione che verifica che tutti i giocatori abbiano giocato lo stesso numero di turni
+	 * controlla la terza condizione per la fine della partita: verifica che tutti i giocatori abbiano giocato lo stesso numero di turni
 	 * @return true se condizione rispettata, false in caso contrario
 	 */
 	public boolean condEndGame3() {

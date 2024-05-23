@@ -1,6 +1,6 @@
 package obiettivi;
 
-public class CartaObiettivo {
+public class CartaObiettivo{
 	private static int COUNTER = 0;
 	
 	private final String obiettivo;

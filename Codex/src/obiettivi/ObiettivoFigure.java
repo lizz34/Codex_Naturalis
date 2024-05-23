@@ -1,8 +1,9 @@
 package obiettivi;
 
 import Carte.Disegno;
+import Giocatori.CampoDaGioco;
 
-public class ObiettivoFigure extends CartaObiettivo {
+public class ObiettivoFigure extends CartaObiettivo implements ControlloObiettivo {
 	private final Disegno disegno1;
 	private final Disegno disegno2;
 	private final Disegno disegno3;
@@ -16,6 +17,11 @@ public class ObiettivoFigure extends CartaObiettivo {
 		this.numDisegni = numDisegni;
 	}
 
+	@Override
+	public int calcoloObiettivo(CampoDaGioco campoPersonale) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 	public int getNumDisegni() {
 		return numDisegni;
 	}

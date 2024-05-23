@@ -607,4 +607,16 @@ public class CampoDaGioco {
 			System.out.println();
 		}
 	}
+
+	public int getnRigheTabella() {
+		return nRigheTabella;
+	}
+
+	public int getnColonneTabella() {
+		return nColonneTabella;
+	}
+
+	public Carta[][] getCampoPersonale() {
+		return campoPersonale;
+	}
 }
