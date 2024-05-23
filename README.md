@@ -1,11 +1,12 @@
 CODEX 
 Videogioco online tratto dal gioco da tavolo Codex di Cranio Creations.
 
-[istruzioni per giocare](#istruzione)
-[funzionalità principali del gioco](#funzionalità)
-[esempi di utilizzo](#esempi)
-[licenza](#licenza)
-[stato del progetto](#stato)
+## indice
+- [istruzioni per giocare](#istruzione)
+- [funzionalità principali del gioco](#funzionalità)
+- [esempi di utilizzo](#esempi)
+- [licenza](#licenza)
+- [stato del progetto](#stato)
 
 ## istruzione
 
