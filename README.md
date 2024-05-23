@@ -10,7 +10,21 @@ Videogioco online tratto dal gioco da tavolo Codex di Cranio Creations.
 
 ## istruzione
 
-Per far partire il gioco bisogna scaricare la repository in locale e aprirla su Eclipse; poi far partire il file Main.java contenuto nel package Main.
+Per far partire il gioco bisogna clonare la repository in locale e aprirla su Eclipse; poi far partire il file Main.java contenuto nel package Main.
+inserire il numero dei giocatori che desiderano giocare (minimo 2 massimo 4); dopo di che inizierà la partita.
+Il sistema creerà in automatico i mazzi di tutte le carte ed a ogni giocatore verranno assegnate randomicamente: una carta obiettivo, le 3 carte nella mano e una carta starte (già posizionata nella matrice).
+I giocatori possono scegliere se giocare la propria carta starter fronte o retro.
+Per ogni turno il giocatore visualizza un menù con le seguenti opzioni: Posiziona una nuova carta, Guarda le carte che puoi pescare, Visualizza la tua area di gioco, Visualizza le carte che hai in mano,
+Rovescia una carta della mano, Visualizza il tuo punteggio, Visualizza gli obiettivi.
+Il turno di un giocatore finisce solo dopo che è stata posizionata correttamente una carta (opzione 1 del menù).
+Per posizionare una carta tramite la [funzione per posizionare la carta](#posizionaCarta) è necessario inserire: il numero della carta del proprio mazzo che si vuole inserire (da 1 a 3)
+il numero della riga, della colonna e dell'angolo che, nella matrice, corrispondono alla carta già presente sulla quale si vuole posizionare la nuova carta.
+Nel caso si voglia giocare una carta di retro, bisogna selezionare l'opzione 5 del menù prima di procedere con il posizionamento della carta; in questo caso, inserire il numero della carta del proprio mazzo
+che si vuole girare.
+Il campo da gioco viene rappresentato tramite una matrice (per visualizzare, opzione 3 del menù): a schermo verrà visualizzata una lista di carte (indicizzate tramite la loro riga e colonna) che mostrano una 
+lista dei loro 4 angoli visibili: verrà visualizzato true se l'angolo è libero e false se l'angolo è occupato e, accanto al suo stato, il disegno che c'è sull'angolo oppure null se non ha disegno.
+La partita finisce nel caso in cui: uno dei mazzi di carte sia vuoto, un giocatore raggiunga i 20 punti e, solamente nel caso in cui quest'ultima condizione sia verificata, che tutti i giocatori abbiano giocato
+lo stesso numero di turni.
 
 ## funzionalità
 funzione per posizionare una carta sul campo da gioco:
@@ -74,8 +88,7 @@ Lancia l'eccezione ElementNotFound nel caso in cui la carta passata non esista n
 		}		
 	}
 ```
-
-funzione per controllare il posizionamento di una carta nel campo da gioco: 
+<a id="posizionaCarta">Funzione per controllare il posizionamento di una carta nel campo da gioco: </a>
 per organizzare il campo da gioco si è usata una matrice 50x50, nella quale la carta starter viene messa in posizione 24x24.
 Ogni qualvolta si desidera posizionare una carta bisogna inserire le coordinate (riga, colonna e numero angolo) della carta già presente nella matrice a cui si vuole attaccare quella che si ha in mano.
 La funzione controlla per prima cosa che esista una carta nelle coordinate selezionate; se esiste una carta controlla se l'angolo scelto è libero o occupato.
