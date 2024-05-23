@@ -3,9 +3,9 @@ package obiettivi;
 public class CartaObiettivo{
 	private static int COUNTER = 0;
 	
-	private final String obiettivo;
-	private final int punti;
-	private final int index;
+	protected final String obiettivo;
+	protected final int punti;
+	protected final int index;
 	
 	/***
 	 * costruttore classe CartaObiettivo

@@ -67,7 +67,7 @@ public class ObiettivoDiagonale extends CartaObiettivo implements ControlloObiet
 				}
 			}
 		}
-		return tris * this.getPunti();
+		return tris * this.punti;
 	}
 
 	public String getTipo() {
