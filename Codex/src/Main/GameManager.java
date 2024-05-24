@@ -98,9 +98,9 @@ public class GameManager {
 	 */
 	public void calcoloPuntiObiettivi() {
 		for(Giocatore g: tavolo.getGiocatori()) {
-			g.incrementaPunteggio(g.getCampoPersonale().controllaObiettivo(g.getCartaObiettivo()));					//obiettivo personale del giocatore
-			g.incrementaPunteggio(g.getCampoPersonale().controllaObiettivo(tavolo.getObiettiviComuni().get(0)));	//primo obiettivo comune
-			g.incrementaPunteggio(g.getCampoPersonale().controllaObiettivo(tavolo.getObiettiviComuni().get(1)));	//secondo obiettivo comune
+			g.incrementaPunteggio(g.getCartaObiettivo().calcoloObiettivo(g.getCampoPersonale()));					//obiettivo personale del giocatore
+			g.incrementaPunteggio(tavolo.getObiettiviComuni().get(0).calcoloObiettivo(g.getCampoPersonale()));		//primo obiettivo comune
+			g.incrementaPunteggio(tavolo.getObiettiviComuni().get(1).calcoloObiettivo(g.getCampoPersonale()));		//secondo obiettivo comune
 		}
 	}
 	

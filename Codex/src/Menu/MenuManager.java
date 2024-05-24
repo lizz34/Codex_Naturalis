@@ -65,7 +65,6 @@ public class MenuManager {
 				opzione.execute(g);
 				return true;
 			} catch (CardPlacementException e) {
-				//e.printStackTrace();
 				return false;
 			}
     	}
@@ -78,7 +77,8 @@ public class MenuManager {
      * funzione che esegue il calcolo dei punti finali dei giocatori, aggiungendo al loro punteggio quello dei vari obiettivi, se conseguiti
      */
     public void calcoloClassifica() {
-    	int punti;
+    	//TODO dove mettiamo conteggio carte obiettivo? qua o game manager?
+    /*	int punti;
     	
     	for(int i=0; i<this.tavolo.getGiocatori().length; i++){
     		punti=0;
@@ -93,7 +93,7 @@ public class MenuManager {
     		System.out.println("Punti che vengono assegnati al giocatore " +i+ ": "+punti);
     		System.out.println("Punti del giocatore "+i+": "+this.tavolo.getGiocatori()[i].getPunteggio());
     		
-    	}
+    	}*/
     	
     	this.stampaClassifica();
     }
