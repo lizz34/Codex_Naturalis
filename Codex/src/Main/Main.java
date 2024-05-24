@@ -20,16 +20,8 @@ public class Main {
 		//creazione tavolo di gioco
 		gm.createTable(gm.getnGiocatori());
 		
-		//codice per giocare la carta starter sul retro
-		do {
-			System.out.println("Ci sono giocatori che vogliono giocare la carta starter di retro? (si/no)");
-			buffer = sc.nextLine();
-			buffer = buffer.toLowerCase();
-			buffer.trim();
-		}while(!(buffer.equals("si") || buffer.equals("no")));
-		
-		if(buffer.equals("si"))
-			gm.rovesciaStarter(buffer);
+		//codice per giocare la carta starter sul retro	
+		gm.rovesciaStarter(buffer);
 		
 
 		int turnoGiocatore=0;

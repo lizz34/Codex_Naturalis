@@ -25,7 +25,7 @@ public class MenuManager {
 		CarteTavolo cTavolo = new CarteTavolo(t);
 		VisualizzaMatrice vMatrice = new VisualizzaMatrice();
 		CarteMano cMano = new CarteMano();
-		VisualizzaPunteggio vPunti = new VisualizzaPunteggio();
+		VisualizzaPunteggio vPunti = new VisualizzaPunteggio(t);
 		ReverseCard rCarta = new ReverseCard();
 		VisualizzaObiettivi vObiettivi = new VisualizzaObiettivi(t);
 		

@@ -42,40 +42,27 @@ public class GameManager {
 	 * @return true se tutto viene eseguito correttamente
 	 */
 	public boolean rovesciaStarter(String buffer) {
-		boolean[] starterRetro = new boolean [this.getnGiocatori()];
-		int n=0;
 		sc = new Scanner(System.in);
 		
 		for(int i=0; i<this.getnGiocatori(); i++) {
-			starterRetro[i]=false;
-		}
-		
-		while(buffer.equals("si")) {
+			System.out.println("Giocatore " + (i+1) + " questa è la carta starter che ti è stata assegnata:");
+			System.out.println(this.getTavolo().getGiocatori()[i].getCartaStarter());
+			System.out.println("\ne questo è il retro:");
+			this.getTavolo().getGiocatori()[i].getCampoPersonale().trovaCarta(24,24).setFronte(false);
+			System.out.println(this.getTavolo().getGiocatori()[i].getCartaStarter());
+			this.getTavolo().getGiocatori()[i].getCampoPersonale().trovaCarta(24,24).setFronte(true);
+			
 			do {
-				System.out.println("Digitare il numero del giocatore che desidera giocare la carta starter di retro (1 - " + (this.getnGiocatori()) + "): ");
-				do {
-					String buffer2;
-					buffer2 = sc.nextLine();
-					try {
-						n = Integer.parseInt(buffer2);
-					}
-					catch(NumberFormatException e) {
-						System.out.println("Errore, digitare un numero intero");
-					}
-				}while(n<1 || n>this.getnGiocatori());
-				starterRetro[n-1] = true;
-				
-				System.out.println("Ci sono altri giocatori che vogliono giocare la carta starter di retro? (si/no)");
+				System.out.println("\nDesideri giocarla di retro? (si/no)");
 				buffer = sc.nextLine();
 				buffer = buffer.toLowerCase();
 				buffer.trim();
 			}while(!(buffer.equals("si") || buffer.equals("no")));
-		}
-		
-		for(int i=0; i<this.getnGiocatori(); i++) {
-			if(starterRetro[i]==true) {
+			
+			if(buffer.equals("si"))
 				this.getTavolo().getGiocatori()[i].getCampoPersonale().trovaCarta(24,24).setFronte(false);
-			}
+			else
+				this.getTavolo().getGiocatori()[i].getCampoPersonale().trovaCarta(24,24).setFronte(true);
 		}
 		
 		return true;

@@ -39,6 +39,10 @@ public class CartaObiettivo{
 		return index;
 	}
 
+	/***
+	 * getter dei punti della carta
+	 * @return i punti della carta obiettivo
+	 */
 	public int getPunti() {
 		return punti;
 	}

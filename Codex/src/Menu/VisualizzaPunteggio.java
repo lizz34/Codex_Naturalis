@@ -7,10 +7,12 @@ import Giocatori.*;
  * opzione del menu per visualizzare a console il proprio punteggio
  */
 public class VisualizzaPunteggio implements MenuOption{
+	private TavoloDaGioco tavolo;
 	/***
 	 * costruttore della classe che gestisce l'opzione del menu per visualizzare a console il punteggio di un giocatore
 	 */
-	public VisualizzaPunteggio() {
+	public VisualizzaPunteggio(TavoloDaGioco tavolo) {
+		this.tavolo = tavolo;
 	}
 
 	@Override
@@ -20,8 +22,9 @@ public class VisualizzaPunteggio implements MenuOption{
 	 * @throws CardPlacementException
 	 */
 	public void execute(Giocatore g) throws CardPlacementException {
-		System.out.println("Hai: " + g.getPunteggio() + " punti");
-
+		for(int i=0 ; i<this.tavolo.getGiocatori().length; i++) {
+			System.out.println("Giocatore " +(i+1) + ": " + this.tavolo.getGiocatori()[i].getPunteggio() + " punti");
+		}
 	}
 	
 	/***
