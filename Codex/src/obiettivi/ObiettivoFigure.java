@@ -22,62 +22,89 @@ public class ObiettivoFigure extends CartaObiettivo implements ControlloObiettiv
 	}
 
 	@Override
-	public int calcoloObiettivo(CampoDaGioco campoPersonale) { //TODO da finire
-		int punti=0;
-		
+	/**
+	 * calcola la carta obiettivo facendo il conteggio di quante figure ci sono sul campo da gioco
+	 * il tipo di figure da guardare e il numero sono specificati come atributo della carta.
+	 * @param c: il campo da gioco sul quale controllare la carta obiettivo
+	 * @return il punteggio che va sommato ai punti del giocatore se l'obiettivo e' soddisfatto 
+	 */
+	public int calcoloObiettivo(CampoDaGioco c) {
 		int contatore [] = new int [7];
-		List <Integer> temp = new ArrayList <Integer>();
-		campoPersonale.contaFigure(contatore);  //conta le figure presenti sul campo di gioco
+		c.contaFigure(contatore);
+		int punteggio = 0;
 		
-		switch(super.index) {
-		case 0: //2 punti x 2 piume
-			punti = 2 * (contatore[5] / 2);
-			break;
-		case 1: //2 punti x 2 boccette
-			punti = 2 * (contatore[4] / 2);
-			break;
-		case 2: //2 punti x 2 pergamene
-			punti = 2 * (contatore[6] / 2);
-			break;
-		case 3: //3 punti x 1 boccetta, 1 piuma, 1 pergamena
+		if(disegno2 == null && disegno3 == null) {
+			switch(this.disegno1) {
+				case boccetta:
+					punteggio = (contatore[4] / this.numDisegni) * this.punti;
+				break;
+				case piuma:
+					punteggio = (contatore[5] / this.numDisegni) * this.punti;
+				break;
+				case pergamena:
+					punteggio = (contatore[6] / this.numDisegni) * this.punti;
+				break;
+				case farfalla:
+					punteggio = (contatore[2] / this.numDisegni) * this.punti;
+				break;
+				case foglia:
+					punteggio = (contatore[1] / this.numDisegni) * this.punti;
+				break;
+				case lupo:
+					punteggio = (contatore[0] / this.numDisegni) * this.punti;
+				break;
+				case fungo:
+					punteggio = (contatore[3] / this.numDisegni) * this.punti;
+				break;
+				default:
+				break;
+			}
+		}
+		else {
+			List <Integer> temp = new ArrayList <Integer>();
+			
 			temp.add(contatore[4]); //boccetta
 			temp.add(contatore[5]); //piuma
 			temp.add(contatore[6]); //pergamena 
 			
 			//moltiplica il modificatore di punteggio per il valore minore tra tre disegni che necessita
 			//(vuol dire che sicuramente gli altri ne hanno di piu' e non bisogna fare ulteriori controlli)
-			punti = 3 * Collections.min(temp);
-			temp.clear();			
-			break;
-		case 4: //2 punti x 3 farfalle
-			punti = 2 * (contatore[2] / 3);
-			break;
-		case 5: //2 punti x 3 lupi
-			punti = 2 * (contatore[0] / 3);
-			break;
-		case 6: //2 punti x 3 foglie
-			punti = 2 * (contatore[1] / 3);
-			break;
-		case 7: //2 punti x 3 funghi
-			punti = 2 * (contatore[3] / 3);
-			break;
+
+			punteggio = this.punti * Collections.min(temp);
+			temp.clear();
 		}
-		
-		
+		return punteggio;
 	}
 	
+	/**
+	 * getter del numero di disegni necessari
+	 * @return il numero dei disegni
+	 */
+
 	public int getNumDisegni() {
 		return numDisegni;
 	}
 
+	/**
+	 * getter del primo disegno della carta obiettivo
+	 * @return il primo disegno
+	 */
 	public Disegno getDisegno1() {
 		return disegno1;
 	}
 
+	/**
+	 * getter del secondo disegno della carta obiettivo se presente
+	 * @return il secondo disegno
+	 */
 	public Disegno getDisegno2() {
 		return disegno2;
 	}
 
+	/**
+	 * getter del terzo disegno della carta obiettivo se presente
+	 * @return il terzo obiettivo
+	 */
 	public Disegno getDisegno3() {
 		return disegno3;
 	}

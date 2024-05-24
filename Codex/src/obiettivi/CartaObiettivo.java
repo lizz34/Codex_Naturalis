@@ -1,6 +1,8 @@
 package obiettivi;
 
-public class CartaObiettivo{
+import Giocatori.CampoDaGioco;
+
+public class CartaObiettivo implements ControlloObiettivo{
 	private static int COUNTER = 0;
 	
 	protected final String obiettivo;
@@ -46,4 +48,11 @@ public class CartaObiettivo{
 	public int getPunti() {
 		return punti;
 	}
+
+	@Override
+	public int calcoloObiettivo(CampoDaGioco campoPersonale) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }
