@@ -2,36 +2,38 @@ CODEX
 Videogioco online tratto dal gioco da tavolo Codex di Cranio Creations.
 
 ## indice
-- [istruzioni per giocare](#istruzione)
-- [funzionalità principali del gioco](#funzionalità)
-- [esempi di utilizzo](#esempi)
-- [stato del progetto](#stato)
-- [licenza](#licenza)
+- [Istruzioni per giocare](#Istruzione)
+- [Funzionalità principali del gioco](#Funzionalità)
+- [Esempi di utilizzo](#Esempi)
+- [Stato del progetto](#Stato)
+- [Licenza](#Licenza)
 
-## istruzione
+## Istruzione
 
-Per far partire il gioco bisogna clonare la repository in locale e aprirla su Eclipse; poi far partire il file Main.java contenuto nel package Main.
-inserire il numero dei giocatori che desiderano giocare (minimo 2 massimo 4); dopo di che inizierà la partita.
-Il sistema creerà in automatico i mazzi di tutte le carte ed a ogni giocatore verranno assegnate randomicamente: una carta obiettivo, le 3 carte nella mano e una carta starte (già posizionata nella matrice).
-I giocatori possono scegliere se giocare la propria carta starter fronte o retro.
-Per ogni turno il giocatore visualizza un menù con le seguenti opzioni: Posiziona una nuova carta, Guarda le carte che puoi pescare, Visualizza la tua area di gioco, Visualizza le carte che hai in mano,
-Rovescia una carta della mano, Visualizza il tuo punteggio, Visualizza gli obiettivi.
-Il turno di un giocatore finisce solo dopo che è stata posizionata correttamente una carta (opzione 1 del menù).
-Per posizionare una carta tramite la [funzione per posizionare la carta](#posizionaCarta) è necessario inserire: il numero della carta del proprio mazzo che si vuole inserire (da 1 a 3)
-il numero della riga, della colonna e dell'angolo che, nella matrice, corrispondono alla carta già presente sulla quale si vuole posizionare la nuova carta.
-Nel caso si voglia giocare una carta di retro, bisogna selezionare l'opzione 5 del menù prima di procedere con il posizionamento della carta; in questo caso, inserire il numero della carta del proprio mazzo
-che si vuole girare.
-Il campo da gioco viene rappresentato tramite una matrice (per visualizzare, opzione 3 del menù): a schermo verrà visualizzata una lista di carte (indicizzate tramite la loro riga e colonna) che mostrano una 
-lista dei loro 4 angoli visibili: verrà visualizzato true se l'angolo è libero e false se l'angolo è occupato e, accanto al suo stato, il disegno che c'è sull'angolo oppure null se non ha disegno.
-La partita finisce nel caso in cui: uno dei mazzi di carte sia vuoto, un giocatore raggiunga i 20 punti e, solamente nel caso in cui quest'ultima condizione sia verificata, che tutti i giocatori abbiano giocato
-lo stesso numero di turni.
+La prima cosa da fare per poter utilizzare il gioco è clonare la repository in locale e aprirla su Eclipse; in seguito bisgona eseguire il file Main.java contenuto nel package Main.
+La prima cosa che viene richiesta è di inserire il numero dei giocatori che desiderano partecipare alla partita (minimo 2 massimo 4).
+Il sistema creerà in automatico i mazzi di tutte le carte e, in maniera randomica, verrà assegnato ad ogni giocatore: una carta obiettivo, 3 carte nella mano (2 risorsa e 1 oro) e una carta starter (già inserita nella matrice di gioco).
+Ai giocatori viene permesso di scegliere se giocare la propria carta starter di fronte o di retro.
+Per ogni turno il giocatore visualizza un menù con le seguenti opzioni: 
+- posiziona una nuova carta (comprende il posizionamento della carta e il pescaggio di un'altra carta da quelle disponibili sul banco)
+- guarda le carte che puoi pescare (quelle disponibili sul banco)
+- visualizza la tua area di gioco
+- visualizza le carte che hai in mano
+- rovescia una carta della mano (per poter giocare le carte a rovescio)
+- visualizza il tuo punteggio
+- visualizza gli obiettivi
+Il turno di un giocatore termina solo dopo che è stata posizionata correttamente una carta (opzione 1 del menù). E' consigliabile fare una panoramica su tutte le altre opzioni prima di scegliere quella relativa al posizionamento della carta. 
+Per posizionare una carta tramite la [funzione per posizionare la carta](#posizionaCarta) è necessario inserire:
+- il numero della carta del proprio mazzo che si vuole inserire (da 1 a 3)
+- il numero della riga, della colonna e dell'angolo che corrispondono alla carta già presente nella matrice, sulla quale si vuole posizionare la nuova carta.
+Nel caso si voglia giocare una carta di retro, bisogna selezionare l'opzione 5 del menù prima di procedere con il posizionamento della carta; in questo caso, inserire il numero della carta della propria mano che si vuole girare.
+Il campo da gioco viene rappresentato tramite una matrice (per visualizzare, opzione 3 del menù): a schermo verrà visualizzata una lista di carte (indicizzate tramite la loro riga e colonna: valori da 0 a 49) che mostrano una lista dei loro 4 angoli visibili. La stampa degli angoli prevede due valori: true se l'angolo è libero e false se l'angolo è occupato e, accanto al suo stato, il disegno che c'è sull'angolo, altrimenti null se non ha disegno.
+Il termine della partita è decretato da: uno dei mazzi di carte finisce; un giocatore raggiunge (o supera) i 20 punti e tutti i giocatori hanno giocato lo stesso numero di turni.
 
-## funzionalità
-funzione per posizionare una carta sul campo da gioco:
-posiziona una carta dalla mano del giocatore nel suo campo da gioco, se l'azione va a buon fine la carta viene anche cancellata dalla sua mano e 
-se la carta é giocata sul retro non viene fatto nessun controllo sul punteggio,
-nel caso in cui la carta sia giocata di fronte viene incrementato il punteggio del giocatore con appositi controlli.
-Lancia l'eccezione ElementNotFound nel caso in cui la carta passata non esista nella matrice.
+## Funzionalità
+- Funzione per posizionare una carta sul campo da gioco:
+Posiziona una carta dalla mano del giocatore nel suo campo da gioco, se l'azione va a buon fine la carta viene anche rimossa dalla sua mano. Per il conteggio dei punti ottenuti in seguito al posizionamento della carta si aprono due possibili scenari: se la carta è giocata sul retro non viene effettuato nessun controllo dal momento che non da punteggio; se la carta invece è giocata di fronte viene incrementato il punteggio del giocatore con appositi controlli.
+Questa funzione lancia l'eccezione ElementNotFound nel caso in cui la carta passata non esista nella matrice.
 
 ```java
 	public boolean posizionaCarta(int nCarta, int nRiga, int nColonna, int nAngolo, boolean fronte) {
@@ -89,12 +91,11 @@ Lancia l'eccezione ElementNotFound nel caso in cui la carta passata non esista n
 	}
 ```
 <a id="posizionaCarta">Funzione per controllare il posizionamento di una carta nel campo da gioco: </a>
-per organizzare il campo da gioco si è usata una matrice 50x50, nella quale la carta starter viene messa in posizione 24x24.
+Per organizzare il campo da gioco si è usata una matrice 50x50, nella quale la carta starter viene messa in posizione 24x24.
 Ogni qualvolta si desidera posizionare una carta bisogna inserire le coordinate (riga, colonna e numero angolo) della carta già presente nella matrice a cui si vuole attaccare quella che si ha in mano.
-La funzione controlla per prima cosa che esista una carta nelle coordinate selezionate; se esiste una carta controlla se l'angolo scelto è libero o occupato.
-Nel caso in cui sia possibile posizionare la carta, guarda il tipo della carta: se è carta risorsa la posiziona, se è carta oro controlla che i criteri di posizionamento siano soddisfatti.
-Le coordinate della carta da posizionare vengono calcolate automaticamente in base all'angolo scelto, esempio: se si è scelto l'angolo in alto a sinistra, le coordinate saranno: numRiga - 1 e numColonna - 1;
-inoltre controlla che in quella data posizione non ci sia già presente un'altra carta.
+La funzione controlla che esista una carta nelle coordinate selezionate, che l'angolo scelto sia libero e che nella posizione in cui verrebbe inserita la carta non ce ne sia già presente un'altra. 
+Nel caso in cui sia possibile posizionare la carta, viene controllato il suo tipo: se è carta risorsa la posiziona immediatamente, se invece è carta oro controlla che i criteri di posizionamento siano soddisfatti.
+Le coordinate della carta da posizionare vengono calcolate automaticamente in base all'angolo scelto; esempio: se si è scelto l'angolo in alto a sinistra, le coordinate saranno: numRiga - 1 e numColonna - 1;
 ```java
 public boolean controlloPosizionaCarta(Carta carta, int nRiga, int nColonna, int nAngolo) {
 		if(campoPersonale[nRiga][nColonna]!=null && (nAngolo>=0 && nAngolo<8) && campoPersonale[nRiga][nColonna].getSpecifiAngolo(nAngolo)!=null) {
@@ -134,12 +135,11 @@ public boolean controlloPosizionaCarta(Carta carta, int nRiga, int nColonna, int
 		return false;
 	}
 ```
-funzione per il controllo della carta obiettivo:
+- Funzione per il controllo di una tipologia di carta obiettivo:
 Controlla le due carte obiettivo del tipo: due carte in verticale, una sopra l'altra, con un dato colore e un'altra carta posta in diagonale rispetto a quella più alta con un altro colore.
-Scorre tutta la matrice in cerca di una carta con lo stesso colore di quella in diagonale nella carta obiettivo; quando la trova controlla se ci sono due carte con il giusto colore disposte verticalmente
-in una colonna diagonale rispetto alla prima carta considerata.
+Scorre tutta la matrice in cerca di una carta con lo stesso colore di quella in diagonale nella carta obiettivo; quando la trova controlla se ci sono due carte con il giusto colore disposte verticalmente in una colonna diagonale rispetto alla prima carta considerata.
 Il set di interi serve per salvare le coordinate delle carte trovate in modo da evitare di conteggiare più volte le stesse carte per uno stesso obiettivo.
-esempio: due carte verticali in basso a destra rispetto alla prima carta; la seconda carta cercata avrà coordinate r+1 e c+1 e la terza r+2 e c+1.
+Esempio: due carte verticali in basso a destra rispetto alla prima carta; la seconda carta cercata avrà coordinate r+1 e c+1 e la terza r+2 e c+1.
 
 
 ```java
@@ -173,16 +173,16 @@ esempio: due carte verticali in basso a destra rispetto alla prima carta; la sec
 	}
 ```
 
-## esempi
+## Esempi
 
 
 
-## stato
+## Stato
 
 Il gioco è giocabile tramite linea di comando o console su Eclipse.
 Perchè il videogioco sia completo manca la parte grafica.
 
-## licenza
+## Licenza
 
 MIT License
 
