@@ -1,5 +1,7 @@
 package Carte;
 
+import java.util.Arrays;
+
 public class CartaOro extends Carta{
 	
 	private final int punti;
@@ -30,6 +32,23 @@ public class CartaOro extends Carta{
 		
 		this.criterioPunti = criterioPunti;
 	}
+	
+	  @Override
+	    public boolean equals(Object o) {
+	        if (this == o) return true;
+	        if (!super.equals(o)) return false;
+	        if (getClass() != o.getClass()) return false;
+	        CartaOro cartaOro = (CartaOro) o;
+	        return Arrays.equals(this.disegnoRichieste, cartaOro.disegnoRichieste) && this.criterioPunti == cartaOro.criterioPunti;
+	    }
+
+	    @Override
+	    public int hashCode() {
+	        int result = super.hashCode();
+	        result = result + Arrays.hashCode(disegnoRichieste);
+	        result = result + (criterioPunti != null ? criterioPunti.hashCode() : 0);
+	        return result;
+	    }
 	
 	/***
 	 * getter punti

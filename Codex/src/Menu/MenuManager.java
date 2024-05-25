@@ -8,7 +8,6 @@ import java.util.TreeSet;
 
 import Ecccezioni.CardPlacementException;
 import Giocatori.*;
-import obiettivi.CartaObiettivo;
 
 public class MenuManager {
 	

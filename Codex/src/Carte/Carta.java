@@ -1,5 +1,8 @@
 package Carte;
 
+import java.util.Arrays;
+import java.util.Objects;
+
 public class Carta {
 	
 	//vettore degli 8 angoli della carta (0-3 angoli davanti, 4-7 angoli dietro)
@@ -28,6 +31,27 @@ public class Carta {
 		}
 		this.colore=col;		
 	}
+	
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Carta carta = (Carta) o;
+        return this.fronte == carta.fronte &&
+                Arrays.equals(this.angoli, carta.angoli) &&
+                Objects.equals(this.colore, carta.colore) &&
+                Arrays.equals(this.disegni, carta.disegni);
+    }
+    
+    @Override
+    public int hashCode() {
+        int result = 0;
+        result += (colore == null ? 0 : colore.hashCode());
+        result += Boolean.hashCode(this.fronte);
+        result += Arrays.hashCode(this.angoli);
+        result += Arrays.hashCode(this.disegni);
+        return result;
+    }
 
 	/***
 	 * getter del vettore degli 8 angoli

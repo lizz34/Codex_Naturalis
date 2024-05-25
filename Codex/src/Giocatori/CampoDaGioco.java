@@ -270,6 +270,10 @@ public class CampoDaGioco {
 	public int[] trovaCoordinateCarta (Carta carta){
 		int index [] = new int [2];
 		
+		if(carta == null) {
+			//é stato passato un elemento nullo come parametro
+			throw new IllegalArgumentException("I parametri non possono essere nulli");
+		}
 		//ciclo per scorrere gli elementi della matrice
 		for (int i=0; i<this.nRigheTabella; i++) {
 			for (int j=0; j<this.nColonneTabella; j++) {

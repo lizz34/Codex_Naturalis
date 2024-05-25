@@ -15,6 +15,20 @@ public class CartaRisorsa extends Carta{
 		super (ang, col, dis);
 		this.punti=punti;
 	}
+	
+	@Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!super.equals(o)) return false;
+        if (getClass() != o.getClass()) return false;
+        CartaRisorsa cr = (CartaRisorsa) o;
+        return this.punti == cr.punti;
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode() + Integer.hashCode(this.punti);
+    }
 
 	/***
 	 * getter punteggio della carta
