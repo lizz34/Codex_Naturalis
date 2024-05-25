@@ -3,10 +3,12 @@ package Menu;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+
+import Eccezioni.CardPlacementException;
+
 import java.util.Set;
 import java.util.TreeSet;
 
-import Ecccezioni.CardPlacementException;
 import Giocatori.*;
 
 public class MenuManager {

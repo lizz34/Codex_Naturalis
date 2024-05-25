@@ -2,7 +2,8 @@ package Menu;
 
 import Giocatori.*;
 import java.util.Scanner;
-import Ecccezioni.*;
+
+import Eccezioni.*;
 
 public class PosizionaCarta implements MenuOption {
 

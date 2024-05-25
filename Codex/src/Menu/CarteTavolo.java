@@ -2,7 +2,7 @@ package Menu;
 
 import Carte.CartaOro;
 import Carte.CartaRisorsa;
-import Ecccezioni.CardPlacementException;
+import Eccezioni.CardPlacementException;
 import Giocatori.Giocatore;
 import Giocatori.TavoloDaGioco;
 

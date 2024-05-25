@@ -1,5 +1,5 @@
 package Menu;
-import Ecccezioni.CardPlacementException;
+import Eccezioni.CardPlacementException;
 import Giocatori.*;
 import obiettivi.CartaObiettivo;
 

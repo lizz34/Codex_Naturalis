@@ -1,4 +1,4 @@
-package Ecccezioni;
+package Eccezioni;
 
 //eccezione lanciata nel caso in cui ci sia un errore che concerne la posizione di una carta
 //esempio: la carta non può essere posizionata, la carta cercata nella matrice non è stata trovata...

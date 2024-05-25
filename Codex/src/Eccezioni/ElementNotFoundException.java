@@ -1,4 +1,4 @@
-package Ecccezioni;
+package Eccezioni;
 
 public class ElementNotFoundException extends RuntimeException {
 	/**

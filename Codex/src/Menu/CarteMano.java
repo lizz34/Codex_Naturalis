@@ -1,7 +1,7 @@
 package Menu;
 
 import Carte.Carta;
-import Ecccezioni.CardPlacementException;
+import Eccezioni.CardPlacementException;
 import Giocatori.*;
 
 /***

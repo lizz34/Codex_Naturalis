@@ -1,7 +1,8 @@
 package Menu;
 
 import java.util.Scanner;
-import Ecccezioni.CardPlacementException;
+
+import Eccezioni.CardPlacementException;
 import Giocatori.*;
 
 /***

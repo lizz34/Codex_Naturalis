@@ -1,6 +1,6 @@
 package Menu;
 
-import Ecccezioni.CardPlacementException;
+import Eccezioni.CardPlacementException;
 import Giocatori.Giocatore;
 
 //interfaccia per gestire le opzioni del menu

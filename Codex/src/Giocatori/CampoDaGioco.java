@@ -2,7 +2,7 @@ package Giocatori;
 import java.util.Set;
 
 import Carte.*;
-import Ecccezioni.*;
+import Eccezioni.*;
 
 public class CampoDaGioco {
 	private Carta campoPersonale[][];
