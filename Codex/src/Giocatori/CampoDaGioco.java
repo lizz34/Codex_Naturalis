@@ -110,12 +110,11 @@ public class CampoDaGioco {
 		
 		contaFigure(contaFigure);
 		
-		for(int i=0; i<carta.getDisegnoRichieste().length; i++) {
-			if(carta.getDisegnoRichieste()[i]!=null) {
-				contatoreDiFigure(contaRichieste, carta.getDisegnoRichieste()[i]);
+		for(Disegno dis : carta.getDisegnoRichieste()) {
+			if(dis!=null) {
+				contatoreDiFigure(contaRichieste, dis);
 			}
 		}
-		
 		
 		boolean posiziona=true;
 		for(int i=0; i<contaRichieste.length; i++) {
@@ -226,7 +225,8 @@ public class CampoDaGioco {
 				//controllo angolo in alto a sinistra
 				if(trovaCarta((index[0] - 1), (index[1] -1)) != null) {
 					//esiste una carta sotto quell'angolo
-					count++;
+					if(trovaCarta((index[0] - 1), (index[1] -1)).getSpecifiAngolo(2) != null) //se l'angolo esiste
+						count++;
 				}
 			}
 			
@@ -234,7 +234,8 @@ public class CampoDaGioco {
 				//controllo angolo in alto a destra
 				if(trovaCarta((index[0] -1), (index[1] + 1)) != null) {
 					//esiste una carta sotto quell'angolo
-					count++;
+					if(trovaCarta((index[0] - 1), (index[1] -1)).getSpecifiAngolo(3) != null) //se l'angolo esiste
+						count++;
 				}
 			}
 			
@@ -242,14 +243,16 @@ public class CampoDaGioco {
 				//controllo angolo in basso a destra
 				if(trovaCarta((index[0] + 1), (index[1] + 1)) != null) {
 					//esiste una carta sotto quell'angolo
-					count++;
+					if(trovaCarta((index[0] - 1), (index[1] -1)).getSpecifiAngolo(0) != null) //se l'angolo esiste
+						count++;
 				}
 			}
 			else if(carta.getSpecifiAngolo(3) != null) {
 				//controllo angolo in basso a sinistra
 				if(trovaCarta((index[0] + 1), (index[1] - 1)) != null) {
 					//esiste una carta sotto quell'angolo
-					count++;
+					if(trovaCarta((index[0] - 1), (index[1] -1)).getSpecifiAngolo(1) != null) //se l'angolo esiste
+						count++;
 				}
 			}
 			
@@ -277,12 +280,14 @@ public class CampoDaGioco {
 		//ciclo per scorrere gli elementi della matrice
 		for (int i=0; i<this.nRigheTabella; i++) {
 			for (int j=0; j<this.nColonneTabella; j++) {
-				if (campoPersonale[i][j].equals(carta)) {
-					index[0] = i;
-					index[1] = j;
-				}
-				else {
-					throw new ElementNotFoundException("L'elemento " + carta + " non è stato trovato nella matrice.");
+				if(campoPersonale[i][j]!=null) {
+					if(campoPersonale[i][j].equals(carta)) {
+						index[0] = i;
+						index[1] = j;
+					}
+					else {
+						throw new ElementNotFoundException("L'elemento " + carta + " non è stato trovato nella matrice.");
+					}
 				}
 			}
 		}

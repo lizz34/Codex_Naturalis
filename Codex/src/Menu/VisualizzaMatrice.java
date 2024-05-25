@@ -26,7 +26,12 @@ public class VisualizzaMatrice implements MenuOption {
 		//aggiunge il numero di figure che sono presenti sul campo da gioco
 		//per facilitare il posizionamento delle carte al giocatore
 		int cont[] = new int[7]; //0=lupi; 1=foglie; 2=farfalle; 3=funghi; 4=boccetta; 5=piuma; 6=pergamena
+		for(int i=0; i<cont.length; i++) {
+			cont[i]=0;
+		}
+		
 		g.getCampoPersonale().contaFigure(cont);
+		
 		System.out.print("Sul campo hai: ");
 		if(cont[0]!=0)
 			System.out.print(cont[0] + " lupi ");
@@ -37,11 +42,11 @@ public class VisualizzaMatrice implements MenuOption {
 		if(cont[3]!=0)
 			System.out.print(cont[3] + " funghi ");
 		if(cont[4]!=0)
-			System.out.print(cont[3] + " boccetta ");
+			System.out.print(cont[4] + " boccette ");
 		if(cont[5]!=0)
-			System.out.print(cont[3] + " piuma ");
+			System.out.print(cont[5] + " piume ");
 		if(cont[6]!=0)
-			System.out.print(cont[3] + " pergamena ");
+			System.out.print(cont[6] + " pergamene ");
 		System.out.println("\n");
 		
 	}
