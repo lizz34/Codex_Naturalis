@@ -4,7 +4,7 @@ import Eccezioni.CardPlacementException;
 import Giocatori.*;
 
 /***
- * opzione del menu per visualizzare a console il proprio punteggio
+ * opzione del menu per visualizzare a console il punteggio di tutti i giocatori
  */
 public class VisualizzaPunteggio implements MenuOption{
 	private TavoloDaGioco tavolo;
@@ -17,7 +17,7 @@ public class VisualizzaPunteggio implements MenuOption{
 
 	@Override
 	/***
-	 * stampa sulla console il punteggio del giocatore selezionato
+	 * stampa sulla console il punteggio di tutti i giocatori
 	 * @param g: il giocatore che ha selezionato l'opzione
 	 * @throws CardPlacementException
 	 */
@@ -31,7 +31,7 @@ public class VisualizzaPunteggio implements MenuOption{
 	 * @return il nome esteso dell'opzione del menu
 	 */
 	public String toString() {
-		return "Visualizza il tuo punteggio";
+		return "Visualizza punteggi";
 	}
 	
 }

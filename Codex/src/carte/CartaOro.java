@@ -79,11 +79,11 @@ public class CartaOro extends Carta{
 	 */
 	public String toString(){
 		if(super.getFronte()==false) {
-			super.toString();
+			System.out.println(super.toString());
 			return "";
 		}
 		else {
-			super.toString();
+			System.out.println(super.toString());
 			System.out.print("Criterio del punteggio: ");
 			if(criterioPunti!=null)
 				System.out.println(criterioPunti);

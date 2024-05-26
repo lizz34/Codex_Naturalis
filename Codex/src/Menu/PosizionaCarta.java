@@ -81,7 +81,7 @@ public class PosizionaCarta implements MenuOption {
 		}
 			
 		do {
-			System.out.println("Inserisci il numero dell'angolo della carta su cui vuoi posizionare la nuova carta: ");
+			System.out.println("Inserisci il numero dell'angolo della carta su cui vuoi posizionare la nuova carta (senso orario): ");
 			buffer = sc.nextLine();
 			try {
 				nAngolo = Integer.parseInt(buffer);

@@ -102,45 +102,52 @@ public class CampoDaGioco {
 		
 		int contaFigure[] = new int[7]; //0=lupi; 1=foglie; 2=farfalle; 3=funghi; 4=boccetta; 5=piuma; 6=pergamena
 		int contaRichieste[] = new int [4]; //0=lupi; 1=foglie; 2=farfalle; 3=funghi
+		boolean posiziona = false;
 		
-		for(int i=0; i<contaFigure.length; i++)
-			contaFigure[i]=0;
-		for(int i=0; i<contaRichieste.length; i++)
-			contaRichieste[i]=0;
-		
-		contaFigure(contaFigure);
-		
-		for(int i=0; i<carta.getDisegnoRichieste().length; i++) {
-			if(carta.getDisegnoRichieste()[i]!=null) {
-				contatoreDiFigure(contaRichieste, carta.getDisegnoRichieste()[i]);
-			}
-		}
-		
-		
-		boolean posiziona=true;
-		for(int i=0; i<contaRichieste.length; i++) {
-			if(contaRichieste[i]<=contaFigure[i] && posiziona == true)
-				posiziona=true;
-			else
-				posiziona=false;
-		}
-		
-		if(posiziona) {
-			return true;
+		if(carta.getFronte() == false) {
+			//la carta e' giocata di retro. non bisogna fare controlli
+			posiziona = true;
+			return posiziona;
 		}
 		else {
-			System.out.print("Per posizionare la carta ti servono un totale di: ");
-			if(contaRichieste[0]!=0)
-				System.out.print(contaRichieste[0] + " lupi ");
-			if(contaRichieste[1]!=0)
-				System.out.print(contaRichieste[1] + " foglie ");
-			if(contaRichieste[2]!=0)
-				System.out.print(contaRichieste[2] + " farfalle ");
-			if(contaRichieste[3]!=0)
-				System.out.print(contaRichieste[3] + " funghi ");
+			for(int i=0; i<contaFigure.length; i++)
+				contaFigure[i]=0;
+			for(int i=0; i<contaRichieste.length; i++)
+				contaRichieste[i]=0;
 			
-			System.out.println();
-			return false;
+			contaFigure(contaFigure);
+			
+			for(Disegno dis : carta.getDisegnoRichieste()) {
+				if(dis!=null) {
+					contatoreDiFigure(contaRichieste, dis);
+				}
+			}
+			
+			posiziona=true;
+			for(int i=0; i<contaRichieste.length; i++) {
+				if(contaRichieste[i]<=contaFigure[i] && posiziona == true)
+					posiziona=true;
+				else
+					posiziona=false;
+			}
+			
+			if(posiziona) {
+				return true;
+			}
+			else {
+				System.out.print("Per posizionare la carta ti servono un totale di: ");
+				if(contaRichieste[0]!=0)
+					System.out.print(contaRichieste[0] + " lupi ");
+				if(contaRichieste[1]!=0)
+					System.out.print(contaRichieste[1] + " foglie ");
+				if(contaRichieste[2]!=0)
+					System.out.print(contaRichieste[2] + " farfalle ");
+				if(contaRichieste[3]!=0)
+					System.out.print(contaRichieste[3] + " funghi ");
+				
+				System.out.println();
+				return false;
+			}
 		}
 	}
 	
@@ -226,7 +233,8 @@ public class CampoDaGioco {
 				//controllo angolo in alto a sinistra
 				if(trovaCarta((index[0] - 1), (index[1] -1)) != null) {
 					//esiste una carta sotto quell'angolo
-					count++;
+					if(trovaCarta((index[0] - 1), (index[1] -1)).getSpecifiAngolo(2) != null) //se l'angolo esiste
+						count++;
 				}
 			}
 			
@@ -234,7 +242,8 @@ public class CampoDaGioco {
 				//controllo angolo in alto a destra
 				if(trovaCarta((index[0] -1), (index[1] + 1)) != null) {
 					//esiste una carta sotto quell'angolo
-					count++;
+					if(trovaCarta((index[0] - 1), (index[1] -1)).getSpecifiAngolo(3) != null) //se l'angolo esiste
+						count++;
 				}
 			}
 			
@@ -242,14 +251,16 @@ public class CampoDaGioco {
 				//controllo angolo in basso a destra
 				if(trovaCarta((index[0] + 1), (index[1] + 1)) != null) {
 					//esiste una carta sotto quell'angolo
-					count++;
+					if(trovaCarta((index[0] - 1), (index[1] -1)).getSpecifiAngolo(0) != null) //se l'angolo esiste
+						count++;
 				}
 			}
 			else if(carta.getSpecifiAngolo(3) != null) {
 				//controllo angolo in basso a sinistra
 				if(trovaCarta((index[0] + 1), (index[1] - 1)) != null) {
 					//esiste una carta sotto quell'angolo
-					count++;
+					if(trovaCarta((index[0] - 1), (index[1] -1)).getSpecifiAngolo(1) != null) //se l'angolo esiste
+						count++;
 				}
 			}
 			
@@ -277,12 +288,14 @@ public class CampoDaGioco {
 		//ciclo per scorrere gli elementi della matrice
 		for (int i=0; i<this.nRigheTabella; i++) {
 			for (int j=0; j<this.nColonneTabella; j++) {
-				if (campoPersonale[i][j].equals(carta)) {
-					index[0] = i;
-					index[1] = j;
-				}
-				else {
-					throw new ElementNotFoundException("L'elemento " + carta + " non è stato trovato nella matrice.");
+				if(campoPersonale[i][j]!=null) {
+					if(campoPersonale[i][j].equals(carta)) {
+						index[0] = i;
+						index[1] = j;
+					}
+					else {
+						throw new ElementNotFoundException("L'elemento " + carta + " non è stato trovato nella matrice.");
+					}
 				}
 			}
 		}
