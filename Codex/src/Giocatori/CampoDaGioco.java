@@ -102,44 +102,52 @@ public class CampoDaGioco {
 		
 		int contaFigure[] = new int[7]; //0=lupi; 1=foglie; 2=farfalle; 3=funghi; 4=boccetta; 5=piuma; 6=pergamena
 		int contaRichieste[] = new int [4]; //0=lupi; 1=foglie; 2=farfalle; 3=funghi
+		boolean posiziona = false;
 		
-		for(int i=0; i<contaFigure.length; i++)
-			contaFigure[i]=0;
-		for(int i=0; i<contaRichieste.length; i++)
-			contaRichieste[i]=0;
-		
-		contaFigure(contaFigure);
-		
-		for(Disegno dis : carta.getDisegnoRichieste()) {
-			if(dis!=null) {
-				contatoreDiFigure(contaRichieste, dis);
-			}
-		}
-		
-		boolean posiziona=true;
-		for(int i=0; i<contaRichieste.length; i++) {
-			if(contaRichieste[i]<=contaFigure[i] && posiziona == true)
-				posiziona=true;
-			else
-				posiziona=false;
-		}
-		
-		if(posiziona) {
-			return true;
+		if(carta.getFronte() == false) {
+			//la carta e' giocata di retro. non bisogna fare controlli
+			posiziona = true;
+			return posiziona;
 		}
 		else {
-			System.out.print("Per posizionare la carta ti servono un totale di: ");
-			if(contaRichieste[0]!=0)
-				System.out.print(contaRichieste[0] + " lupi ");
-			if(contaRichieste[1]!=0)
-				System.out.print(contaRichieste[1] + " foglie ");
-			if(contaRichieste[2]!=0)
-				System.out.print(contaRichieste[2] + " farfalle ");
-			if(contaRichieste[3]!=0)
-				System.out.print(contaRichieste[3] + " funghi ");
+			for(int i=0; i<contaFigure.length; i++)
+				contaFigure[i]=0;
+			for(int i=0; i<contaRichieste.length; i++)
+				contaRichieste[i]=0;
 			
-			System.out.println();
-			return false;
+			contaFigure(contaFigure);
+			
+			for(Disegno dis : carta.getDisegnoRichieste()) {
+				if(dis!=null) {
+					contatoreDiFigure(contaRichieste, dis);
+				}
+			}
+			
+			posiziona=true;
+			for(int i=0; i<contaRichieste.length; i++) {
+				if(contaRichieste[i]<=contaFigure[i] && posiziona == true)
+					posiziona=true;
+				else
+					posiziona=false;
+			}
+			
+			if(posiziona) {
+				return true;
+			}
+			else {
+				System.out.print("Per posizionare la carta ti servono un totale di: ");
+				if(contaRichieste[0]!=0)
+					System.out.print(contaRichieste[0] + " lupi ");
+				if(contaRichieste[1]!=0)
+					System.out.print(contaRichieste[1] + " foglie ");
+				if(contaRichieste[2]!=0)
+					System.out.print(contaRichieste[2] + " farfalle ");
+				if(contaRichieste[3]!=0)
+					System.out.print(contaRichieste[3] + " funghi ");
+				
+				System.out.println();
+				return false;
+			}
 		}
 	}
 	
