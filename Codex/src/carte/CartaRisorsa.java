@@ -19,10 +19,10 @@ public class CartaRisorsa extends Carta{
 	@Override
     public boolean equals(Object o) {
         if (this == o) return true;
+        if (!(o instanceof CartaRisorsa)) return false;
         if (!super.equals(o)) return false;
-        if (getClass() != o.getClass()) return false;
         CartaRisorsa cr = (CartaRisorsa) o;
-        return this.punti == cr.punti;
+        return (this.punti == cr.punti);
     }
 
     @Override

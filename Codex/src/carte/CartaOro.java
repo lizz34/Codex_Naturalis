@@ -35,11 +35,12 @@ public class CartaOro extends Carta{
 	
 	  @Override
 	    public boolean equals(Object o) {
-	        if (this == o) return true;
+		  	if (this == o) return true;
+	        if (!(o instanceof CartaOro)) return false;
 	        if (!super.equals(o)) return false;
-	        if (getClass() != o.getClass()) return false;
-	        CartaOro cartaOro = (CartaOro) o;
-	        return Arrays.equals(this.disegnoRichieste, cartaOro.disegnoRichieste) && this.criterioPunti == cartaOro.criterioPunti;
+	        CartaOro cr = (CartaOro) o;
+	        	        
+	        return (Arrays.equals(this.disegnoRichieste, cr.disegnoRichieste) && this.criterioPunti==cr.criterioPunti);
 	    }
 
 	    @Override
