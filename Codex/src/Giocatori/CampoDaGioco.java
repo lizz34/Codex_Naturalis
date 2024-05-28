@@ -292,10 +292,10 @@ public class CampoDaGioco {
 					if(campoPersonale[i][j].equals(carta)) {
 						index[0] = i;
 						index[1] = j;
-					}
+					}/*
 					else {
 						throw new ElementNotFoundException("L'elemento " + carta + " non è stato trovato nella matrice.");
-					}
+					}*/
 				}
 			}
 		}

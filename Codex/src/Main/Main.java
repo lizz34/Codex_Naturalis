@@ -66,7 +66,7 @@ public class Main {
 					System.out.println("Errore: prova di nuovo");
 					continua = false;
 				}
-
+				System.out.println("\n\n\n\n");
 			//il giocatore continua il suo turno finché non posiziona una carta e
 			//solo nel caso in cui il posizionamento non abbia restituito errori
 			}while(scelta!= 1 || continua == false);

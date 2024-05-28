@@ -1,7 +1,6 @@
 package Carte;
 
 import java.util.Arrays;
-import java.util.Objects;
 
 public class Carta {
 	
@@ -39,41 +38,6 @@ public class Carta {
         if (o == null || getClass() != o.getClass()) return false; //se classe diversa --> false
         Carta carta = (Carta) o;
         return (this.fronte==carta.fronte && Arrays.equals(this.angoli, carta.angoli) && this.colore==carta.colore && Arrays.equals(this.disegni, carta.disegni));
-    	/*
-    	if(o instanceof Carta) {
-    		for(Angolo a : ((Carta) o).getAngoli()) {
-    			for(Angolo a1 : this.getAngoli()) {
-    				if(a != a1)
-    					return false;
-    			}
-    		}
-    		for(Disegno d : ((Carta) o).getDisegni()) {
-    			for(Disegno d1 : this.getDisegni()) {
-    				if(d != d1)
-    					return false;
-    			}
-    		}
-    		if(((Carta) o).getColore() != this.getColore())
-    			return false;
-    		if(((Carta) o).getFronte() != this.getFronte())
-    			return false;
-    		
-    		if(o instanceof CartaRisorsa) {
-    			this.equals(o);
-    		}
-    		return true;
-    	}
-    	else return false;
-    	*/
-    	/*
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Carta carta = (Carta) o;
-        return (this.fronte == carta.fronte &&
-                Arrays.equals(this.angoli, carta.angoli) &&
-                Objects.equals(this.colore, carta.colore) &&
-                Arrays.equals(this.disegni, carta.disegni));
-                */
     }
     
     @Override

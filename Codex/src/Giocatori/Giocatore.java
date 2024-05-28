@@ -107,45 +107,39 @@ public class Giocatore {
 				}
 			}
 			
-			this.campoPersonale.stampaCampoDaGioco();
-			
-			/*int[] index = new int [2];
-			index[0] = 0;
-			index[1] = 0;*/
 			int[] index = this.campoPersonale.trovaCoordinateCarta(cartaScelta);
-			
-			System.out.println(index[0] + index[1]);
+					
 			
 			for(int i=0; i<this.campoPersonale.getnRigheTabella(); i++){
 				for(int j=0; j<this.campoPersonale.getnColonneTabella(); j++) {
-					if(this.campoPersonale.trovaCarta(index[0], index[1]) != null) { //la carta dovrebbe essere stata posizionata correttamente
+					if(this.campoPersonale.getCampoPersonale()[index[0]][index[1]] != null) { //la carta dovrebbe essere stata posizionata correttamente
 						
-						if(this.campoPersonale.trovaCarta(index[0]-1, index[1]-1) != null) { //se c'è una carta sopra a sinistra
-							if(this.campoPersonale.trovaCarta(index[0]-1, index[1]-1).getFronte() == true) //se di fronte
-								this.campoPersonale.trovaCarta(index[0]-1, index[1]-1).getSpecifiAngolo(2).setOccupato(true); //setto l'n angolo come occupato dato che è stato sovrapposto dalla carta appena piazzata
+						if(this.campoPersonale.getCampoPersonale()[index[0]-1][index[1]-1] != null) { //se c'è una carta sopra a sinistra
+							if(this.campoPersonale.getCampoPersonale()[index[0]-1][index[1]-1].getFronte() == true) //se di fronte
+								this.campoPersonale.getCampoPersonale()[index[0]-1][index[1]-1].getSpecifiAngolo(2).setOccupato(true); //setto l'n angolo come occupato dato che è stato sovrapposto dalla carta appena piazzata
 							else
-								this.campoPersonale.trovaCarta(index[0]-1, index[1]-1).getSpecifiAngolo(6).setOccupato(true); //se di retro occupo l'altro
+								this.campoPersonale.getCampoPersonale()[index[0]-1][index[1]-1].getSpecifiAngolo(6).setOccupato(true); //se di retro occupo l'altro
 						}
 						
-						if(this.campoPersonale.trovaCarta(index[0]-1, index[1]+1) != null) {
-							if(this.campoPersonale.trovaCarta(index[0]-1, index[1]+1).getFronte() == true)
-								this.campoPersonale.trovaCarta(index[0]-1, index[1]+1).getSpecifiAngolo(3).setOccupato(true);
+						if(this.campoPersonale.getCampoPersonale()[index[0]-1][index[1]+1] != null) {
+							if(this.campoPersonale.getCampoPersonale()[index[0]-1][index[1]+1].getFronte() == true)
+								this.campoPersonale.getCampoPersonale()[index[0]-1][index[1]+1].getSpecifiAngolo(3).setOccupato(true);
 							else
-								this.campoPersonale.trovaCarta(index[0]-1, index[1]+1).getSpecifiAngolo(7).setOccupato(true);
+								this.campoPersonale.getCampoPersonale()[index[0]-1][index[1]+1].getSpecifiAngolo(7).setOccupato(true);
 						}
 						
-						if(this.campoPersonale.trovaCarta(index[0]+1, index[1]+1) != null) {
-							if(this.campoPersonale.trovaCarta(index[0]+1, index[1]+1).getFronte() == true)
-								this.campoPersonale.trovaCarta(index[0]+1, index[1]+1).getSpecifiAngolo(0).setOccupato(true);
+						if(this.campoPersonale.getCampoPersonale()[index[0]+1][index[1]+1] != null) {
+							if(this.campoPersonale.getCampoPersonale()[index[0]+1][index[1]+1].getFronte() == true)
+								this.campoPersonale.getCampoPersonale()[index[0]+1][index[1]+1].getSpecifiAngolo(0).setOccupato(true);
 							else
-								this.campoPersonale.trovaCarta(index[0]+1, index[1]+1).getSpecifiAngolo(4).setOccupato(true);
+								this.campoPersonale.getCampoPersonale()[index[0]+1][index[1]+1].getSpecifiAngolo(4).setOccupato(true);
 						}
 						
-						if(this.campoPersonale.trovaCarta(index[0]+1, index[1]-1) != null) {
-							if(this.campoPersonale.trovaCarta(index[0]+1, index[1]-1).getFronte() == true)
-								this.campoPersonale.trovaCarta(index[0]+1, index[1]-1).getSpecifiAngolo(1).setOccupato(true);
+						if(this.campoPersonale.getCampoPersonale()[index[0]+1][index[1]-1] != null) {
+							if(this.campoPersonale.getCampoPersonale()[index[0]+1][index[1]-1].getFronte() == true)
+								this.campoPersonale.getCampoPersonale()[index[0]+1][index[1]-1].getSpecifiAngolo(1).setOccupato(true);
 							else
-								this.campoPersonale.trovaCarta(index[0]+1, index[1]-1).getSpecifiAngolo(5).setOccupato(true);
+								this.campoPersonale.getCampoPersonale()[index[0]+1][index[1]-1].getSpecifiAngolo(5).setOccupato(true);
 						}
 					}
 				}

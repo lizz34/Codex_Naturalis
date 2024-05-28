@@ -44,7 +44,7 @@ public class MenuManager {
      * visualizza a schermo il menu con tutte le sue opzioni
      */
     public void displayMenu() {
-        System.out.println("\n\n\n\nMenu:");
+        System.out.println("Menu:");
         // for generalizzato per stampare a schermo tutte le opzioni del menu
         for (Entry<Integer, MenuOption> o : opzioni.entrySet()) {
             System.out.println(o.getKey() + ". " + o.getValue());
