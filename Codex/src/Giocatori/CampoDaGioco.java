@@ -1,4 +1,5 @@
 package Giocatori;
+import java.util.Random;
 import java.util.Set;
 
 import Carte.*;
@@ -221,57 +222,54 @@ public class CampoDaGioco {
 	 * @return il numero degli angoli che la carta sovrappone
 	 */
 	public int angoliSovrapposti(Carta carta) {
-		int count = 0; //conta gli angoli sovrapposti
-		int index[] = null;  //0: riga, 1: colonna
-		//coordinate della carta da controllare
-		try {
-			index = trovaCoordinateCarta(carta);
-			
-			//per avere il criterio dei punti la carta oro deve essere giocata di fronte
-			//quindi controllo solo gli angoli sul davanti della carta
-			if(carta.getSpecifiAngolo(0) != null) {
-				//controllo angolo in alto a sinistra
-				if(trovaCarta((index[0] - 1), (index[1] -1)) != null) {
-					//esiste una carta sotto quell'angolo
-					if(trovaCarta((index[0] - 1), (index[1] -1)).getSpecifiAngolo(2) != null) //se l'angolo esiste
-						count++;
-				}
-			}
-			
-			if(carta.getSpecifiAngolo(1) != null) {
-				//controllo angolo in alto a destra
-				if(trovaCarta((index[0] -1), (index[1] + 1)) != null) {
-					//esiste una carta sotto quell'angolo
-					if(trovaCarta((index[0] - 1), (index[1] -1)).getSpecifiAngolo(3) != null) //se l'angolo esiste
-						count++;
-				}
-			}
-			
-			if(carta.getSpecifiAngolo(2) != null) {
-				//controllo angolo in basso a destra
-				if(trovaCarta((index[0] + 1), (index[1] + 1)) != null) {
-					//esiste una carta sotto quell'angolo
-					if(trovaCarta((index[0] - 1), (index[1] -1)).getSpecifiAngolo(0) != null) //se l'angolo esiste
-						count++;
-				}
-			}
-			else if(carta.getSpecifiAngolo(3) != null) {
-				//controllo angolo in basso a sinistra
-				if(trovaCarta((index[0] + 1), (index[1] - 1)) != null) {
-					//esiste una carta sotto quell'angolo
-					if(trovaCarta((index[0] - 1), (index[1] -1)).getSpecifiAngolo(1) != null) //se l'angolo esiste
-						count++;
-				}
-			}
-			
-			//finito il conteggio degli angoli sovrapposti
-			return count;
-		}
-		catch(ElementNotFoundException e) {
-			//la carta non e' stata trovata nella matrice, lancia l'eccezione
-			throw e;
-		}
+	    int count = 0; // conta gli angoli sovrapposti
+	    int[] index;  // 0: riga, 1: colonna
+
+	    // coordinate della carta da controllare
+	    try {
+	        index = trovaCoordinateCarta(carta);
+
+	        // Controllo angolo in alto a sinistra
+	        if (carta.getSpecifiAngolo(0) != null) {
+	            Carta cartaAdj = trovaCarta(index[0] - 1, index[1] - 1);
+	            if (cartaAdj != null && cartaAdj.getSpecifiAngolo(2) != null) {
+	                count++;
+	            }
+	        }
+
+	        // Controllo angolo in alto a destra
+	        if (carta.getSpecifiAngolo(1) != null) {
+	            Carta cartaAdj = trovaCarta(index[0] - 1, index[1] + 1);
+	            if (cartaAdj != null && cartaAdj.getSpecifiAngolo(3) != null) {
+	                count++;
+	            }
+	        }
+
+	        // Controllo angolo in basso a destra
+	        if (carta.getSpecifiAngolo(2) != null) {
+	            Carta cartaAdj = trovaCarta(index[0] + 1, index[1] + 1);
+	            if (cartaAdj != null && cartaAdj.getSpecifiAngolo(0) != null) {
+	                count++;
+	            }
+	        }
+
+	        // Controllo angolo in basso a sinistra
+	        if (carta.getSpecifiAngolo(3) != null) {
+	            Carta cartaAdj = trovaCarta(index[0] + 1, index[1] - 1);
+	            if (cartaAdj != null && cartaAdj.getSpecifiAngolo(1) != null) {
+	                count++;
+	            }
+	        }
+
+	        // finito il conteggio degli angoli sovrapposti
+	        return count;
+	    } catch (ElementNotFoundException e) {
+	        // la carta non è stata trovata nella matrice, lancia l'eccezione
+	        e.printStackTrace();
+	        throw e;
+	    }
 	}
+
 	
 	/***
 	 * trova le coordinate di una specifica carta nella matrice
@@ -310,11 +308,10 @@ public class CampoDaGioco {
 	 * @return la carta se e' stata trovata, ElementNotFoundException se la carta non c'é
 	 */
 	public Carta trovaCarta(int riga, int colonna) {
-		
-		if(campoPersonale[riga][colonna] != null) 
-			return campoPersonale[riga][colonna];
-		
-		return null;
+	    if (riga < 0 || riga >= this.nRigheTabella || colonna < 0 || colonna >= this.nColonneTabella) {
+	        throw new IndexOutOfBoundsException("Le coordinate specificate sono fuori dai limiti della matrice.");
+	    }
+	    return campoPersonale[riga][colonna];
 	}
 	
 	/***
