@@ -124,9 +124,4 @@ public class Carta {
 		
 		return "Colore: " + colore;
 	}
-	
-	
-	public Carta deepCopy() {
-		return new Carta(this.getAngoli(), this.getColore(), this.getDisegni());
-	}
 }

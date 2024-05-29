@@ -10,7 +10,7 @@ import obiettivi.CartaObiettivo;
 public class Giocatore {
 
 	private int punteggio;
-	private int turniGiocati; //TODO questa variabile non viene mai incrementata (rimuoverla o implementare un metodo che la sfrutti)
+	private int turniGiocati;
 	private List<Carta> mano;
 	private CartaObiettivo cartaObiettivo;
 	private Carta cartaStarter;

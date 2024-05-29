@@ -1,5 +1,4 @@
 package Giocatori;
-import java.util.Random;
 import java.util.Set;
 
 import Carte.*;
@@ -290,6 +289,7 @@ public class CampoDaGioco {
 					if(campoPersonale[i][j].equals(carta)) {
 						index[0] = i;
 						index[1] = j;
+						return index;
 					}/*
 					else {
 						throw new ElementNotFoundException("L'elemento " + carta + " non è stato trovato nella matrice.");
@@ -298,7 +298,7 @@ public class CampoDaGioco {
 			}
 		}
 			
-		return index;
+		return null;
 	}
 	
 	/***

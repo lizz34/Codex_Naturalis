@@ -20,7 +20,7 @@ public class GameManager {
 	/***
 	 * salva il numero dei giocatori che vogliono giocare
 	 * @param buffer: il numero di giocatori (stringa da castare)
-	 * @return false se l'input non é un inero, true se va tutto bene
+	 * @return false se l'input non é un intero, true se va tutto bene
 	 */
 	public boolean insertNumGiocatori(String buffer) {
 		boolean approvato=true;

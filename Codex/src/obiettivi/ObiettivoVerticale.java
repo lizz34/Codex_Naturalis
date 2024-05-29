@@ -23,7 +23,6 @@ public class ObiettivoVerticale extends CartaObiettivo implements ControlloObiet
 
 	@Override
 	public int calcoloObiettivo(CampoDaGioco campoPersonale) {
-
 		int modColonna = 0;
 		int modRiga1 = 0;
 		int modRiga2 = 0;
