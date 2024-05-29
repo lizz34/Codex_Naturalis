@@ -1,11 +1,12 @@
-CODEX 
-Videogioco online tratto dal gioco da tavolo Codex di Cranio Creations.
+# CODEX 
+Digitalizzazione del gioco da tavolo Codex di Cranio Creations.
 
 ## indice
 - [Istruzioni per giocare](#Istruzione)
 - [Funzionalità principali del gioco](#Funzionalità)
 - [Esempi di utilizzo](#Esempi)
 - [Stato del progetto](#Stato)
+- [Autori del progetto](#Autori)
 - [Licenza](#Licenza)
 
 ## Istruzione
@@ -15,8 +16,8 @@ La prima cosa che viene richiesta è di inserire il numero dei giocatori che des
 Il sistema creerà in automatico i mazzi di tutte le carte e, in maniera randomica, verrà assegnato ad ogni giocatore: una carta obiettivo, 3 carte nella mano (2 risorsa e 1 oro) e una carta starter (già inserita nella matrice di gioco).
 Ai giocatori viene permesso di scegliere se giocare la propria carta starter di fronte o di retro.
 
-COME VENGONO VISUALIZZAT LE CARTE:
-La stampa degli angoli prevede una lettura che parte dall'angolo ina alto a sinistra per poi continuare in senso oraraio. Verangono visualizzati due valori: true se l'angolo è libero e false se l'angolo è occupato e, accanto al suo stato, il disegno che c'è sull'angolo, altrimenti null se non ha disegno.
+COME VENGONO VISUALIZZATE LE CARTE:
+La stampa degli angoli prevede una lettura che parte dall'angolo ina alto a sinistra per poi continuare in senso oraraio. Vengono visualizzati due valori: true se l'angolo è libero oppure false se l'angolo è occupato e, accanto al suo stato, il disegno che c'è sull'angolo, altrimenti null se non ha disegno.
 
 Per ogni turno il giocatore visualizza un menù con le seguenti opzioni: 
 - posiziona una nuova carta (comprende il posizionamento della carta e il pescaggio di un'altra carta da quelle disponibili sul banco)
@@ -36,7 +37,8 @@ Per posizionare una carta tramite la [funzione per posizionare la carta](#posizi
 Nel caso si voglia giocare una carta di retro, bisogna selezionare l'opzione 5 del menù prima di procedere con il posizionamento della carta; in questo caso, inserire il numero della carta della propria mano che si vuole girare.
 
 Il termine della partita è decretato da: uno dei mazzi di carte finisce; un giocatore raggiunge (o supera) i 20 punti e tutti i giocatori hanno giocato lo stesso numero di turni. Qui il giocatore con più punti non è detto che vinca in quanto bisogna ancora contare tutti i punti extra delle carte Obiettivo (2 obiettivi comuni e uno segreto), che verranno calcolati e sommati al proprio punteggio.
-il giocatore con più punti sarà il giocatore. In caso di parità il giocatore che ha realizzato più carte obiettivo vincerà, se saranno uguali anche queste verrà condivisa la vittoria.
+il giocatore con più punti sarà il vincitore.
+In caso di parità il giocatore che ha realizzato più carte obiettivo vincerà, se saranno uguali anche queste verrà condivisa la vittoria.
 
 
 ## Funzionalità
@@ -184,6 +186,12 @@ Esempio: due carte verticali in basso a destra rispetto alla prima carta; la sec
 
 ## Esempi
 
+## Autori
+
+- **Lisa Rossi** - [Profilo GitHub](https://github.com/lizz34)
+- **Raul Beltramelli** - [Profilo GitHub](https://github.com/raulino04)
+- **Edoardo Pirola** - [Profilo GitHub](https://github.com/edoardopirola)
+- **Francesco Pezzotta** - [Profilo GitHub](https://github.com/frapezzotta)
 
 
 ## Stato
