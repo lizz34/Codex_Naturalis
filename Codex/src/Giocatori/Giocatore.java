@@ -115,31 +115,48 @@ public class Giocatore {
 					if(this.campoPersonale.getCampoPersonale()[index[0]][index[1]] != null) { //la carta dovrebbe essere stata posizionata correttamente
 						
 						if(this.campoPersonale.getCampoPersonale()[index[0]-1][index[1]-1] != null) { //se c'è una carta sopra a sinistra
-							if(this.campoPersonale.getCampoPersonale()[index[0]-1][index[1]-1].getFronte() == true) //se di fronte
-								this.campoPersonale.getCampoPersonale()[index[0]-1][index[1]-1].getSpecifiAngolo(2).setOccupato(true); //setto l'n angolo come occupato dato che è stato sovrapposto dalla carta appena piazzata
-							else
-								this.campoPersonale.getCampoPersonale()[index[0]-1][index[1]-1].getSpecifiAngolo(6).setOccupato(true); //se di retro occupo l'altro
+							if(this.campoPersonale.getCampoPersonale()[index[0]-1][index[1]-1].getFronte() == true) { //se di fronte
+								if(this.campoPersonale.getCampoPersonale()[index[0]-1][index[1]-1].getSpecifiAngolo(2) != null)
+									this.campoPersonale.getCampoPersonale()[index[0]-1][index[1]-1].getSpecifiAngolo(2).setOccupato(true); //setto l'n angolo come occupato dato che è stato sovrapposto dalla carta appena piazzata
+							}
+							else {
+								if(this.campoPersonale.getCampoPersonale()[index[0]-1][index[1]-1].getSpecifiAngolo(6) != null)
+									this.campoPersonale.getCampoPersonale()[index[0]-1][index[1]-1].getSpecifiAngolo(6).setOccupato(true); //se di retro occupo l'altro
+							}
 						}
 						
 						if(this.campoPersonale.getCampoPersonale()[index[0]-1][index[1]+1] != null) {
-							if(this.campoPersonale.getCampoPersonale()[index[0]-1][index[1]+1].getFronte() == true)
-								this.campoPersonale.getCampoPersonale()[index[0]-1][index[1]+1].getSpecifiAngolo(3).setOccupato(true);
-							else
-								this.campoPersonale.getCampoPersonale()[index[0]-1][index[1]+1].getSpecifiAngolo(7).setOccupato(true);
+							if(this.campoPersonale.getCampoPersonale()[index[0]-1][index[1]+1].getFronte() == true) {
+								if(this.campoPersonale.getCampoPersonale()[index[0]-1][index[1]+1].getSpecifiAngolo(3) != null)
+									this.campoPersonale.getCampoPersonale()[index[0]-1][index[1]+1].getSpecifiAngolo(3).setOccupato(true);
+								
+							}
+							else {
+								if(this.campoPersonale.getCampoPersonale()[index[0]-1][index[1]+1].getSpecifiAngolo(7) != null)
+									this.campoPersonale.getCampoPersonale()[index[0]-1][index[1]+1].getSpecifiAngolo(7).setOccupato(true);
+							}
 						}
 						
 						if(this.campoPersonale.getCampoPersonale()[index[0]+1][index[1]+1] != null) {
-							if(this.campoPersonale.getCampoPersonale()[index[0]+1][index[1]+1].getFronte() == true)
-								this.campoPersonale.getCampoPersonale()[index[0]+1][index[1]+1].getSpecifiAngolo(0).setOccupato(true);
-							else
-								this.campoPersonale.getCampoPersonale()[index[0]+1][index[1]+1].getSpecifiAngolo(4).setOccupato(true);
+							if(this.campoPersonale.getCampoPersonale()[index[0]+1][index[1]+1].getFronte() == true) {
+								if(this.campoPersonale.getCampoPersonale()[index[0]+1][index[1]+1].getSpecifiAngolo(0) != null)
+									this.campoPersonale.getCampoPersonale()[index[0]+1][index[1]+1].getSpecifiAngolo(0).setOccupato(true);
+							}
+							else {
+								if(this.campoPersonale.getCampoPersonale()[index[0]+1][index[1]+1].getSpecifiAngolo(4) != null)
+									this.campoPersonale.getCampoPersonale()[index[0]+1][index[1]+1].getSpecifiAngolo(4).setOccupato(true);
+							}
 						}
 						
 						if(this.campoPersonale.getCampoPersonale()[index[0]+1][index[1]-1] != null) {
-							if(this.campoPersonale.getCampoPersonale()[index[0]+1][index[1]-1].getFronte() == true)
-								this.campoPersonale.getCampoPersonale()[index[0]+1][index[1]-1].getSpecifiAngolo(1).setOccupato(true);
-							else
-								this.campoPersonale.getCampoPersonale()[index[0]+1][index[1]-1].getSpecifiAngolo(5).setOccupato(true);
+							if(this.campoPersonale.getCampoPersonale()[index[0]+1][index[1]-1].getFronte() == true) {
+								if(this.campoPersonale.getCampoPersonale()[index[0]+1][index[1]-1].getSpecifiAngolo(1) != null)
+									this.campoPersonale.getCampoPersonale()[index[0]+1][index[1]-1].getSpecifiAngolo(1).setOccupato(true);
+							}	
+							else {
+								if(this.campoPersonale.getCampoPersonale()[index[0]+1][index[1]-1].getSpecifiAngolo(5) != null)
+									this.campoPersonale.getCampoPersonale()[index[0]+1][index[1]-1].getSpecifiAngolo(5).setOccupato(true);
+							}	
 						}
 					}
 				}
