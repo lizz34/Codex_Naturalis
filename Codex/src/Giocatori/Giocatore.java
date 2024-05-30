@@ -9,6 +9,7 @@ import obiettivi.CartaObiettivo;
 
 public class Giocatore {
 
+	private String nickname;
 	private int punteggio;
 	private int turniGiocati;
 	private List<Carta> mano;
@@ -22,7 +23,9 @@ public class Giocatore {
 	 * @param cartaStarter: la carta starter con cui inizia a giocare
 	 * @param manoIniziale: le 3 carte che il giocatore ha all'inizio della partita
 	 */
-	public Giocatore(CartaObiettivo obiettivo, Carta cartaStarter, List<Carta> manoIniziale) {
+	public Giocatore(String nickname, CartaObiettivo obiettivo, Carta cartaStarter, List<Carta> manoIniziale) {
+		
+		this.nickname=nickname;
 		this.punteggio = 0;
 		this.turniGiocati=0;
 		this.cartaObiettivo = obiettivo;
@@ -262,6 +265,11 @@ public class Giocatore {
 		if(this.punteggio>29)
 			this.punteggio=29;
 	}
+	
+	public String getNickname() {
+		return this.nickname;
+	}
+	
 	
 	/***
 	 * @override del metodo toString

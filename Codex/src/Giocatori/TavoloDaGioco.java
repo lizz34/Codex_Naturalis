@@ -29,7 +29,7 @@ public class TavoloDaGioco {
 	 * Gira le prime due carte risorsa e le prime due carte oro sul tavolo da gioco
 	 * e estrae i due obiettivi casuali per tutti i giocatori
 	 */
-	public TavoloDaGioco(int nGiocatori) {
+	public TavoloDaGioco(int nGiocatori, List<String> nicknames) {
 	
 		//Creazione mazzo carteStarter
 		mazzoCarteStarter = new ArrayList<Carta>();
@@ -456,7 +456,7 @@ public class TavoloDaGioco {
 			manoIniziale.add(giraCartaRisorsa());
 			manoIniziale.add(giraCartaRisorsa());
 			manoIniziale.add(giraCartaOro());
-			giocatori[i] = new Giocatore(pescaCartaObiettivo(), pescaCartaStarter(), manoIniziale);
+			giocatori[i] = new Giocatore(nicknames.get(i), pescaCartaObiettivo(), pescaCartaStarter(), manoIniziale);
 		}
 	}	
 	

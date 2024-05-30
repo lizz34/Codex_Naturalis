@@ -100,4 +100,8 @@ public class CartaOro extends Carta{
 		}
 		
 	}
+	
+	public String stampa() {
+		return super.toString();
+	}
 }

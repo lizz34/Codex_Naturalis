@@ -124,4 +124,8 @@ public class Carta {
 		
 		return "Colore: " + colore;
 	}
+
+	public String stampa() {
+		return this.toString();
+	}
 }

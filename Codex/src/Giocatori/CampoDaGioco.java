@@ -168,6 +168,13 @@ public class CampoDaGioco {
 						}
 					}
 					else { 
+						if(campoPersonale[i][j].getColore().equals(Colore.giallo)) {
+							for(int k=4; k<8; k++) {
+								if(campoPersonale[i][j].getSpecifiAngolo(k)!=null && campoPersonale[i][j].getSpecifiAngolo(k).getOccupato()==false) { //se l'angolo non è occupato e quindi il disegno si può vedere..
+									contatoreDiFigure(contaFigure, campoPersonale[i][j].getSpecifiAngolo(k).getDisegno()); //incremento contatore nel vettore corrispondente al disegno tramite una funzione apposita
+								}
+							}
+						}
 						//invece se è giocata con il retro a vista si controlla il disegno al centro della carta
 						for(Disegno dis : campoPersonale[i][j].getDisegni()) { //essendoci al max 3 disegni, scorro e controllo se esiste il disegno
 							if(dis!=null) {
@@ -340,7 +347,7 @@ public class CampoDaGioco {
 			for(int j=0; j<nColonneTabella; j++) {
 				if(campoPersonale[i][j]!=null) {
 					System.out.println("Riga:"+i+ " Col:"+j);
-					System.out.println(campoPersonale[i][j].toString());
+					System.out.println(campoPersonale[i][j].stampa());
 				}
 			}
 			System.out.println();

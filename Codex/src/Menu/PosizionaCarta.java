@@ -89,6 +89,9 @@ public class PosizionaCarta implements MenuOption {
 			catch(NumberFormatException e) {
 				System.out.println("Errore: inserisci un numero intero");
 			}
+			if(g.getCampoPersonale().trovaCarta(nRiga, nColonna) != null && g.getCampoPersonale().trovaCarta(nRiga, nColonna).getFronte() == false && nAngolo>0 && nAngolo<=4) {
+				System.out.println("La carta è giocata di retro quindi devi scegliere uno tra gli angoli 5-6-7-8");
+			}
 		}
 		while((fronte==false || (nAngolo < 1 || nAngolo > 4)) && (fronte==true || (nAngolo < 5 || nAngolo > 8)));
 		

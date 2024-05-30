@@ -45,5 +45,9 @@ public class CartaRisorsa extends Carta{
 		System.out.println(super.toString());
 		return "punti: " + punti;
 	}
+	
+	public String stampa() {
+		return super.toString();
+	}
 }
 

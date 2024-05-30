@@ -31,12 +31,12 @@ public class ObiettivoVerticale extends CartaObiettivo implements ControlloObiet
 		
 		switch(lato) {
 			case "destra":
-				modColonna = +1;
+				modColonna = -1;
 				modRiga1 = +1;
 				modRiga2 = +2;
 			break;
 			case "sinistra":
-				modColonna = -1;
+				modColonna = +1;
 				modRiga1 = +1;
 				modRiga2 = +2;
 			break;

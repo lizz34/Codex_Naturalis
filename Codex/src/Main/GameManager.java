@@ -1,5 +1,6 @@
 package Main;
 
+import java.util.List;
 import java.util.Scanner;
 
 import Giocatori.*;
@@ -45,7 +46,7 @@ public class GameManager {
 		sc = new Scanner(System.in);
 		
 		for(int i=0; i<this.getnGiocatori(); i++) {
-			System.out.println("Giocatore " + (i+1) + " questa è la carta starter che ti è stata assegnata:");
+			System.out.println(this.getTavolo().getGiocatori()[i].getNickname() + " questa è la carta starter che ti è stata assegnata:");
 			System.out.println(this.getTavolo().getGiocatori()[i].getCartaStarter());
 			System.out.println("\ne questo è il retro:");
 			this.getTavolo().getGiocatori()[i].getCampoPersonale().trovaCarta(24,24).setFronte(false);
@@ -72,9 +73,9 @@ public class GameManager {
 	 * crea un nuovo tavolo di gioco sul quale si svolgerà la partita
 	 * @param nGiocatori: il numero di giocatori che giocano (da 2 a 4)
 	 */
-	public void createTable(int nGiocatori) {
+	public void createTable(int nGiocatori, List<String> nicknames) {
 		//crea un nuovo tavolo da gioco
-		this.tavolo = new TavoloDaGioco(nGiocatori);
+		this.tavolo = new TavoloDaGioco(nGiocatori, nicknames);
 		//crea un nuovo menu' manager per la scelta delle opzioni utente
 		this.mg = new MenuManager(tavolo);
 	}
@@ -85,9 +86,20 @@ public class GameManager {
 	 */
 	public void calcoloPuntiObiettivi() {
 		for(Giocatore g: tavolo.getGiocatori()) {
-			g.incrementaPunteggio(g.getCartaObiettivo().calcoloObiettivo(g.getCampoPersonale()));					//obiettivo personale del giocatore
-			g.incrementaPunteggio(tavolo.getObiettiviComuni().get(0).calcoloObiettivo(g.getCampoPersonale()));		//primo obiettivo comune
-			g.incrementaPunteggio(tavolo.getObiettiviComuni().get(1).calcoloObiettivo(g.getCampoPersonale()));		//secondo obiettivo comune
+			if(g.getCartaObiettivo().calcoloObiettivo(g.getCampoPersonale()) >0) {
+				g.incrementaPunteggio(g.getCartaObiettivo().calcoloObiettivo(g.getCampoPersonale()));					//obiettivo personale del giocatore
+				System.out.println("Hai completato l'obiettivo personale:\n" + g.getCartaObiettivo().toString());
+			}
+			
+			if(tavolo.getObiettiviComuni().get(0).calcoloObiettivo(g.getCampoPersonale()) > 0){
+				g.incrementaPunteggio(tavolo.getObiettiviComuni().get(0).calcoloObiettivo(g.getCampoPersonale()));		//primo obiettivo comune
+				System.out.println("Hai completato il primo obiettivo comune:\n" + tavolo.getObiettiviComuni().get(0).toString());
+			}
+			
+			if(tavolo.getObiettiviComuni().get(1).calcoloObiettivo(g.getCampoPersonale()) > 0){
+				g.incrementaPunteggio(tavolo.getObiettiviComuni().get(1).calcoloObiettivo(g.getCampoPersonale()));		//secondo obiettivo comune
+				System.out.println("Hai completato il secondo obiettivo comune:\n" + tavolo.getObiettiviComuni().get(1).toString());
+			}
 		}
 	}
 	
