@@ -85,10 +85,11 @@ public class MenuManager {
     		punteggi.add(g.getPunteggio());
     	}
     	
+    	System.out.println("\nClassifica dei punteggi: \n");
     	for(int p : punteggi) {
     		for(Giocatore g : this.tavolo.getGiocatori()) {
     			if(p==g.getPunteggio())
-    				System.out.println(g.getNickname() + " " + p);
+    				System.out.println(g.getNickname() + ": " + p + " punti");
     		}
     	}
     	

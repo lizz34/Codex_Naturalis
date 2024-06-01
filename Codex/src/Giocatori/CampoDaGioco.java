@@ -368,7 +368,7 @@ public class CampoDaGioco {
 				//prima riga: indicizzazione di ogni cella
 				for(int j = 0; j < nColonneTabella; j++) {
 					if(this.isColoumnEmpty(campoPersonale, j) == false) {
-						sb.append(formatToFixedWidth(i + "x" + j, 21));
+						sb.append(formatToFixedWidth("    " + i + "x" + j, 22));
 					}		
 				}
 				sb.append("\n");
