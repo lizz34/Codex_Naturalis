@@ -283,30 +283,28 @@ public class CampoDaGioco {
 	 * @param carta: la carta di cui si vogliono cercare le coordinate
 	 * @return un vettore contenente i due indici della matrice in cui si trova la carta
 	 */
-	public int[] trovaCoordinateCarta (Carta carta){
-		int index [] = new int [2];
-		
-		if(carta == null) {
-			//é stato passato un elemento nullo come parametro
-			throw new IllegalArgumentException("I parametri non possono essere nulli");
-		}
-		//ciclo per scorrere gli elementi della matrice
-		for (int i=0; i<this.nRigheTabella; i++) {
-			for (int j=0; j<this.nColonneTabella; j++) {
-				if(campoPersonale[i][j]!=null) {
-					if(campoPersonale[i][j].equals(carta)) {
-						index[0] = i;
-						index[1] = j;
-						return index;
-					}/*
-					else {
-						throw new ElementNotFoundException("L'elemento " + carta + " non è stato trovato nella matrice.");
-					}*/
-				}
-			}
-		}
-			
-		return null;
+	public int[] trovaCoordinateCarta(Carta carta) {
+	    int index[] = new int[2];
+
+	    if (carta == null) {
+	        // è stato passato un elemento nullo come parametro
+	        throw new IllegalArgumentException("I parametri non possono essere nulli");
+	    }
+
+	    // ciclo per scorrere gli elementi della matrice
+	    for (int i = 0; i < this.nRigheTabella; i++) {
+	        for (int j = 0; j < this.nColonneTabella; j++) {
+	            if (campoPersonale[i][j] != null) {
+	                if (campoPersonale[i][j].equals(carta)) {
+	                    index[0] = i;
+	                    index[1] = j;
+	                    return index;
+	                }
+	            }
+	        }
+	    }
+
+	    throw new ElementNotFoundException("L'elemento " + carta + " non è stato trovato nella matrice.");
 	}
 	
 	/***
@@ -357,6 +355,10 @@ public class CampoDaGioco {
 		this.stampa();
 	}
 	
+	/***
+	 * stampa la matrice del giocatore contenente le carte che ha già posizionato in formato tabellare,
+	 * intestate con il loro numero di riga e di colonna corrispondente.
+	 */
 	public void stampa() {
 		StringBuilder sb = new StringBuilder();
 		sb.append("\n\n");
@@ -491,6 +493,13 @@ public class CampoDaGioco {
 		System.out.println(sb.toString());
 	}
 	
+	/***
+	 * formatta una stringa in modo che abbia una dimensione specifica, tagliandola nel caso in cui sia troppo lunga o
+	 * aggiungendo degli spazi nel caso in cui sia troppo corta.
+	 * @param str: la stringa da formattare
+	 * @param width: la dimensione in caratteri che si desidera
+	 * @return la stringa formattata
+	 */
 	private String formatToFixedWidth(String str, int width) {
         if (str.length() > width) {
             return str.substring(0, width);
@@ -499,6 +508,12 @@ public class CampoDaGioco {
         }
     }
 	
+	/***
+	 * controlla se l'intera riga di una matrice e' vuota
+	 * @param matrix: la matrice di cui si vuole controllare la riga
+	 * @param row: il numero della riga da controllare
+	 * @return true se la riga e' interamente vuota, false se c'é almeno un elemento
+	 */
 	private boolean isRowEmpty(Carta [][] matrix, int row) {
         for (int i = 0; i < matrix[row].length; i++) {
             if (matrix[row][i] != null) {
@@ -508,6 +523,12 @@ public class CampoDaGioco {
         return true;
     }
 	
+	/***
+	 * controlla se l'intera colonna di una matrice é vuota
+	 * @param matrix: la matrice di cui si vuole controllare la colonna
+	 * @param coloumn: il numero della colonna da controllare
+	 * @return true se la colonna é interamente vuota, false se c'é almeno un elemento
+	 */
 	private boolean isColoumnEmpty(Carta [][] matrix, int coloumn) {
         for (int i = 0; i < matrix.length; i++) {
             if (matrix[i][coloumn] != null) {
