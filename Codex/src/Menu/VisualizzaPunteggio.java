@@ -23,7 +23,7 @@ public class VisualizzaPunteggio implements MenuOption{
 	 */
 	public void execute(Giocatore g) throws CardPlacementException {
 		for(int i=0 ; i<this.tavolo.getGiocatori().length; i++) {
-			System.out.println("Giocatore " +(i+1) + ": " + this.tavolo.getGiocatori()[i].getPunteggio() + " punti");
+			System.out.println(g.getNickname() + ": " + this.tavolo.getGiocatori()[i].getPunteggio() + " punti");
 		}
 	}
 	

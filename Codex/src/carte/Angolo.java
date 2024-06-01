@@ -52,7 +52,10 @@ public class Angolo {
 	 * @override del metodo toString
 	 */
 	public String toString() {
-		return occupato + " " + disegno;
+		if(occupato == true)
+			return "occupato" + " " + disegno;
+		else
+			return "libero" + " " + disegno;
 	}
 	
 }
