@@ -51,6 +51,7 @@ public class Main {
 			do {
 				
 				do{
+					//System.out.println(ConsoleColors.RED + "prova rosso" +  ConsoleColors.RESET + "prova normale");
 					mg.displayMenu();
 					
 					System.out.println("Inserisci la tua scelta: ");

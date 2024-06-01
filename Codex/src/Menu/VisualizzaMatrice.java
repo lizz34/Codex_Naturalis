@@ -50,7 +50,7 @@ public class VisualizzaMatrice implements MenuOption {
 		System.out.println("\n");
 		
 	}
-	
+
 	/***
 	 * @return il nome esteso dell'opzione del menu
 	 */
