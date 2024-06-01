@@ -21,7 +21,7 @@ public class VisualizzaMatrice implements MenuOption {
 	 * @throws CardPlacmentException
 	 */
 	public void execute(Giocatore g) throws CardPlacementException{
-		g.getCampoPersonale().stampaCampoDaGioco();
+		g.getCampoPersonale().stampa();
 		
 		//aggiunge il numero di figure che sono presenti sul campo da gioco
 		//per facilitare il posizionamento delle carte al giocatore

@@ -341,6 +341,7 @@ public class CampoDaGioco {
 	}
 	
 	/**
+	 * @deprecated
 	 * stampa della matrice ossia l'area di gioco del giocatore
 	 */
 	public void stampaCampoDaGioco() {
@@ -358,137 +359,139 @@ public class CampoDaGioco {
 	
 	public void stampa() {
 		StringBuilder sb = new StringBuilder();
+		sb.append("\n\n");
 		
 		for(int i = 0; i < nRigheTabella; i++) { //righe
-			
-			//prima riga: indicizzazione di ogni cella
-			for(int j = 0; j < nColonneTabella; j++) {
-				if(this.isRowEmpty(campoPersonale, i) == false) {
-					sb.append(formatToFixedWidth(i + "x" + j, 21));
-				}		
-			}
-			sb.append("\n");
+			if(this.isRowEmpty(campoPersonale, i) == false) {
+				//prima riga: indicizzazione di ogni cella
+				for(int j = 0; j < nColonneTabella; j++) {
+					if(this.isColoumnEmpty(campoPersonale, j) == false) {
+						sb.append(formatToFixedWidth(i + "x" + j, 21));
+					}		
+				}
+				sb.append("\n");
+					
+				//seconda riga: angoli in alto
+				for(int j = 0; j < nColonneTabella; j++) {
+					if(this.isColoumnEmpty(campoPersonale, j) == false) {
+						//c'e' qualcosa nella riga
+						if(campoPersonale[i][j] != null) {
+							if(campoPersonale[i][j].getFronte() == true) {
+								sb.append("|");
+								sb.append(campoPersonale[i][j].getAngoli()[0] != null ? formatToFixedWidth(campoPersonale[i][j].getAngoli()[0].getDisegno() + "  ", 10) 
+										: formatToFixedWidth(" ", 10));
+								sb.append(campoPersonale[i][j].getAngoli()[1] != null ? formatToFixedWidth(campoPersonale[i][j].getAngoli()[1].getDisegno() + "  ", 10)  
+										: formatToFixedWidth(" ", 10));
+								sb.append("|");
+							}
+							else {
+								//giocata di retro: solo la carta starter ha degli angoli con delle figure sul retro
+								if(campoPersonale[i][j].getColore().equals(Colore.giallo)) {
+									//carta starter
+									sb.append("|");
+									sb.append(campoPersonale[i][j].getAngoli()[4] != null ? formatToFixedWidth(campoPersonale[i][j].getAngoli()[4].getDisegno() + "  ", 10) 
+											: formatToFixedWidth(" ", 10));
+									sb.append(campoPersonale[i][j].getAngoli()[5] != null ? formatToFixedWidth(campoPersonale[i][j].getAngoli()[5].getDisegno() + "  ", 10) 
+											: formatToFixedWidth(" ", 10));
+									sb.append("|");
+								}
+								else {
+									//carta normale
+									sb.append("|                   |");
+								}
+							}
+						}
+						else {
+							sb.append("|                   |");
+						}
+					}
+				}
+				sb.append("\n");
 				
-			//seconda riga: angoli in alto
-			for(int j = 0; j < nColonneTabella; j++) {
-				if(this.isRowEmpty(campoPersonale, i) == false) {
-					//c'e' qualcosa nella riga
-					if(campoPersonale[i][j] != null) {
-						if(campoPersonale[i][j].getFronte() == true) {
-							sb.append("|");
-							sb.append(campoPersonale[i][j].getAngoli()[0] != null ? formatToFixedWidth(campoPersonale[i][j].getAngoli()[0].getDisegno() + "  ", 10) 
-									: formatToFixedWidth(" ", 10));
-							sb.append(campoPersonale[i][j].getAngoli()[1] != null ? formatToFixedWidth(campoPersonale[i][j].getAngoli()[1].getDisegno() + "  ", 10)  
-									: formatToFixedWidth(" ", 10));
-							sb.append("|");
+				//terza riga: disegni in centro alla carta
+				for(int j = 0; j < nColonneTabella; j++) {
+					if(this.isColoumnEmpty(campoPersonale, j) == false) {
+						if(campoPersonale[i][j] != null) {
+							if(campoPersonale[i][j].getFronte() == true) {
+								//carte giocate di fronte non hanno disegni centrali
+								sb.append("|                    |");
+							}
+							else {
+								//carte giocate di retro
+								sb.append("|");
+								sb.append(campoPersonale[i][j].getDisegni()[0] != null ? formatToFixedWidth(campoPersonale[i][j].getDisegni()[0] + "  ", 6) 
+										: formatToFixedWidth(" ", 6));
+								sb.append(campoPersonale[i][j].getDisegni()[1] != null ? formatToFixedWidth(campoPersonale[i][j].getDisegni()[1] + "  ", 7) 
+										: formatToFixedWidth(" ", 7));
+								sb.append(campoPersonale[i][j].getDisegni()[2] != null ? formatToFixedWidth(campoPersonale[i][j].getDisegni()[2] + "  ", 6) 
+										: formatToFixedWidth(" ", 6));
+								sb.append("|");
+							}
 						}
 						else {
-							//giocata di retro: solo la carta starter ha degli angoli con delle figure sul retro
-							if(campoPersonale[i][j].getColore().equals(Colore.giallo)) {
-								//carta starter
+							sb.append("|                   |");
+						}
+					}
+				}
+				sb.append("\n");
+				
+				//quarta riga: angoli in basso
+				for(int j = 0; j < nColonneTabella; j++) {
+					if(this.isColoumnEmpty(campoPersonale, j) == false) {
+						if(campoPersonale[i][j] != null) {
+							if(campoPersonale[i][j].getFronte() == true) {
 								sb.append("|");
-								sb.append(campoPersonale[i][j].getAngoli()[4] != null ? formatToFixedWidth(campoPersonale[i][j].getAngoli()[4].getDisegno() + "  ", 10) 
+								sb.append(campoPersonale[i][j].getAngoli()[3] != null ? formatToFixedWidth(campoPersonale[i][j].getAngoli()[3].getDisegno() + "  ", 10) 
 										: formatToFixedWidth(" ", 10));
-								sb.append(campoPersonale[i][j].getAngoli()[5] != null ? formatToFixedWidth(campoPersonale[i][j].getAngoli()[5].getDisegno() + "  ", 10) 
+								sb.append(campoPersonale[i][j].getAngoli()[2] != null ? formatToFixedWidth(campoPersonale[i][j].getAngoli()[2].getDisegno() + "  ", 10) 
 										: formatToFixedWidth(" ", 10));
 								sb.append("|");
 							}
 							else {
-								//carta normale
-								sb.append("|                   |");
+								//carte giocate di retro
+								if(campoPersonale[i][j].getColore().equals(Colore.giallo)) {
+									//carta starter
+									sb.append("|");
+									sb.append(campoPersonale[i][j].getAngoli()[7] != null ? formatToFixedWidth(campoPersonale[i][j].getAngoli()[7].getDisegno() + "  ", 10) 
+											: formatToFixedWidth(" ", 10));
+									sb.append(campoPersonale[i][j].getAngoli()[6] != null ? formatToFixedWidth(campoPersonale[i][j].getAngoli()[6].getDisegno() + "  ", 10) 
+											: formatToFixedWidth(" ", 10));
+									sb.append("|");
+								}
+								else {
+									//carta normale
+									sb.append("|                   |");
+								}
 							}
 						}
-					}
-					else {
-						sb.append("|                   |");
-					}
-				}
-			}
-			sb.append("\n");
-			
-			//terza riga: disegni in centro alla carta
-			for(int j = 0; j < nColonneTabella; j++) {
-				if(this.isRowEmpty(campoPersonale, i) == false) {
-					if(campoPersonale[i][j] != null) {
-						if(campoPersonale[i][j].getFronte() == true) {
-							//carte giocate di fronte non hanno disegni centrali
-							sb.append("|                    |");
-						}
 						else {
-							//carte giocate di retro
-							sb.append("|");
-							sb.append(campoPersonale[i][j].getDisegni()[0] != null ? formatToFixedWidth(campoPersonale[i][j].getDisegni()[0] + "  ", 6) 
-									: formatToFixedWidth(" ", 6));
-							sb.append(campoPersonale[i][j].getDisegni()[1] != null ? formatToFixedWidth(campoPersonale[i][j].getDisegni()[1] + "  ", 7) 
-									: formatToFixedWidth(" ", 7));
-							sb.append(campoPersonale[i][j].getDisegni()[2] != null ? formatToFixedWidth(campoPersonale[i][j].getDisegni()[2] + "  ", 6) 
-									: formatToFixedWidth(" ", 6));
-							sb.append("|");
+							sb.append("|                   |");
 						}
 					}
-					else {
-						sb.append("|                   |");
-					}
 				}
-			}
-			sb.append("\n");
-			
-			//quarta riga: angoli in basso
-			for(int j = 0; j < nColonneTabella; j++) {
-				if(this.isRowEmpty(campoPersonale, i) == false) {
-					if(campoPersonale[i][j] != null) {
-						if(campoPersonale[i][j].getFronte() == true) {
+				sb.append("\n");
+				
+				//quarta riga: colore della carta
+				for(int j = 0; j < nColonneTabella; j++) {
+					if(this.isColoumnEmpty(campoPersonale, j) == false) {
+						if(campoPersonale[i][j] != null) {
 							sb.append("|");
-							sb.append(campoPersonale[i][j].getAngoli()[3] != null ? formatToFixedWidth(campoPersonale[i][j].getAngoli()[3].getDisegno() + "  ", 10) 
-									: formatToFixedWidth(" ", 10));
-							sb.append(campoPersonale[i][j].getAngoli()[2] != null ? formatToFixedWidth(campoPersonale[i][j].getAngoli()[2].getDisegno() + "  ", 10) 
-									: formatToFixedWidth(" ", 10));
+							sb.append(formatToFixedWidth("colore: " + campoPersonale[i][j].getColore() , 20));
 							sb.append("|");
 						}
 						else {
-							//carte giocate di retro
-							if(campoPersonale[i][j].getColore().equals(Colore.giallo)) {
-								//carta starter
-								sb.append("|");
-								sb.append(campoPersonale[i][j].getAngoli()[7] != null ? formatToFixedWidth(campoPersonale[i][j].getAngoli()[7].getDisegno() + "  ", 10) 
-										: formatToFixedWidth(" ", 10));
-								sb.append(campoPersonale[i][j].getAngoli()[6] != null ? formatToFixedWidth(campoPersonale[i][j].getAngoli()[6].getDisegno() + "  ", 10) 
-										: formatToFixedWidth(" ", 10));
-								sb.append("|");
-							}
-							else {
-								//carta normale
-								sb.append("|                   |");
-							}
+							sb.append("|                   |");
 						}
 					}
-					else {
-						sb.append("|                   |");
-					}
 				}
+				sb.append("\n\n\n");
 			}
-			sb.append("\n");
-			
-			//quarta riga: colore della carta
-			for(int j = 0; j < nColonneTabella; j++) {
-				if(this.isRowEmpty(campoPersonale, i) == false) {
-					if(campoPersonale[i][j] != null) {
-						sb.append("|");
-						sb.append(formatToFixedWidth("colore: " + campoPersonale[i][j].getColore() , 20));
-						sb.append("|");
-					}
-					else {
-						sb.append("|                   |");
-					}
-				}
-			}
-			sb.append("\n\n\n");
 			
 		}
 		System.out.println(sb.toString());
 	}
 	
-	public String formatToFixedWidth(String str, int width) {
+	private String formatToFixedWidth(String str, int width) {
         if (str.length() > width) {
             return str.substring(0, width);
         } else {
@@ -496,7 +499,7 @@ public class CampoDaGioco {
         }
     }
 	
-	public boolean isRowEmpty(Carta [][] matrix, int row) {
+	private boolean isRowEmpty(Carta [][] matrix, int row) {
         for (int i = 0; i < matrix[row].length; i++) {
             if (matrix[row][i] != null) {
                 return false;
@@ -505,7 +508,7 @@ public class CampoDaGioco {
         return true;
     }
 	
-	public boolean isColoumnEmpty(Carta [][] matrix, int coloumn) {
+	private boolean isColoumnEmpty(Carta [][] matrix, int coloumn) {
         for (int i = 0; i < matrix.length; i++) {
             if (matrix[i][coloumn] != null) {
                 return false;
