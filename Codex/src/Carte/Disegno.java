@@ -8,5 +8,6 @@ public enum Disegno {
 	boccetta,
 	piuma,
 	pergamena,
-	angoloSovrapposto
+	angoloSovrapposto,
+	vuoto
 }

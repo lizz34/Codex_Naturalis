@@ -45,6 +45,7 @@ public class Angolo {
 	 * @return ritorna il disegno presente nell'angolo considerato
 	 */
 	public Disegno getDisegno() {
+		if(this.disegno == null) return Disegno.vuoto;
 		return disegno;
 	}
 	
