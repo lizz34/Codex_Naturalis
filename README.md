@@ -28,7 +28,7 @@ Il turno di un giocatore termina solo dopo che è stata posizionata correttament
 Per posizionare una carta tramite la [funzione per posizionare la carta](#posizionaCarta) è necessario inserire:
 - il numero della carta del proprio mazzo che si vuole inserire (da 1 a 3)
 - il numero della riga, della colonna e dell'angolo che corrispondono alla carta già presente nella matrice, sulla quale si vuole posizionare la nuova carta. Il campo da gioco viene rappresentato tramite una matrice (per visualizzare, opzione 3 del menù): a schermo verrà visualizzata una lista di carte (indicizzate tramite la loro riga e colonna: valori da 0 a 49) che mostrano una lista dei loro 4 angoli visibili. Successivamente verrà chiesto l'angolo sul quale si vorrà operare (da 1 a 4 se la carta é giocata di fronte, da 5 a 8 se di retro) scegliendo a partire dall'anglo in alto a sinistra per poi continuare in senso orario.
-  Posionata la carta possono continuare i giocatori successivi e in automatico il programma salverà i punti fatti(visualizzabili scegliendo l'opzione 6 nel menu' nel prorprio turno).
+  Posionata la carta possono continuare i giocatori successivi e in automatico il programma salverà i punti fatti (visualizzabili scegliendo l'opzione 6 nel menu' nel prorprio turno).
 
   ![Disposizione degli angoli](https://github.com/lizz34/progettoUni/blob/main/images/fronte%20e%20retro%20carte.png)
  
@@ -36,6 +36,7 @@ Nel caso si voglia giocare una carta di retro, bisogna selezionare l'opzione 5 d
 
 Il termine della partita è decretato da: uno dei mazzi di carte finisce; un giocatore raggiunge (o supera) i 20 punti e tutti i giocatori hanno giocato lo stesso numero di turni. Qui il giocatore con più punti non è detto che vinca in quanto bisogna ancora contare tutti i punti extra delle carte obiettivo (2 obiettivi comuni e uno segreto), che verranno calcolati e sommati al proprio punteggio.
 il giocatore con più punti sarà il vincitore.
+
 In caso di parità il giocatore che ha realizzato più carte obiettivo vincerà, se saranno uguali anche queste verrà condivisa la vittoria.
 
 
