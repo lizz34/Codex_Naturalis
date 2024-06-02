@@ -30,12 +30,12 @@ public class CarteTavolo implements MenuOption {
 		
 		System.out.println("Carte risorsa che puoi pescare:");
 		for(CartaRisorsa c: tavolo.getCarteRisorsaBanco()) {
-			System.out.println(c.toString() + "\n");
+			System.out.println(c.toString() + "\n\n");
 		}
 		
-		System.out.println("Carte oro che puoi pescare:");
+		System.out.println("\nCarte oro che puoi pescare:");
 		for(CartaOro c: tavolo.getCarteOroBanco()) {
-			System.out.println(c.toString() + "\n");
+			System.out.println(c.toString() + "\n\n");
 		}
 	}
 	

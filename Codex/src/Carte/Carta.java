@@ -102,7 +102,7 @@ public class Carta {
 	/***
 	 * @override del metodo toString
 	 */
-	public String toString() {  
+	/*public String toString() {  
 		System.out.println("(occupato | disegno)");
 		if(fronte==true) {
 			for(int i=0; i<4; i++) {
@@ -123,7 +123,56 @@ public class Carta {
 		}
 		
 		return "Colore: " + colore;
+	}*/
+	
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		
+		if(this.fronte == true) {
+			//carta giocata di fronte
+			sb.append("|");
+			sb.append(this.angoli[0] != null ? formatToFixedWidth(this.angoli[0].getDisegno() + "  ", 10) : formatToFixedWidth(" ", 10));
+			sb.append(this.angoli[1] != null ? formatToFixedWidth(this.angoli[1].getDisegno() + "  ", 10) : formatToFixedWidth(" ", 10));
+			sb.append("|\n");
+			sb.append("|");
+			sb.append(this.angoli[3] != null ? formatToFixedWidth(this.angoli[3].getDisegno() + "  ", 10) : formatToFixedWidth(" ", 10));
+			sb.append(this.angoli[2] != null ? formatToFixedWidth(this.angoli[2].getDisegno() + "  ", 10) : formatToFixedWidth(" ", 10));
+			sb.append("|\n");
+			sb.append("|");
+			sb.append(formatToFixedWidth("Colore: " + this.colore, 20));
+			sb.append("|\n\n");
+		}
+		else {
+			//carta giocata di retro (aggiunge linea dei disegni centrali)
+			sb.append("|");
+			sb.append(this.angoli[4] != null ? formatToFixedWidth(this.angoli[4].getDisegno() + "  ", 10) : formatToFixedWidth(" ", 10));
+			sb.append(this.angoli[5] != null ? formatToFixedWidth(this.angoli[5].getDisegno() + "  ", 10) : formatToFixedWidth(" ", 10));
+			sb.append("|\n");
+			sb.append("|");
+			sb.append(this.disegni[0] != null ? formatToFixedWidth(this.disegni[0] + "  ", 6) : formatToFixedWidth(" ", 7));
+			sb.append(this.disegni[1] != null ? formatToFixedWidth(this.disegni[1] + "  ", 7) : formatToFixedWidth(" ", 7));
+			sb.append(this.disegni[2] != null ? formatToFixedWidth(this.disegni[2] + "  ", 6) : formatToFixedWidth(" ", 7));
+			sb.append("|\n");
+			sb.append("|");
+			sb.append(this.angoli[7] != null ? formatToFixedWidth(this.angoli[7].getDisegno() + "  ", 10) : formatToFixedWidth(" ", 10));
+			sb.append(this.angoli[6] != null ? formatToFixedWidth(this.angoli[6].getDisegno() + "  ", 10) : formatToFixedWidth(" ", 10));
+			sb.append("|\n");
+			sb.append("|");
+			sb.append(formatToFixedWidth("Colore: " + this.colore, 20));
+			sb.append("|");
+		}
+		
+		return sb.toString();
 	}
+	
+	protected String formatToFixedWidth(String str, int width) {
+        if (str.length() > width) {
+            return str.substring(0, width);
+        } else {
+            return String.format("%-" + width + "s", str);
+        }
+    }
+	
 
 	public String stampa() {
 		return this.toString();

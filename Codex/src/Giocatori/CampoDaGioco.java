@@ -421,11 +421,11 @@ public class CampoDaGioco {
 							else {
 								//carte giocate di retro
 								sb.append("|");
-								sb.append(campoPersonale[i][j].getDisegni()[0] != null ? formatToFixedWidth(campoPersonale[i][j].getDisegni()[0] + "  ", 6) 
+								sb.append(campoPersonale[i][j].getDisegni()[0] != null ? formatToFixedWidth(campoPersonale[i][j].getDisegni()[0] + "  ", 7) 
 										: formatToFixedWidth(" ", 6));
 								sb.append(campoPersonale[i][j].getDisegni()[1] != null ? formatToFixedWidth(campoPersonale[i][j].getDisegni()[1] + "  ", 7) 
 										: formatToFixedWidth(" ", 7));
-								sb.append(campoPersonale[i][j].getDisegni()[2] != null ? formatToFixedWidth(campoPersonale[i][j].getDisegni()[2] + "  ", 6) 
+								sb.append(campoPersonale[i][j].getDisegni()[2] != null ? formatToFixedWidth(campoPersonale[i][j].getDisegni()[2] + "  ", 7) 
 										: formatToFixedWidth(" ", 6));
 								sb.append("|");
 							}
