@@ -4,7 +4,6 @@ Digitalizzazione del gioco da tavolo Codex di Cranio Creations.
 ## indice
 - [Istruzioni per giocare](#Istruzione)
 - [Funzionalità principali del gioco](#Funzionalità)
-- [Esempi di utilizzo](#Esempi)
 - [Stato del progetto](#Stato)
 - [Autori del progetto](#Autori)
 - [Licenza](#Licenza)
@@ -12,12 +11,9 @@ Digitalizzazione del gioco da tavolo Codex di Cranio Creations.
 ## Istruzione
 
 La prima cosa da fare per poter utilizzare il gioco è clonare la repository in locale e aprirla su Eclipse; in seguito bisgona eseguire il file Main.java contenuto nel package Main.
-La prima cosa che viene richiesta è di inserire il numero dei giocatori che desiderano partecipare alla partita (minimo 2 massimo 4).
-Il sistema creerà in automatico i mazzi di tutte le carte e, in maniera randomica, verrà assegnato ad ogni giocatore: una carta obiettivo, 3 carte nella mano (2 risorsa e 1 oro) e una carta starter (già inserita nella matrice di gioco).
+La prima cosa che viene richiesta è di inserire il numero e il nickname dei giocatori che desiderano partecipare alla partita (minimo 2 massimo 4).
+Il sistema creerà in automatico i mazzi di tutte le carte e, in maniera randomica, verrà assegnato ad ogni giocatore: una carta obiettivo, 3 carte nella mano (2 risorsa e 1 oro) e una carta starter (già inserita nella matrice di gioco in posizione 24x24).
 Ai giocatori viene permesso di scegliere se giocare la propria carta starter di fronte o di retro.
-
-COME VENGONO VISUALIZZATE LE CARTE:
-La stampa degli angoli prevede una lettura che parte dall'angolo ina alto a sinistra per poi continuare in senso oraraio. Vengono visualizzati due valori: true se l'angolo è libero oppure false se l'angolo è occupato e, accanto al suo stato, il disegno che c'è sull'angolo, altrimenti null se non ha disegno.
 
 Per ogni turno il giocatore visualizza un menù con le seguenti opzioni: 
 - posiziona una nuova carta (comprende il posizionamento della carta e il pescaggio di un'altra carta da quelle disponibili sul banco)
@@ -31,12 +27,14 @@ Per ogni turno il giocatore visualizza un menù con le seguenti opzioni:
 Il turno di un giocatore termina solo dopo che è stata posizionata correttamente una carta (opzione 1 del menù). E' consigliabile fare una panoramica su tutte le altre opzioni prima di scegliere quella relativa al posizionamento della carta. 
 Per posizionare una carta tramite la [funzione per posizionare la carta](#posizionaCarta) è necessario inserire:
 - il numero della carta del proprio mazzo che si vuole inserire (da 1 a 3)
-- il numero della riga, della colonna e dell'angolo che corrispondono alla carta già presente nella matrice, sulla quale si vuole posizionare la nuova carta. Il campo da gioco viene rappresentato tramite una matrice (per visualizzare, opzione 3 del menù): a schermo verrà visualizzata una lista di carte (indicizzate tramite la loro riga e colonna: valori da 0 a 49) che mostrano una lista dei loro 4 angoli visibili. Successivamente verrà chiesto l'angolo sul quale si vorrà operare, dove vale lo stesso criterio di prima, scegliendo a partire dall'anglo in alto a sinistra per poi continuare in senso orario.
-  Posionata la carta possono continuare i giocatori successivi e in automatico il programma salverà i punti fatti(visuaizzabili premendo il tasto 6 nel prorprio turno).
+- il numero della riga, della colonna e dell'angolo che corrispondono alla carta già presente nella matrice, sulla quale si vuole posizionare la nuova carta. Il campo da gioco viene rappresentato tramite una matrice (per visualizzare, opzione 3 del menù): a schermo verrà visualizzata una lista di carte (indicizzate tramite la loro riga e colonna: valori da 0 a 49) che mostrano una lista dei loro 4 angoli visibili. Successivamente verrà chiesto l'angolo sul quale si vorrà operare (da 1 a 4 se la carta é giocata di fronte, da 5 a 8 se di retro) scegliendo a partire dall'anglo in alto a sinistra per poi continuare in senso orario.
+  Posionata la carta possono continuare i giocatori successivi e in automatico il programma salverà i punti fatti(visualizzabili scegliendo l'opzione 6 nel menu' nel prorprio turno).
+
+  ![Disposizione degli angoli](https://github.com/lizz34/progettoUni/blob/main/images/fronte%20e%20retro%20carte.png)
  
 Nel caso si voglia giocare una carta di retro, bisogna selezionare l'opzione 5 del menù prima di procedere con il posizionamento della carta; in questo caso, inserire il numero della carta della propria mano che si vuole girare.
 
-Il termine della partita è decretato da: uno dei mazzi di carte finisce; un giocatore raggiunge (o supera) i 20 punti e tutti i giocatori hanno giocato lo stesso numero di turni. Qui il giocatore con più punti non è detto che vinca in quanto bisogna ancora contare tutti i punti extra delle carte Obiettivo (2 obiettivi comuni e uno segreto), che verranno calcolati e sommati al proprio punteggio.
+Il termine della partita è decretato da: uno dei mazzi di carte finisce; un giocatore raggiunge (o supera) i 20 punti e tutti i giocatori hanno giocato lo stesso numero di turni. Qui il giocatore con più punti non è detto che vinca in quanto bisogna ancora contare tutti i punti extra delle carte obiettivo (2 obiettivi comuni e uno segreto), che verranno calcolati e sommati al proprio punteggio.
 il giocatore con più punti sarà il vincitore.
 In caso di parità il giocatore che ha realizzato più carte obiettivo vincerà, se saranno uguali anche queste verrà condivisa la vittoria.
 
@@ -183,8 +181,6 @@ Esempio: due carte verticali in basso a destra rispetto alla prima carta; la sec
 		return tris;
 	}
 ```
-
-## Esempi
 
 ## Autori
 
