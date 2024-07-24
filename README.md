@@ -1,5 +1,9 @@
 # CODEX 
-Digitalizzazione del gioco da tavolo Codex di Cranio Creations.
+  ![Immagine del gioco](https://github.com/lizz34/Codex_Naturalis/blob/main/images/Codex.jpg)
+
+Riunite la pagine del Codex Naturalis, il manoscritto segreto che enumera le specie dei quattro regni che dimorano nelle foreste vergini. Giocate e piazzate le vostre carte in modo da sfruttare le risorse, completare gli obiettivi e redigere il manoscritto più elaborato!
+
+Questo videogioco é un progetto svolto presso l'università di Bergamo e rappresenta la digitalizzazione del gioco da tavolo Codex Naturalis di Cranio Creations.
 
 ## indice
 - [Istruzioni per giocare](#Istruzione)
@@ -10,7 +14,9 @@ Digitalizzazione del gioco da tavolo Codex di Cranio Creations.
 
 ## Istruzione
 
-La prima cosa da fare per poter utilizzare il gioco è clonare la repository in locale e aprirla su Eclipse; in seguito bisgona eseguire il file Main.java contenuto nel package Main.
+Per leggere il regolamento completo del gioco da tavolo: [Come giocare](https://www.craniocreations.it/storage/media/product_downloads/126/1516/CODEX_ITA_Rules_compressed.pdf) 
+
+Per poter giocare a questa versione di Codex Naturalis, clonare la repository in locale e aprirla su Eclipse; in seguito eseguire il file Main.java contenuto nel package Main.
 La prima cosa che viene richiesta è di inserire il numero e il nickname dei giocatori che desiderano partecipare alla partita (minimo 2 massimo 4).
 Il sistema creerà in automatico i mazzi di tutte le carte e, in maniera randomica, verrà assegnato ad ogni giocatore: una carta obiettivo, 3 carte nella mano (2 risorsa e 1 oro) e una carta starter (già inserita nella matrice di gioco in posizione 24x24).
 Ai giocatori viene permesso di scegliere se giocare la propria carta starter di fronte o di retro.
@@ -193,29 +199,11 @@ Esempio: due carte verticali in basso a destra rispetto alla prima carta; la sec
 
 ## Stato
 
-Il gioco è giocabile tramite linea di comando o console su Eclipse.
-Perchè il videogioco sia completo manca la parte grafica.
+Il gioco é attualmente completo e giocabile esculsivamente tramite linea di comando o console di Eclipse.
+Si sta attualmente lavorando al completamento della parte grafica.
 
 ## Licenza
 
-MIT License
-
-Copyright (c) 2024 Cranio Creation srl
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+Questo progetto digitale è stato realizzato esclusivamente per scopi educativi e non commerciali. 
+Codex Naturalis è un prodotto protetto da copyright, e tutti i diritti relativi al nome, ai contenuti e alle immagini di Codex Naturalis sono di proprietà dei legittimi proprietari. 
+L'utilizzo di Codex Naturalis in questo progetto è inteso unicamente a fini didattici e non implica alcuna affiliazione o approvazione da parte dei proprietari del copyright.
